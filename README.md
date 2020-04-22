@@ -1,7 +1,6 @@
 # README
 
 ## usersテーブル
-
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
@@ -13,11 +12,10 @@
 |first_name_kana|string|null: false|
 |date_of_birth|integer|null: false|
 |address_id|references|null: false, foreign_key: true|
-
 ### Association
+has_one :address
 
 ## addressテーブル
-
 |Column|Type|Options|
 |------|----|-------|
 |ship_last_name|string|null: false|
@@ -31,8 +29,8 @@
 |building|string|
 |ship_phone_number|integer|
 |user_id|references|null: false, foreign_key: true|
-
 ### Association
+belongs_to :user
 
 # freemarket_sample_73d
 
