@@ -1,25 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false|
+|email|string|null: false, unique: true|
+|password|string|null: false, password_length: ７..128|
+|last_name|string|null: false|
+|first_name|string|null: false|
+|last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|date_of_birth|integer|null: false|
+|address_id|references|null: false, foreign_key: true|
 
-* Ruby version
+### Association
 
-* System dependencies
+## addressテーブル
 
-* Configuration
+|Column|Type|Options|
+|------|----|-------|
+|ship_last_name|string|null: false|
+|ship_first_name|string|null: false|
+|ship_last_name_kana|string|null: false|
+|ship_first_name_kana|string|null: false|
+|postcode|integer|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|block|string|null: false|
+|building|string|
+|ship_phone_number|integer|
+|user_id|references|null: false, foreign_key: true|
 
-* Database creation
+### Association
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # freemarket_sample_73d
+
