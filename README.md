@@ -1,6 +1,6 @@
 # README
 
-## userテーブル
+## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
@@ -10,16 +10,16 @@
 |first_name|string|null: false|
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
-|date_of_birth|integer|null: false|
-|biography|string|
-|avatar_image|string|
+|date_of_birth|date|null: false|
+|biography|text||
+|avatar_image|string||
 ### Association
-has_one :address
-has_one :credit-card
-has_many :orders
-has_many :items
+- has_one :address
+- has_one :credit-card
+- has_many :orders
+- has_many :items
 
-## addressテーブル
+## addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |ship_last_name|string|null: false|
@@ -30,63 +30,62 @@ has_many :items
 |prefecture|string|null: false|
 |city|string|null: false|
 |block|string|null: false|
-|building|string|
-|ship_phone_number|integer|
-|user_id|references|null: false, foreign_key: true|
+|building|string||
+|ship_phone_number|integer||
+|user_id|reference|null: false, foreign_key: true|
 ### Association
-belongs_to :user
+- belongs_to :user
 
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|referenc|null: false, foreign_key: true|
-|item_id|referenc|null: false, foreign_key: true|
-|status|integer||
+|user_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
+|status|integer|default: 1|  <!-- 1: 取引中, 2: 取引終了 -->
 ### Association
-belongs_to :user
-belongs_to :item
-belongs_to :credit-card
+- belongs_to :user
+- belongs_to :item
 
 ## credit-cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|referenc|null: false, foreign_key: true|
-|card_number|integer|null: false, unipue: true|
+|user_id|reference|null: false, foreign_key: true|
+|card_number|integer|null: false, unique: true|
 |expiration_year|integer|null: false|
 |expiration_month|integer|null: false|
 |security_code|integer|null: false|
 ### Association
-belongs_to :user
-belongs_to :users
-
+- belongs_to :user
 
 ## items テーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
-|name|string|null: false|
-|description|text|null: false|
+|name|string|null: false, name_length: 1..40|
+|description|text|null: false, description_length: 1..1000|
 |category_id|reference|null: false, foreign_key: true|
 |condition|string|null: false|
 |delivery_charge|string|null: false|
-|derivery_prefecure|string|null: false|
-|delivery_dates|integer|null: false|
-|price|integer|null: false|
+|delivery_prefecture|string|null: false|
+|delivery_dates|string|null: false|
+|price|integer|null: false, price: 300..9999999|
 ### Association
 - belongs_to :user
+- belongs_to :order
+- belongs_to :categories
 - has_many :images
 
 ## images テーブル
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|item-id|reference|foreign_key: true|
+|item_id|reference|foreign_key: true|
 ### Association
+- belongs_to :item
 
 ## categories テーブル
 |Column|Type|Options|
 |------|----|-------|
-|id||
 |name|string|null: false|
 |ancestry|integer|null: false|
 ### Association
