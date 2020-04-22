@@ -15,6 +15,9 @@
 |avatar_image|string|
 ### Association
 has_one :address
+has_one :credit-card
+has_many :orders
+has_many :items
 
 ## addressテーブル
 |Column|Type|Options|
@@ -31,6 +34,4 @@ has_one :address
 |ship_phone_number|integer|
 |user_id|references|null: false, foreign_key: true|
 ### Association
-belongs_to :user
-
-# freemarket_sample_73d
+belongs_to :users
