@@ -1,6 +1,6 @@
 # README
 
-## usersテーブル
+## userテーブル
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
@@ -11,9 +11,13 @@
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |date_of_birth|integer|null: false|
-|address_id|references|null: false, foreign_key: true|
+|biography|string|
+|avatar_image|string|
 ### Association
 has_one :address
+has_one :credit-card
+has_many :orders
+has_many :items
 
 ## addressテーブル
 |Column|Type|Options|
@@ -53,3 +57,4 @@ belongs_to :credit-card
 |security_code|integer|null: false|
 ### Association
 belongs_to :user
+belongs_to :users
