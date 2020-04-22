@@ -32,5 +32,24 @@ has_one :address
 ### Association
 belongs_to :user
 
-# freemarket_sample_73d
+## ordersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|referenc|null: false, foreign_key: true|
+|item_id|referenc|null: false, foreign_key: true|
+|status|integer||
+### Association
+belongs_to :user
+belongs_to :item
+belongs_to :credit-card
 
+## credit-cardsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|referenc|null: false, foreign_key: true|
+|card_number|integer|null: false, unipue: true|
+|expiration_year|integer|null: false|
+|expiration_month|integer|null: false|
+|security_code|integer|null: false|
+### Association
+belongs_to :user
