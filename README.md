@@ -1,6 +1,6 @@
 # README
 
-## usersテーブル
+## userテーブル
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
@@ -11,6 +11,8 @@
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |date_of_birth|integer|null: false|
+|biography|string|
+|avatar_image|string|
 |address_id|references|null: false, foreign_key: true|
 ### Association
 has_one :address
