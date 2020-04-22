@@ -33,4 +33,3 @@ has_one :address
 belongs_to :user
 
 # freemarket_sample_73d
-
