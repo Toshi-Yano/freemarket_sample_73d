@@ -58,3 +58,36 @@ belongs_to :credit-card
 ### Association
 belongs_to :user
 belongs_to :users
+
+
+## items テーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|reference|null: false, foreign_key: true|
+|name|string|null: false|
+|description|text|null: false|
+|category_id|reference|null: false, foreign_key: true|
+|condition|string|null: false|
+|delivery_charge|string|null: false|
+|derivery_prefecure|string|null: false|
+|delivery_dates|integer|null: false|
+|price|integer|null: false|
+### Association
+- belongs_to :user
+- has_many :images
+
+## images テーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|string|null: false|
+|item-id|reference|foreign_key: true|
+### Association
+
+## categories テーブル
+|Column|Type|Options|
+|------|----|-------|
+|id||
+|name|string|null: false|
+|ancestry|integer|null: false|
+### Association
+- has_many :items
