@@ -45,7 +45,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## credit-cardsテーブル
+## credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
