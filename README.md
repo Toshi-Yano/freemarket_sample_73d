@@ -41,7 +41,6 @@
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
 |item_id|reference|null: false, foreign_key: true|
-|status|integer|default: 1|  <!-- 1: 取引中, 2: 取引終了 -->
 ### Association
 - belongs_to :user
 - belongs_to :item
@@ -69,6 +68,7 @@
 |delivery_prefecture|string|null: false|
 |delivery_dates|string|null: false|
 |price|integer|null: false, price: 300..9999999|
+|status|integer|default: 1|  <!-- 1: 購入可, 2: 購入済み -->
 ### Association
 - belongs_to :user
 - belongs_to :order
