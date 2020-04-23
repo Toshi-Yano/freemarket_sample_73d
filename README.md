@@ -15,7 +15,7 @@
 |avatar_image|string||
 ### Association
 - has_one :address
-- has_one :credit-card
+- has_one :credit_card
 - has_many :orders
 - has_many :items
 
@@ -71,8 +71,8 @@
 |status|integer|default: 1|  <!-- 1: 購入可, 2: 購入済み -->
 ### Association
 - belongs_to :user
-- belongs_to :order
-- belongs_to :categories
+- belongs_to :category
+- has_one :order
 - has_many :images
 
 ## images テーブル
