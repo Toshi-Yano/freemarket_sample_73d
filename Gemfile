@@ -82,6 +82,5 @@ gem 'devise'
 gem 'haml-rails'
 gem 'carrierwave'
 gem 'mini_magick'
-
 gem 'therubyracer', '~> 0.12.3'
 gem 'fog-aws'
