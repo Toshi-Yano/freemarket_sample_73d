@@ -1,5 +1,16 @@
 -# = render 'items/header'
 
+.category-bar
+  FURIMA
+  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  ベビー・キッズ
+  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  ベビー服(男女兼用) ~95cm
+  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  アウター
+  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  商品名
+
 .item
 
   .item__item-box
@@ -94,7 +105,7 @@
           前の商品
       .item__other-items-box__prev-next__next
         = link_to '#' do
-          = icon('fas', 'chevron-left')
+          = icon('fas', 'chevron-right')
           前の商品
     .item__other-items-box__more-items
       = link_to '#' do
