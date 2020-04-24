@@ -222,10 +222,10 @@ sporting-goods_grandchild_array = [
                                     ['旅行用品', 'その他']
                                   ]
 
-sporting-goods = Category.create(name: 'スポーツ・レジャー')
-sporting-goods_child_array.each_with_index do |child, i|
-  child = sporting-goods.children.create(name: child)
-  sporting-goods_grandchild_array[i].each do |grandchild|
+sporting_goods = Category.create(name: 'スポーツ・レジャー')
+sporting_goods_child_array.each_with_index do |child, i|
+  child = sporting_goods.children.create(name: child)
+  sporting_goods_grandchild_array[i].each do |grandchild|
     child.children.create(name: grandchild)
   end
 end
