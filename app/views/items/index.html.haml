@@ -1,4 +1,7 @@
-%h1 
-  Items#index
-%p 
-  Find me in app/views/items/index.html.erb
+- if user_signed_in?
+  マイページ
+  = link_to "マイページ", user_show_path(current_user)
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
+- else
+  = link_to "ログイン", new_user_session_path
+  = link_to "サインアップ", new_user_registration_path
