@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :items
   
-  validates :nickname,        presence: true
+  validates :nickname,        presence: true, uniqueness: true
   validates :email,           presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9.!#$%&'*+\/=?\A_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/ }
   validates :last_name,       presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
   validates :first_name,      presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
