@@ -6,3 +6,5 @@ class ItemsController < ApplicationController
     @toys = Item.includes(:images).where('status = ? and category_id = ?', 1, 620).order('id DESC').limit(3)
   end
 end
+
+ハロー
