@@ -2,30 +2,29 @@
 
 .category-bar
   FURIMA
-  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  = icon('fas', 'chevron-right')
   ベビー・キッズ
-  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  = icon('fas', 'chevron-right')
   ベビー服(男女兼用) ~95cm
-  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  = icon('fas', 'chevron-right')
   アウター
-  = icon('fas', 'chevron-right'), class: "category-bar__icon"
+  = icon('fas', 'chevron-right')
   商品名
 
 .item
-
   .item__item-box
-    %p.item__item-box__name
+    %h1.item__item-box__name
       商品名
 
     .item__item-box__image0
-      = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '300x400'
+      = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '400x300'
     %ul.item__item-box__images
       %li.item__item-box__images__image
-        = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '60x80'
+        = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '80x60'
       %li.item__item-box__images__image
-        = image_tag '/public/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '60x80'
+        = image_tag '/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '80x60'
       %li.item__item-box__images__image
-        = image_tag '/public/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '60x80'
+        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '80x60'
     
     %p.item__item-box__price
       ¥555
@@ -45,12 +44,15 @@
         %th.item__item-box__details__table__header{rowspan: "3"}
           カテゴリー
         %td
-          %a
-            ベビー・キッズ
-          %a
-            ベビー服(男女兼用) ~95cm
-          %a
-            アウター
+          %p
+            = link_to '#' do
+              ベビー・キッズ
+          %p
+            = link_to '#' do
+              ベビー服(男女兼用) ~95cm
+          %p
+            = link_to '#' do
+              アウター
       %tr
         %th.item__item-box__details__table__header
           ブランド
@@ -83,10 +85,10 @@
 
     .item__item-box__btn-box
       .item__item-box__btn-box__favorite-btn
-        = icon('fas', 'star'), class: "item__item-box__btn-box__favorite-btn__icon"
+        = icon('fas', 'star')
         お気に入り 0
       .item__item-box__btn-box__report-btn
-        = icon('fas', 'flag'), class: "item__item-box__btn-box__report-btn__icon"
+        = icon('fas', 'flag')
         不適切な商品の通報
 
 
