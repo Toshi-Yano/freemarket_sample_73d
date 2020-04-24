@@ -80,5 +80,24 @@
 
 
   .item__comment-box
+    %textarea.item__comment-box__textarea
+    .item__comment-box__attention
+      相手のことを考え丁寧なコメントを心がけましょう。
+      不快な言葉遣いなどは利用制限や退会処分となることがあります。
+    .item__comment-box__comment-submit-btn
+
+  .item__other-items-box
+    .item__other-items-box__prev-next
+      .item__other-items-box__prev-next__prev
+        = link_to '#' do
+          = icon('fas', 'chevron-left')
+          前の商品
+      .item__other-items-box__prev-next__next
+        = link_to '#' do
+          = icon('fas', 'chevron-left')
+          前の商品
+    .item__other-items-box__more-items
+      = link_to '#' do
+        このカテゴリーをもっと見る
 
 -# = render 'items/footer'
