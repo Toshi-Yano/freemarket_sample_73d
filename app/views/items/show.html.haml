@@ -2,81 +2,83 @@
 
 .item
 
-  %p.item__name
-    商品名
+  .item__item-box
+    %p.item__item-box__name
+      商品名
 
-  .item__image0
-    = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '300x400'
-  %ul.item__images
-    %li.item__images__image
-      = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '60x80'
-    %li.item__images__image
-      = image_tag '/public/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '60x80'
-    %li.item__images__image
-      = image_tag '/public/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '60x80'
-  
-  %p.item__price
-    ¥555
-  %p.item__price-description
-    (税込)送料込み
+    .item__item-box__image0
+      = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '300x400'
+    %ul.item__item-box__images
+      %li.item__item-box__images__image
+        = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '60x80'
+      %li.item__item-box__images__image
+        = image_tag '/public/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '60x80'
+      %li.item__item-box__images__image
+        = image_tag '/public/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '60x80'
+    
+    %p.item__item-box__price
+      ¥555
+    %p.item__item-box__price-description
+      (税込)送料込み
 
-  %p.item__description
-    この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。
+    %p.item__item-box__description
+      この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。
 
-  %table.item__details
-    %tr.item__details__table
-      %th.item__details__table__header
-        出品者
-      %td
-        hoge
-    %tr
-      %th.item__details__table__header{rowspan: "3"}
-        カテゴリー
-      %td
-        %a
-          ベビー・キッズ
-        %a
-          ベビー服(男女兼用) ~95cm
-        %a
-          アウター
-    %tr
-      %th.item__details__table__header
-        ブランド
-      %td
-        アルマーニ
-    %tr
-      %th.item__details__table__header
-        商品のサイズ
-      %td
-    %tr
-      %th.item__details__table__header{rowspan: "2"}
-        商品の状態
-      %td
-        未使用に近い
-    %tr
-      %th.item__details__table__header{rowspan: "2"}
-        配送料の負担
-      %td
-        送料込み
-    %tr
-      %th.item__details__table__header{rowspan: "2"}
-        発送元の地域
-      %td
-        静岡県
-    %tr
-      %th.item__details__table__header{rowspan: "2"}
-        発送日の目安
-      %td
-        4-7日で発送
+    %table.item__item-box__details
+      %tr.item__item-box__details__table
+        %th.item__item-box__details__table__header
+          出品者
+        %td
+          hoge
+      %tr
+        %th.item__item-box__details__table__header{rowspan: "3"}
+          カテゴリー
+        %td
+          %a
+            ベビー・キッズ
+          %a
+            ベビー服(男女兼用) ~95cm
+          %a
+            アウター
+      %tr
+        %th.item__item-box__details__table__header
+          ブランド
+        %td
+          アルマーニ
+      %tr
+        %th.item__item-box__details__table__header
+          商品のサイズ
+        %td
+      %tr
+        %th.item__item-box__details__table__header{rowspan: "2"}
+          商品の状態
+        %td
+          未使用に近い
+      %tr
+        %th.item__item-box__details__table__header{rowspan: "2"}
+          配送料の負担
+        %td
+          送料込み
+      %tr
+        %th.item__item-box__details__table__header{rowspan: "2"}
+          発送元の地域
+        %td
+          静岡県
+      %tr
+        %th.item__item-box__details__table__header{rowspan: "2"}
+          発送日の目安
+        %td
+          4-7日で発送
 
-  .item__btn-box
-    .item__btn-box__favorite-btn
-      = icon('fas', 'star'), class: "item__btn-box__favorite-btn__icon"
-      お気に入り 0
-    .item__btn-box__report-btn
-      = icon('fas', 'flag'), class: "item__btn-box__report-btn__icon"
-      不適切な商品の通報
+    .item__item-box__btn-box
+      .item__item-box__btn-box__favorite-btn
+        = icon('fas', 'star'), class: "item__item-box__btn-box__favorite-btn__icon"
+        お気に入り 0
+      .item__item-box__btn-box__report-btn
+        = icon('fas', 'flag'), class: "item__item-box__btn-box__report-btn__icon"
+        不適切な商品の通報
 
-  
+
+  .item__comment-box
 
 -# = render 'items/footer'
