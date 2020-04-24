@@ -196,9 +196,9 @@ electrical-appliances_grandchild_array = [
                                           []
                                         ]
 
-electrical-appliances = Category.create(name: '家電・スマホ・カメラ')
+electrical_appliances = Category.create(name: '家電・スマホ・カメラ')
 electrical-appliances_child_array.each_with_index do |child, i|
-  child = electrical-appliances.children.create(name: child)
+  child = electrical_appliances.children.create(name: child)
   electrical-appliances_grandchild_array[i].each do |grandchild|
     child.children.create(name: grandchild)
   end
