@@ -22,6 +22,51 @@
 
   %p.item__description
     この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。
-    
+
+  %table.item__details
+    %tr.item__details__table
+      %th.item__details__table__header
+        出品者
+      %td
+        hoge
+    %tr
+      %th.item__details__table__header{rowspan: "3"}
+        カテゴリー
+      %td
+        %a
+          ベビー・キッズ
+        %a
+          ベビー服(男女兼用) ~95cm
+        %a
+          アウター
+    %tr
+      %th.item__details__table__header
+        ブランド
+      %td
+        アルマーニ
+    %tr
+      %th.item__details__table__header
+        商品のサイズ
+      %td
+    %tr
+      %th.item__details__table__header{rowspan: "2"}
+        商品の状態
+      %td
+        未使用に近い
+    %tr
+      %th.item__details__table__header{rowspan: "2"}
+        配送料の負担
+      %td
+        送料込み
+    %tr
+      %th.item__details__table__header{rowspan: "2"}
+        発送元の地域
+      %td
+        静岡県
+    %tr
+      %th.item__details__table__header{rowspan: "2"}
+        発送日の目安
+      %td
+        4-7日で発送
 
 -# = render 'items/footer'
