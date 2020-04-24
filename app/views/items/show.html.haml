@@ -1,5 +1,17 @@
 -# = render 'items/header'
 
+.item
+  %p.item__name
+    商品名
+  .item__image0
+    = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '300x400'
+  %ul.item__images
+    %li.item__images__image
+      = image_tag '/public/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '60x80'
+    %li.item__images__image
+      = image_tag '/public/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '60x80'
+    %li.item__images__image
+      = image_tag '/public/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '60x80'
 
 
 -# = render 'items/footer'
