@@ -17,31 +17,32 @@
       商品名
 
     .item__item-box__image0
-      = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '400x300'
+      = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '560x346'
     %ul.item__item-box__images
       %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '80x60'
+        = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '140x87'
       %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '80x60'
+        = image_tag '/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '140x87'
       %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '80x60'
+        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
     
     %p.item__item-box__price
-      ¥555
+      ¥5550
     %p.item__item-box__price-description
-      (税込)送料込み
+      %span (税込)
+      %span 送料込み
 
     %p.item__item-box__description
       この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。
 
     %table.item__item-box__details
-      %tr.item__item-box__details__table
-        %th.item__item-box__details__table__header
+      %tr
+        %th
           出品者
         %td
           hoge
       %tr
-        %th.item__item-box__details__table__header{rowspan: "3"}
+        %th
           カテゴリー
         %td
           %p
@@ -54,31 +55,32 @@
             = link_to '#' do
               アウター
       %tr
-        %th.item__item-box__details__table__header
+        %th
           ブランド
         %td
           アルマーニ
       %tr
-        %th.item__item-box__details__table__header
+        %th
           商品のサイズ
         %td
       %tr
-        %th.item__item-box__details__table__header{rowspan: "2"}
+        %th
           商品の状態
         %td
           未使用に近い
       %tr
-        %th.item__item-box__details__table__header{rowspan: "2"}
+        %th
           配送料の負担
         %td
           送料込み
       %tr
-        %th.item__item-box__details__table__header{rowspan: "2"}
+        %th
           発送元の地域
         %td
-          静岡県
+          = link_to '#' do
+            静岡県
       %tr
-        %th.item__item-box__details__table__header{rowspan: "2"}
+        %th
           発送日の目安
         %td
           4-7日で発送
@@ -86,29 +88,34 @@
     .item__item-box__btn-box
       .item__item-box__btn-box__favorite-btn
         = icon('fas', 'star')
-        お気に入り 0
-      .item__item-box__btn-box__report-btn
-        = icon('fas', 'flag')
-        不適切な商品の通報
-
+        %span お気に入り 
+        %span 0
+      = link_to '#' do
+        .item__item-box__btn-box__report-btn
+          = icon('fas', 'flag')
+          不適切な商品の通報
 
   .item__comment-box
     %textarea.item__comment-box__textarea
     .item__comment-box__attention
-      相手のことを考え丁寧なコメントを心がけましょう。
-      不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      %span 相手のことを考え丁寧なコメントを心がけましょう。
+      %span 不快な言葉遣いなどは利用制限や退会処分となることがあります。
     .item__comment-box__comment-submit-btn
+      = icon('fas', 'comment')
+      コメントする
 
   .item__other-items-box
     .item__other-items-box__prev-next
       .item__other-items-box__prev-next__prev
         = link_to '#' do
-          = icon('fas', 'chevron-left')
+          %span
+            = icon('fas', 'chevron-left')
           前の商品
       .item__other-items-box__prev-next__next
         = link_to '#' do
-          = icon('fas', 'chevron-right')
-          前の商品
+          次の商品
+          %span
+            = icon('fas', 'chevron-right')
     .item__other-items-box__more-items
       = link_to '#' do
         このカテゴリーをもっと見る
