@@ -1,0 +1,104 @@
+-# = render partial: '/layouts/header'
+
+%main
+  .main-content
+    .mainContainer
+      .mainContainer__header
+        %h2 商品の情報を入力
+      %form
+      =form_with model: @item, local: true, class: "mainContainer__form" do |f|
+        .mainContainer__form--image
+          .contents__main__image
+            .imageName
+              %label 出品画像
+              %span 必須
+              .imageName__upload
+                %p 最大10枚までアップロードできます
+            .contents-image
+              .contents__main__image__box
+                .contents__main__image__box
+                  .contents__main__image__box__previews
+                  .contents__main__image__box__uploader
+                    %label.contents__main__image__box__uploader__label
+                      = f.fields_for :photos do |image|
+                        .js-file_group{"data-index" => "#{image.index}"}
+                          = image.file_field :url, class: 'js-file'
+                      .contents__main__image__box__uploader__text
+                        %p クリックしてファイルをアップロード
+                        .contents__main__image__box__uploader__text__icon
+                          %i.fas.fa-camera 
+        .mainContainer__form--name
+          .name
+            =f.label "商品名"
+            %span 必須
+            .name__form
+              =f.text_field :name, placeholder: "40文字まで" 
+          .detail
+            =f.label "商品の説明"
+            %span 必須
+            .detail__textarea
+              =f.text_area :text, placeholder: "商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）　例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+        .mainContainer__form--detail
+          .detailName
+            %h3 商品の詳細
+          .category
+            .category__name
+              =f.label :category, "カテゴリー"
+              %span 必須
+              -# = f.collection_select, "選択してください"
+            .item_select-children
+            .item_select-size
+            .category__status
+              =f.label :situation, "商品の状態"
+              %span 必須
+              =f.select :situation,[["新品・未使用"], ["未使用に近い"],  ["目立った傷や汚れなし"], ["やや傷や汚れあり"],["傷や汚れあり"],["全体的に状態が悪い"] ], prompt: "選択してください"
+        .mainContainer__form--delivery
+          .deliveryName
+            %h3 配送について
+          .deliveryDetail
+            .deliveryDetail__burden
+              =f.label :cost, "配送料の負担"
+              %span 必須
+              .deliveryDetail__burden--select
+                =f.select :cost,[["送料込み(出品者負担)"], ["着払い(購入者負担)"]], prompt: "選択してください"
+            .deliveryDetail__area
+              =f.label :deliver_area, "発送元の地域"
+              %span 必須
+              .deliveryDetail__area--select
+                -# = f.collection_select :deliver_area, Prefecture.all, :name, :name, prompt: "選択してください"
+            .deliveryDetail__date
+              =f.label :shipping_term, "発送までの日数"
+              %span 必須
+              .deliveryDetail__date--select
+                =f.select :shipping_term,[["1〜2日で発送"], ["2〜3日で発送"],["4〜7日で発送"]], prompt: "選択してください"
+        .mainContainer__form--price
+          .priceName
+            %p 価格 （¥300〜9,999,999）
+          .priceDetail
+            .priceDetail__form
+              %ul.sell-price
+                %li.price
+                  .price__field
+                    =f.label :price, "販売価格"
+                    %span 必須
+                  %span{class: "yen"}¥
+                  .price__right
+                    .price__right--input
+                      =f.text_field :price, id: "price__form", placeholder: "例）300"
+                %li.com
+                  .comPrice
+                  販売手数料(10%)
+                  .stick__tax
+                %li.margin
+                  .marginPrice
+                  販売利益
+                  .stick__margin
+          .exihibition
+            =f.submit "出品する", class: "exihibition__btn"
+            =link_to root_path do
+              もどる
+          .warning
+            %p 
+              禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
+
+-# = render partial: '/layouts/footer'
