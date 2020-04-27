@@ -1,12 +1,27 @@
+$furima_blue: rgb(45, 201, 201);
+$furima_font: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+
+@mixin flex_bothCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex_centerSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 * {
   box-sizing: border-box;
-  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+  font-family: $furima_font;
   text-decoration: none;
   list-style: none;
 }
 
 a{
-  color: rgb(45, 201, 201);
+  color: $furima_blue;
 }
 
 .category-bar{
@@ -33,18 +48,19 @@ a{
     }
     &__image0{
       margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex_bothCenter;
     }
     &__images{
       margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex_bothCenter;
       &__image{
         margin-left: 10px;
       }
+    }
+    // 小イメージが５枚以上の時
+    .overflown{
+      overflow: scroll;
+      justify-content: flex-start;
     }
     &__price{
       font-size: 46px;
@@ -86,17 +102,15 @@ a{
     }
     &__btn-box{
       margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex_centerSpaceBetween;
       &__favorite-btn{
         padding: 6px 10px;
         border: 1px solid #ffb340;
         border-radius: 19px;
         font-size: 14px;
-        color: rgb(45, 201, 201);
+        color: $furima_blue;
         span{
-          color: rgb(45, 201, 201);
+          color: $furima_blue;
         }
       }
       &__favorite-btn:hover{
@@ -138,7 +152,7 @@ a{
       }
     }
     &__comment-submit-btn{
-      background-color: rgb(45, 201, 201);
+      background-color: $furima_blue;
       width: 375px;
       padding: 12px;
       margin: 0 auto 5px;
@@ -153,9 +167,7 @@ a{
     margin: 0 auto 40px;
     &__prev-next{
       margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex_centerSpaceBetween;
       &__prev{
         font-size: 16px;
         span{

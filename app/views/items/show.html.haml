@@ -18,11 +18,17 @@
 
     .item__item-box__image0
       = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '560x346'
-    %ul.item__item-box__images
+    %ul#image_list.item__item-box__images
       %li.item__item-box__images__image
         = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '140x87'
       %li.item__item-box__images__image
         = image_tag '/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '140x87'
+      %li.item__item-box__images__image
+        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
+      %li.item__item-box__images__image
+        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
+      %li.item__item-box__images__image
+        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
       %li.item__item-box__images__image
         = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
     
@@ -121,3 +127,14 @@
         このカテゴリーをもっと見る
 
 -# = render 'items/footer'
+
+-# 小イメージが５枚以上の時、ulに'overflown'クラスをつけてスタイルを変更
+:javascript
+  (()=>{
+    const images = document.getElementsByClassName('item__item-box__images__image');
+    const images_array = Array.from(images);
+    if (images_array.length > 5) {
+      document.getElementById('image_list').classList.add('overflown');
+    }
+  })();
+
