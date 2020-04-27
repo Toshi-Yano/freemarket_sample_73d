@@ -6,7 +6,7 @@
 
 body {
   position: relative;
-  height: 100vh;
+  height: 100%;
   background: #f5f5f5;
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
   font-size: 14px;
@@ -132,19 +132,32 @@ body {
     border-bottom: 1px solid #F5F5F5;
   }
   &__container {
+    // width: 400px;
+    height: 100%;
     padding: 25px 0;
+    margin: 0 auto;
     &__field {
-      text-align: center;
+      // text-align: center;
       &__form {
         width: 300px;
         height: 30px;
         padding: 10px;
         font-size: 18px;
+        margin-bottom: 20px;
+        &-each {
+          width: 150px;
+          height: 30px;
+          padding: 10px;
+          font-size: 18px;
+          margin: 10px 10px 20px;
+        }
       }
       &__label {
         display: inline-block;
         font-weight: bold;
         text-align: left;
+        font-size: 15px;
+        margin-bottom: 5px;
       }
       &--parallel {
         display: flex;

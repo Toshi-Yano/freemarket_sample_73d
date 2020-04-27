@@ -46,13 +46,13 @@
           %br/
           = f.text_field :last_name, placeholder: "例）山田", class: "main__container__field__form-each"
         .main__container__field--parallel-each
-          %span.main__container__field__label-red 必須
+          %span.main__container__field__label-red
           %br/
           = f.text_field :first_name, placeholder: "例）彩", class: "main__container__field__form-each"
       .main__container__field--parallel
         .main__container__field--parallel-each
           = f.label :お名前かな（全角）, class: "main__container__field__label"
-          %span.main__container__field__label-red 必須
+          %span.main__container__field__label-red
           %br/
           = f.text_field :last_name_kana, placeholder: "例）やまだ", class: "main__container__field__form-each"
         .main__container__field--parallel-each
@@ -61,7 +61,7 @@
           = f.text_field :first_name_kana, placeholder: "例）あや", class: "main__container__field__form-each"
       .main__container__field
         = f.label :生年月日, class: "main__container__field__label"
-        %span.main__container__field__label-red 必須
+        %span.main__container__field__label-red
         %br/
         = f.date_select(:date_of_birth, prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:1900)
       %p 本人の情報は正しく入力してください。会員登録後、修正するにはお時間をいただくことがあります。
