@@ -1,0 +1,45 @@
+%h2 ユーザー情報登録
+= form_for(@user, url: user_registration_path) do |f|
+  = render "devise/shared/error_messages", resource: @user
+  .field
+    = f.label :nickname
+    %br/
+    = f.text_field :nickname, autofocus: true
+  .field
+    = f.label :last_name
+    %br/
+    = f.text_field :last_name, autofocus: true
+  .field
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name, autofocus: true
+  .field
+    = f.label :kana
+    %br/
+    = f.text_field :last_name_kana, autofocus: true
+  .field
+    = f.label :kana
+    %br/
+    = f.text_field :first_name_kana, autofocus: true
+  .field
+    = f.label :birth
+    %br/
+    = f.date_field :date_of_birth, autofocus: true
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "new-password"
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .actions
+    = f.submit "Sign up"
+= render "devise/shared/links"
