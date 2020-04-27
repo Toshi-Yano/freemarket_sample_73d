@@ -1,4 +1,290 @@
-%h1 
-  Items#index
-%p 
-  Find me in app/views/items/index.html.erb
+.main
+  .main_header
+    .main_header_inner
+      .main_header_inner_box
+        .main_header_inner_box_left
+          =link_to '#' do
+            =image_tag "/material/logo/logo.png"
+        .main_header_inner_box_right
+          <input class="box_right_input" id="searchInput" name="key" placeholder="キーワードから探す">
+          =image_tag '/material/icon/icon-search 1.png'
+        .main_header_inner_box_list
+      .main_header_inner_low
+        .main_header_inner_low_leftLists
+          .main_header_inner_low_leftLists_left
+            =link_to '#' do
+              カテゴリー
+          .main_header_inner_low_leftLists_right
+            =link_to '#' do
+              ブランド
+        .main_header_inner_low_rightLists
+          - if user_signed_in?
+            .main_header_inner_low_rightLists_left
+              = link_to "マイページ", user_show_path(current_user)
+            .main_header_inner_low_rightLists_right
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+          - else
+            .main_header_inner_low_rightLists_left
+              = link_to "ログイン", new_user_session_path
+            .main_header_inner_low_rightLists_right
+              = link_to "新規会員登録", new_user_registration_path
+  .main_page
+    .main_page_visual
+      .main_page_visual_content
+        .main_page_visual_content_title
+          人生を変えるフリマアプリ
+        .main_page_visual_content_text
+          .p FURIMAはだれでもかんたんに出品・購入できる
+          .p フリマアプリです
+        .main_page_visual_content_btn
+          .main_page_visual_content_btn_a
+            =link_to '#' do
+              -# =image_tag '/material/icon/app-store'
+          .main_page_visual_content_btn_b
+            =link_to '#' do
+              -# =image_tag '/google-play'
+    .main_page_reason
+      .main_page_reason_title
+        FURIMAが選ばれる3つの理由
+        
+      .main_page_reason_lists
+        .main_page_reason_lists_list
+          .main_page_reason_lists_list_picture
+            .span 1
+            =image_tag '/material/pict/pict-reason-01.jpg'
+          .main_page_reason_lists_list_subtitle
+            %span 3分
+            ですぐに出品
+          .main_page_reason_lists_list_text
+            スマホで入力するだけで簡単に出品できる！
+        .main_page_reason_lists_list
+          .main_page_reason_lists_list_picture
+            .span 2
+            =image_tag '/material/pict/pict-reason-02.jpg'
+          .main_page_reason_lists_list_subtitle
+            %span シンプル
+            で使いやすい
+          .main_page_reason_lists_list_text
+            めんどくさい入力は必要なく、検索も購入もスムーズ！
+        .main_page_reason_lists_lastList
+          .main_page_reason_lists_lastList_picture
+            .span 3
+            =image_tag '/material/pict/pict-reason-03.jpg'
+          .main_page_reason_lists_lastList_subtitle
+            手数料
+            %span 業界最安
+          .main_page_reason_lists_lastList_text
+            最大3%でお得に出品&購入！
+    .main_page_download
+      .main_page_download_inner
+        .main_page_download_inner_title
+          会員数日本一位
+        .main_page_download_inner_text
+          .br FURIMAは、フリマアプリで最も人気。
+          .br 出品・購入回数も業界最多です！
+          .br ほしかったあの商品に出会えるかもしれません。
+        .main_page_download_inner_btn
+          .main_page_download_inner_btn_a
+            =link_to '#' do
+              -# =image_tag '/assets/apple-store'
+          .main_page_download_inner_btn_b
+            =link_to '#' do
+              -# =image_tag '/assets/google-pray'
+    .main_page_chara
+      .main_page_chara_head
+        FURIMAの特徴
+      .main_page_chara_lists
+        .main_page_chara_lists_list
+          .main_page_chara_lists_list_picture
+            = image_tag "/material/icon/icon-01.png"
+          .main_page_chara_lists_list_subtitle
+            簡単に売り買いできる
+          .main_page_chara_lists_list_text
+            スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+        .main_page_chara_lists_list
+          .main_page_chara_lists_list_picture
+            = image_tag "/material/icon/icon-03.png"
+          .main_page_chara_lists_list_subtitle
+            売上金は即日振込みに対応
+          .main_page_chara_lists_list_text
+            午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+        .main_page_chara_lists_list
+          .main_page_chara_lists_list_picture
+            = image_tag "/material/icon/icon-04.png"
+          .main_page_chara_lists_list_subtitle
+            様々な支払いに対応
+          .main_page_chara_lists_list_text
+            お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+    .main_page_pickup
+      .main_page_pickup_head
+        ピックアップカテゴリー
+      .main_page_pickup_box
+        .main_page_pickup_box_title
+          =link_to '#' do
+            新規投稿商品
+        .main_page_pickup_box_lists
+          .main_page_pickup_box_lists_list
+            =link_to '#' do
+              .main_page_pickup_box_lists_list_picture
+                =image_tag "/material/pict/pict-reason-01.jpg"
+              .main_page_pickup_box_lists_list_text
+                .main_page_pickup_box_lists_list_text_name
+                  prodact3
+                .main_page_pickup_box_lists_list_text_data
+                  %ul 
+                    %li 30000円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  .p
+                    (税込)
+          .main_page_pickup_box_lists_list
+            =link_to '#' do
+              .main_page_pickup_box_lists_list_picture
+                = image_tag "/material/pict/pict-reason-02.jpg"
+              .main_page_pickup_box_lists_list_text
+                .main_page_pickup_box_lists_list_text_name
+                  prodact2
+                .main_page_pickup_box_lists_list_text_data
+                  %ul 
+                    %li 20000円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  .p
+                    (税込)
+          .main_page_pickup_box_lists_list
+            =link_to '#' do
+              .main_page_pickup_box_lists_list_picture
+                = image_tag "/material/pict/pict-reason-03.jpg"
+              .main_page_pickup_box_lists_list_text
+                .main_page_pickup_box_lists_list_text_name
+                  prodact1
+                .main_page_pickup_box_lists_list_text_data
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  .p
+                    (税込)
+    .main_page_pickup
+      .main_page_pickup_head
+        ピックアップブランド
+      .main_page_pickup_box
+        .main_page_pickup_box_title
+          =link_to '#' do
+            アーカイバ
+        .main_page_pickup_box_lists
+          .main_page_pickup_box_lists_list
+            =link_to '#' do
+              .main_page_pickup_box_lists_list_picture
+                =image_tag "/material/pict/pict-reason-01.jpg"
+              .main_page_pickup_box_lists_list_text
+                .main_page_pickup_box_lists_list_text_name
+                  prodact3
+                .main_page_pickup_box_lists_list_text_data
+                  %ul
+                    %li 30000円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  .p
+                    (税込)
+          .main_page_pickup_box_lists_list
+            =link_to '#' do
+              .main_page_pickup_box_lists_list_picture
+                = image_tag "/material/pict/pict-reason-02.jpg"
+              .main_page_pickup_box_lists_list_text
+                .main_page_pickup_box_lists_list_text_name
+                  prodact2
+                .main_page_pickup_box_lists_list_text_data
+                  %ul
+                    %li 20000円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  .p
+                    (税込)
+          .main_page_pickup_box_lists_list
+            =link_to '#' do
+              .main_page_pickup_box_lists_list_picture
+                = image_tag "/material/pict/pict-reason-03.jpg"
+              .main_page_pickup_box_lists_list_text
+                .main_page_pickup_box_lists_list_text_name
+                  prodact1
+                .main_page_pickup_box_lists_list_text_data
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star
+                        0
+                  .p
+                    (税込)
+  .main_banner
+    .main_banner_inner
+      .main_banner_inner_title
+        だれでもかんたんだれでもかんたん、人生を変えるフリマアプリ
+      .main_banner_inner_text
+        今すぐ無料ダウンロード！
+      .main_banner_inner_btn
+        .main_banner_inner_btn_a
+          =link_to '#' do
+            -# =image_tag '/assets/applestore'
+        .main_banner_inner_btn_b
+          =link_to '#' do
+            -# =image_tag '/aseets/google-pray'
+  .main_footer
+    .main_footer_contents
+      .main_footer_contents_content
+        .main_footer_contents_content_head
+          FURIMAについて
+        .main_footer_contents_content_text
+          %ul
+            %li
+              =link_to '#' do
+                会社概要(運営会社)
+            %li
+              =link_to '#' do
+                プライバシーポリシー
+            %li
+              =link_to '#' do
+                FURIMA利用規約
+            %li
+              =link_to '#' do
+                ポイントに関する特約
+      .main_footer_contents_content
+        .main_footer_contents_content_head
+          FURIMAを見る
+        .main_footer_contents_content_text
+          %ul
+            %li
+              =link_to '#' do
+                カテゴリー一覧
+            %li
+              =link_to '#' do
+                ブランド一覧
+      .main_footer_contents_content
+        .main_footer_contents_content_head
+          ヘルプ＆ガイド
+        .main_footer_contents_content_text
+          %ul
+            %li
+              =link_to '#' do
+                FURIMAガイド
+            %li
+              =link_to '#' do
+                FURIMAロゴガイド利用ライン
+            %li
+              =link_to '#' do
+                お知らせ
+    .main_footer_logo
+      =link_to '#' do
+        =image_tag '/material/logo/logo-white.png'
+    .main_footer_text
+      ©︎ FURIMA
+  =link_to '#' do
+    .main_btn
+      .main_btn_text
+        出品する
+        =image_tag '/material/icon/icon_camera.png'
