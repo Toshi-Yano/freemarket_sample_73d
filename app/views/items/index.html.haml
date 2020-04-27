@@ -1,33 +1,5 @@
 .main
-  .main_header
-    .main_header_inner
-      .main_header_inner_box
-        .main_header_inner_box_left
-          =link_to '#' do
-            =image_tag "/material/logo/logo.png"
-        .main_header_inner_box_right
-          <input class="box_right_input" id="searchInput" name="key" placeholder="キーワードから探す">
-          =image_tag '/material/icon/icon-search 1.png'
-        .main_header_inner_box_list
-      .main_header_inner_low
-        .main_header_inner_low_leftLists
-          .main_header_inner_low_leftLists_left
-            =link_to '#' do
-              カテゴリー
-          .main_header_inner_low_leftLists_right
-            =link_to '#' do
-              ブランド
-        .main_header_inner_low_rightLists
-          - if user_signed_in?
-            .main_header_inner_low_rightLists_left
-              = link_to "マイページ", user_show_path(current_user)
-            .main_header_inner_low_rightLists_right
-              = link_to "ログアウト", destroy_user_session_path, method: :delete
-          - else
-            .main_header_inner_low_rightLists_left
-              = link_to "ログイン", new_user_session_path
-            .main_header_inner_low_rightLists_right
-              = link_to "新規会員登録", new_user_registration_path
+  = render "items/main_header"
   .main_page
     .main_page_visual
       .main_page_visual_content
@@ -221,68 +193,18 @@
                         0
                   .p
                     (税込)
-  .main_banner
-    .main_banner_inner
-      .main_banner_inner_title
-        だれでもかんたんだれでもかんたん、人生を変えるフリマアプリ
-      .main_banner_inner_text
-        今すぐ無料ダウンロード！
-      .main_banner_inner_btn
-        .main_banner_inner_btn_a
-          =link_to '#' do
-            -# =image_tag '/assets/applestore'
-        .main_banner_inner_btn_b
-          =link_to '#' do
-            -# =image_tag '/aseets/google-pray'
-  .main_footer
-    .main_footer_contents
-      .main_footer_contents_content
-        .main_footer_contents_content_head
-          FURIMAについて
-        .main_footer_contents_content_text
-          %ul
-            %li
-              =link_to '#' do
-                会社概要(運営会社)
-            %li
-              =link_to '#' do
-                プライバシーポリシー
-            %li
-              =link_to '#' do
-                FURIMA利用規約
-            %li
-              =link_to '#' do
-                ポイントに関する特約
-      .main_footer_contents_content
-        .main_footer_contents_content_head
-          FURIMAを見る
-        .main_footer_contents_content_text
-          %ul
-            %li
-              =link_to '#' do
-                カテゴリー一覧
-            %li
-              =link_to '#' do
-                ブランド一覧
-      .main_footer_contents_content
-        .main_footer_contents_content_head
-          ヘルプ＆ガイド
-        .main_footer_contents_content_text
-          %ul
-            %li
-              =link_to '#' do
-                FURIMAガイド
-            %li
-              =link_to '#' do
-                FURIMAロゴガイド利用ライン
-            %li
-              =link_to '#' do
-                お知らせ
-    .main_footer_logo
-      =link_to '#' do
-        =image_tag '/material/logo/logo-white.png'
-    .main_footer_text
-      ©︎ FURIMA
+  -# .main_banner
+  -#   .main_banner_inner
+  -#     .main_banner_inner_title
+  -#       だれでもかんたんだれでもかんたん、人生を変えるフリマアプリ
+  -#     .main_banner_inner_text
+  -#       今すぐ無料ダウンロード！
+  -#     .main_banner_inner_btn
+  -#       .main_banner_inner_btn_a
+  -#         =link_to '#' do
+  -#       .main_banner_inner_btn_b
+  -#         =link_to '#' do
+  = render "items/main_footer"
   =link_to '#' do
     .main_btn
       .main_btn_text
