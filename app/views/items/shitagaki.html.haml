@@ -1,3 +1,12 @@
+%select{name: "category_id"}
+  %option{hidden}
+    選択してください
+  %option
+    レディース
+  %option
+    メンズ
+  %option
+    ベビー・キッズ
 
         .mainContainer__form--name
           .name
@@ -74,3 +83,9 @@
               禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
 
 -# = render partial: '/layouts/footer'
+
+:javascript
+  (() => {
+    const select = document.querySelecter('select');
+    console.log(select);
+  })();
