@@ -41,3 +41,147 @@
                   必須
               .item-form__textarea
                 =f.text_area :text, placeholder: '商品の説明（必須1,000文字以内&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
+
+          .selectbox-block
+            %p.selectbox-block__description
+              商品の詳細
+            .selectwrapper
+              .selectwrapper__name
+                カテゴリー
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+            .selectwrapper
+              .selectwrapper__name
+                商品の状態
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+
+          .selectbox-block
+            %p.selectbox-block__description
+              配送について
+            .selectwrapper
+              .selectwrapper__name
+                配送料の負担
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+            .selectwrapper
+              .selectwrapper__name
+                発送元の地域
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+            .selectwrapper
+              .selectwrapper__name
+                発送までの日数
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+
+          .selectbox-block-money
+            .selectbox-block-money__box
+              %p.selectbox-block-money__box__upper
+                価格（¥300〜9,999,999）
+              .selectbox-block-money__box__middle
+                .selectbox-block-money__box__middle__left
+                  販売価格
+                  .selectbox-block-money__box__middle__left__required
+                    必須
+                .selectbox-block-money__box__middle__right
+                  ¥
+                  %input{type: "number"}
+              .selectbox-block-money__box__bellow
+                %p.selectbox-block-money__box__bellow__left
+                  販売手数料（3%）
+                %p.selectbox-block-money__box__bellow__right
+                  ー
+            .selectbox-block-money__profit
+              %p.selectbox-block-money__profit__left
+                販売利益
+              %p.selectbox-block-money__profit__right
+                ー
+
+
+
+-# 入力されていないものはエラーが出る(増山)
+:javascript
+  (()=>{
+    const selectNodes = document.querySelectorAll('select');
+    const errorNodes = document.getElementsByClassName('errorbox__errormessage');
+    const select_array = Array.from(selectNodes);
+    const error_array = Array.from(errorNodes);
+
+    select_array.forEach((select, index) => {
+      select.addEventListener('blur', () => {
+        if (select.value === "") {
+          select.classList.add("not-selected");
+          error_array[index].classList.add('errorbox__errormessage__true');
+        } else {
+          select.classList.remove("not-selected");
+          error_array[index].classList.remove('errorbox__errormessage__true');
+        }
+      });
+    })
+  })();
