@@ -1,0 +1,175 @@
+.header
+  .header__single-header
+    %h1.single-header__logo
+      = link_to "#" do 
+        =image_tag "", alt: "FURIMA", class: "furima-logo"
+    %nav.progress-area
+      %ol.clearfix
+        %li.single-header__progress-area__text--active
+          会員情報
+          .single-header__progress-area__round-red  
+        %li.single-header__progress__text
+          電話番号認証
+          .single-header__progress-area__round    
+        %li.single-header__progress-area__text
+          完了
+          .single-header__progress-area__round
+.main
+  .main__single-main
+    %h5.single-main__head 会員情報入力
+    .main__single-mail__registration-form
+      .main__single-main__registration-form__form-group
+        %p ニックネーム
+        %span.form-group__require 必須
+        %input.input-default{:name => "nickname", :placeholder => "例）フリマ太郎", :type => "nickname", :value => ""}/
+      .main__single-main__registration-form__form-group
+        %p メールアドレス
+        %span.form-group__require 必須
+        %input.input-default{:name => "email", :placeholder => "PC・携帯どちらでも可", :type => "email", :value => ""}/
+      .main__single-main__registration-form__form-group__form-password
+        %p パスワード
+        %span.form-group__require 必須
+        %input.input-default{:name => "password", :placeholder => "７文字以上の半角英数字", :type => "password", :value => ""}/
+        %p 英字と数字の両方を含めて設定してください
+        %p.checkbox__form-text パスワードを表示する
+      .main__single-main__registration-form__form-group
+        %h3.form-group__text-left 本人確認
+        %p.single-text 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+      .main__single-main__registration-form__form-group
+        %p お名前（全角）
+        %span.form-group__require 必須
+        %input.input-default__half-left{:name => "last_name", :placeholder => "例）山田", :type => "last_name", :value => ""}/
+        %input.input-default__half-right{:name => "first_name", :placeholder => "例）彩", :type => "first_name", :value => ""}/
+      .main__single-main__registration-form__form-group
+        %p お名前カナ（全角）
+        %span.form-group__require 必須
+        %input.input-default__half-left{:name => "last_name", :placeholder => "例）ヤマダ", :type => "last_name", :value => ""}/
+        %input.input-default__half-right{:name => "first_name", :placeholder => "例）アヤ", :type => "first_name", :value => ""}/
+      .main__single-main__registration-form__form-group
+        %p 生年月日
+        %span.form-group__require 必須
+        %div.birthday-select-wrap
+          %select.select-default-year 年
+          %select.select-default-month 月
+          %select.select-default-day 日
+
+        .main__single-main__registration-form__form-group
+        %p 自己紹介
+        %span.form-group__require 必須
+        %input.input-default{:name => "biograpthy", :placeholder => "自己紹介について", :type => "biography", :value => ""}/
+        %label.image-default
+        %submit.submit-btn '次へ', class: 'submit-btn'       
+            
+        %p.form-info-text 本人の情報は正しく入力してください。会員登録後、修正するにはお時間をいただくことがあります。
+    
+    .main__single-main__content
+      %p.single-text-center 「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします。
+      .single-main__content__btn-default__btn-red
+      %button.submit__btn 「次へ」
+      %p 本人の登録について＞
+      .single-main__recaptcha-text
+        %p This site is protected by reCAPTURE and the Google Privacy Policy and Terms of Service apply.
+.footer
+  .footer__single-footer
+  %nav.infomation
+    %ul.clearfix
+      %li.left
+        プライバシーポリシー
+      %li.center
+        フリマ利用規約
+      %li.right
+        特定取引に関する表記
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-# .header
+-#   .header__single-header
+-#     %h2.single-header__logo
+-#       = link_to "#" do 
+-#         =image_tag "", alt: "FURIMA", class: "furima-logo"
+-#     %nav.progress
+-#       %ol.clearfix
+-#         %li.single-header__progress__text--active
+-#           会員情報
+-#           .single-header__progress__round--red  
+-#         %li.single-header__progress__text
+-#           電話番号認証
+-#           .single-header__progress__round    
+-#         %li.single-header__progress__text
+-#           完了
+-#           .single-header__progress__round
+-# .main
+-#   .main__single-main
+-#     %h5.single-main__form-group 会員情報入力
+-#     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class:"registration-form"}) do |f|
+-#       = render "devise/shared/error_messages", resource: resource
+-#       .field
+-#         = f.label :ニックネーム
+-#         %span.form-group__require 必須
+-#         %br/
+-#         = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
+-#       .field
+-#         = f.label :メールアドレス
+-#         %span.form-group__require 必須
+-#         %br/
+-#         = f.email_field :email, autocomplete: "email"
+-#       .field
+-#         = f.label :パスワード
+-#         %span.form-group__require 必須
+-#         - if @minimum_password_length
+-#           %em
+-#             (#{@minimum_password_length} characters minimum)
+-#         %br/
+-#         = f.password_field :password, autocomplete: "new-password"
+-#       .field
+-#         = f.label :password_confirmation
+-#         %br/
+-#         = f.password_field :password_confirmation, autocomplete: "new-password"
+-#         %label.form-group-text-title 本人確認
+-#         %p.form-group__info 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+-#       .field
+-#         = f.label :お名前（全角）
+-#         %span.form-group__require 必須
+-#         %br/
+-#         = f.text_field :last_name, autofocus: true, autocomplete: "last_name", {placeholder:"例) 山田",class:'form-group__input-half'}
+-#         = f.text_field :first_name, autofocus: true, autocomplete: "first_name", {placeholder:"例) 彩",class:'form-group__input-half'}
+-#       .field
+-#         = f.label :お名前カナ（全角）
+-#         %span.form-group__require 必須
+-#         %br/
+-#         = f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", {placeholder:"例) ヤマダ",class:'form-group__input-half'}
+-#         = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", {placeholder:"例) アヤ",class:'form-group__input--half'}
+-#       .field
+-#         = f.label :生年月日
+-#         %br/
+-#         = f.date_select :date_of_birth, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1)
+-#       .field
+-#         = f.label :自己紹介
+-#         %br/
+-#         = f.text_area :biography, autofocus: true, autocomplete: "biography"
+-#       .field
+-#         = f.label :プロフィール写真
+-#         %br/
+-#         = f.file_field :avatar, class: 'avater_image'
+-#       .actions
+-#         = f.submit "Sign up"
+-#         = render "devise/shared/links"

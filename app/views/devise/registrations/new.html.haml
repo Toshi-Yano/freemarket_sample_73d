@@ -16,49 +16,53 @@
           %li.header__h-container__single-header__progress__text{ id: "end" }
             完了
             .header__h-container__single-header__progress__round
-
-%h2 会員情報入力
-= form_for(@user, url: user_registration_path) do |f|
-  = render "devise/shared/error_messages", resource: @user
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname, autofocus: true
-  .field
-    = f.label :last_name
-    %br/
-    = f.text_field :last_name, autofocus: true
-  .field
-    = f.label :first_name
-    %br/
-    = f.text_field :first_name, autofocus: true
-  .field
-    = f.label :kana
-    %br/
-    = f.text_field :last_name_kana, autofocus: true
-  .field
-    = f.label :kana
-    %br/
-    = f.text_field :first_name_kana, autofocus: true
-  .field
-    = f.label :birth
-    %br/
-    = f.date_field :date_of_birth, autofocus: true
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.main
+  .main__title 会員情報入力
+  = form_for(@user, url: user_registration_path) do |f|
+    = render "devise/shared/error_messages", resource: @user
+    .main__field
+      = f.label :ニックネーム, class: "main__field__label"
+      %span.main_field__label-red 必須
+      %br/
+      = f.text_field :nickname, autofocus: true, placeholder: "フリマ太郎"
+    .main__field
+      = f.label :メールアドレス, class: "main__field__label"
+      %span.main_field__label-red 必須
+      %br/
+      = f.email_field :email
+    .main__field
+      = f.label :パスワード, class: "main__field__label"
+      %span.main_field__label-red 必須
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password
+    .main__field--parallel
+      .main__field--parallel-each
+        = f.label :お名前（全角）, class: "main__field__label"
+        %span.main_field__label-red 必須
+        %br/
+        = f.text_field :last_name
+      .main__field--parallel-each
+        %span.main_field__label-red 必須
+        %br/
+        = f.text_field :first_name
+    .main__field--parallel
+      .main__field--parallel-each
+        = f.label :お名前かな（全角）, class: "main__field__label"
+        %span.main_field__label-red 必須
+        %br/
+        = f.text_field :last_name_kana
+      .main__field--parallel-each
+        %span.main_field__label-red 必須
+        %br/
+        = f.text_field :first_name_kana
+    .main__field
+      = f.label :生年月日, class: "main__field__label"
+      %span.main_field__label-red 必須
+      %br/
+      = f.date_select(:date_of_birth, prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:1900)
+    .actions
+      = f.submit "Sign up"
+  = render "devise/shared/links"
