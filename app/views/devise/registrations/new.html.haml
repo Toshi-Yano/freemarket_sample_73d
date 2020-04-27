@@ -63,7 +63,7 @@
         %p.main__container__field__label-red#birth__label　必須
         %br/
         .main__container__field__form-birth
-          != sprintf(f.date_select(:date_of_birth, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+          != sprintf(f.date_select(:date_of_birth, prefix:'birthday', with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
       .main__container__field
         = f.label :自己紹介, class: "main__container__field__label"
         %p.main__container__field__label ※任意
@@ -83,14 +83,16 @@
       %p.main__container__field__registration 本人情報の登録について＞
       .main__container__field__announcement
         %p.main__container__field__announcement-text This site is protected by reCAPTURE and the Google Privacy Policy and Terms of Service apply.
-.footer
-  .footer__single-footer
-    %nav.infomation
-      %ul.clearfix
-        %li.left
-          プライバシーポリシー
-        %li.center
-          フリマ利用規約
-        %li.right
-          特定取引に関する表記
     -# = render "devise/shared/links"
+.footer
+  %ul.footer__list
+    %li.footer__list-left
+      プライバシーポリシー
+    %li.footer__list-center
+      フリマ利用規約
+    %li.footer__list-right
+      特定取引に関する表記
+  = image_tag "/material/logo/logo.png", class: "footer__img", alt: "FURIMA"
+  %br/
+  %small.footer__copyright
+    &copy;FURIMA
