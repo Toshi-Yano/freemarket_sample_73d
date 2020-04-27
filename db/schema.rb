@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_062743) do
+ActiveRecord::Schema.define(version: 2020_04_23_083055) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ship_last_name", null: false
@@ -27,6 +27,29 @@ ActiveRecord::Schema.define(version: 2020_04_23_062743) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.bigint "category_id", null: false
+    t.string "condition", null: false
+    t.string "delivery_charge", null: false
+    t.string "delivery_prefecture", null: false
+    t.string "delivery_dates", null: false
+    t.integer "price", null: false
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,4 +73,5 @@ ActiveRecord::Schema.define(version: 2020_04_23_062743) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "items", "categories"
 end
