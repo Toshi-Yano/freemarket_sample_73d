@@ -15,9 +15,10 @@
   .item__item-box
     %h1.item__item-box__name
       商品名
-
+    -# 大イメージ
     .item__item-box__image0
       = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '560x346'
+    -# 小イメージ
     %ul#image_list.item__item-box__images
       %li.item__item-box__images__image
         = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '140x87'

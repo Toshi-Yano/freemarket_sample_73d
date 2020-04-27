@@ -10,7 +10,7 @@ $furima_font: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGoth
 @mixin flex_centerSpaceBetween {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 * {
