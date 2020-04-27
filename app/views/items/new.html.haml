@@ -15,10 +15,29 @@
                 必須
             .image-box__comment
               最大10枚までアップロードできます
-              
-          #image-picture
-            .image-box__pictures
-              = f.fields_for :images do |i|
-                .image-box-container
-                  = i.file_field :name, value:"", style: "display:none", class: "image-box-container__style"
-                  %i.fa.fa-camera
+            %label
+              .image-box__fields
+                %i.fa.fa-camera.fa-lg
+                .image-box__fields__pictures
+                  = f.fields_for :images do |i|
+                    .image-box__fields__pictures__select
+                      .image-box__fields__pictures__select__btn
+                        = i.file_field :name, value:"", style: "display:none", class: "select-btn"
+                        .image-box__fields__pictures__text
+                          </br> クリックしてファイルをダウンロード
+
+          .item-form-box
+            .item-form-box__upper
+              .item-form-box__name
+                商品名
+                .item-form-box__name-require
+                  必須
+              .item-form__title
+                =f.text_field :name, placeholder: "40文字まで" 
+            .item-form-box__under
+              .item-form-box__name
+                商品の説明
+                .item-form-box__name-require
+                  必須
+              .item-form__textarea
+                =f.text_area :text, placeholder: '商品の説明（必須1,000文字以内&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
