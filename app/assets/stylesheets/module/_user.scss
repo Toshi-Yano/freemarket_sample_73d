@@ -117,3 +117,43 @@ body {
     }
   }
 }
+
+.main {
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: white;
+  &__title {
+    height: 100px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 100px;
+    border-bottom: 1px solid #F5F5F5;
+  }
+  &__container {
+    padding: 25px 0;
+    &__field {
+      text-align: center;
+      &__form {
+        width: 300px;
+        height: 30px;
+        padding: 10px;
+        font-size: 18px;
+      }
+      &__label {
+        display: inline-block;
+        font-weight: bold;
+        text-align: left;
+      }
+      &--parallel {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+p {
+  text-align: left;
+}
