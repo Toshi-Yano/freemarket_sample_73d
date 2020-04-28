@@ -1,3 +1,5 @@
-= current_user.nickname
-%h2 登録が完了しました
-= link_to "トップへ戻る", root_path
+.completion__notice
+  = link_to "#" do
+    = image_tag "/material/logo/logo.png", class: "completion__notice--logo", alt: "FURIMA"
+  .completion__notice--main 登録が完了しました
+  = link_to "トップへ戻る", root_path, class: "completion__notice--link"

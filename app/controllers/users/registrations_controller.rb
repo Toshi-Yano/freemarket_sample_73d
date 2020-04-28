@@ -10,6 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
+    unless params[:birthday]["date_of_birth(1i)"].present?
+      render :new and return
+    end
+    @user.date_of_birth = Date.new(params[:birthday]["date_of_birth(1i)"].to_i, params[:birthday]["date_of_birth(2i)"].to_i, params[:birthday]["date_of_birth(3i)"].to_i)
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
       render :new and return
@@ -65,6 +69,10 @@ protected
   def address_params
     params.require(:address).permit(:ship_last_name, :ship_first_name, :ship_last_name_kana, :ship_first_name_kana, :postcode, :prefecture, :city, :block, :building, :ship_phone_number)
   end
+
+  # def birthday_params
+  #   params[:birthday]["date_of_birth(1i)"]["date_of_birth(2i)"]["date_of_birth(3i)"]
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
