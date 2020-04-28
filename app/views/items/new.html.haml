@@ -1,0 +1,201 @@
+%main
+  .main-container
+    .main-conteiner__box
+      .main-container__box-header
+        %h1
+          = link_to (image_tag "/assets/logo.png", width: "185", height: "53"), root_path
+
+      #form
+        = form_with model: @item, class: "mainContainer__form", local: true do |f|
+          .image-box
+            .image-box__name
+              出品画像
+              .image-box__name-require
+                必須
+            .image-box__comment
+              最大10枚までアップロードできます
+            %label
+              .image-box__fields
+                %i.fa.fa-camera.fa-lg
+                .image-box__fields__pictures
+                  = f.fields_for :images do |i|
+                    .image-box__fields__pictures__select
+                      .image-box__fields__pictures__select__btn
+                        = i.file_field :name, value:"", style: "display:none", class: "select-btn"
+                        .image-box__fields__pictures__text
+                          </br> クリックしてファイルをダウンロード
+
+          .item-form-box
+            .item-form-box__upper
+              .item-form-box__name
+                商品名
+                .item-form-box__name-require
+                  必須
+              .item-form__title
+                =f.text_field :name, placeholder: "40文字まで" 
+            .item-form-box__under
+              .item-form-box__name
+                商品の説明
+                .item-form-box__name-require
+                  必須
+              .item-form__textarea
+                =f.text_area :text, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
+
+          .selectbox-block
+            %p.selectbox-block__description
+              商品の詳細
+            .selectwrapper
+              .selectwrapper__name
+                カテゴリー
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+            .selectwrapper
+              .selectwrapper__name
+                商品の状態
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+
+          .selectbox-block
+            %p.selectbox-block__description
+              配送について
+            .selectwrapper
+              .selectwrapper__name
+                配送料の負担
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+            .selectwrapper
+              .selectwrapper__name
+                発送元の地域
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+            .selectwrapper
+              .selectwrapper__name
+                発送までの日数
+                .selectwrapper__name__require
+                  必須
+              .selectbox
+                %select{name: "category_id", class: "selectbox__select"}
+                  %option{value: ""}
+                    選択してください
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    レディース
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    メンズ
+                  %option{value: 'その項目のカテゴリーIDが入る'}
+                    ベビー・キッズ
+              .errorbox
+                %p.errorbox__errormessage
+                  選択されていません
+
+          .selectbox-block-money
+            .selectbox-block-money__box
+              %p.selectbox-block-money__box__upper
+                価格（¥300〜9,999,999）
+              .selectbox-block-money__box__middle
+                .selectbox-block-money__box__middle__left
+                  販売価格
+                  .selectbox-block-money__box__middle__left__required
+                    必須
+                .selectbox-block-money__box__middle__right
+                  ¥
+                  %input{type: "number"}
+              .selectbox-block-money__box__bellow
+                %p.selectbox-block-money__box__bellow__left
+                  販売手数料（3%）
+                %p.selectbox-block-money__box__bellow__right
+                  ー
+            .selectbox-block-money__profit
+              %p.selectbox-block-money__profit__left
+                販売利益
+              %p.selectbox-block-money__profit__right
+                ー
+          
+          .item-submit
+            %p.item-submit__submit-btn
+              出品する
+            = link_to '#', class: "link-item-submit" do
+              .item-submit__back-btn
+                もどる
+
+          %p.item-submit-attention
+            禁止されている
+            %a.link-item-submit 行為
+            および
+            %a.link-item-submit 出品物
+            を必ずご確認ください。
+            %a.link-item-submit 偽ブランド品
+            や
+            %a.link-item-submit 盗品物
+            などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
+            %a.link-item-submit 加盟店規約
+            に同意したことになります。
+          
+          .regulation-footer
+            %ul.regulation-footer__list
+              %li
+                =link_to '#', class: "regulation-footer__list__link" do
+                  プライバシーポリシー
+              %li
+                =link_to '#', class: "regulation-footer__list__link" do
+                  フリマ利用規約
+              %li
+                =link_to '#', class: "regulation-footer__list__link" do
+                  特定商取引に関する表記
+            .regulation-footer__logo
+              .regulation-footer__logo__box
+                = link_to '#' do
+                  = image_tag "/material/logo/logo-white.png", width: "185", height: "53"
+                %p.regulation-footer__logo__box__company
+                  © FURIMA, Inc.

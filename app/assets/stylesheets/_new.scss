@@ -1,0 +1,338 @@
+*{
+  box-sizing: border-box;
+}
+
+.link-item-submit{
+  color: #0095ee;
+  text-decoration: none;
+}
+.link-item-submit:hover{
+  opacity: 0.5;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.main-container {
+  background-color: #eee;
+  width: 100vw;
+  height: 100%;
+
+  &__box {
+    background-color: #fff;
+    width: 700px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+    &__box-header {
+      background-color: #eee;
+      padding: 32px 16px;
+      font-size: 20px;
+      text-align: center;
+      line-height: 1.5;
+      color: black;
+    }
+
+  .image-box {
+    padding: 40px;
+    width: 100%;
+  
+    &__name {
+      font-size: 14px;
+      display: flex;
+      font-weight: bold;
+      align-items: center;
+    }
+    &__name-require {
+      background-color: red;
+      color: white;
+      margin: 0 0 0 8px;
+      font-size: 10px;
+      padding: 2px 4px;
+      border-radius: 2px;
+      vertical-align: top;
+    }
+
+    &__comment {
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    &__fields__pictures {
+      margin-top: 20px;
+      height: 100%;
+      width: 100%;
+      margin-left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dotted rgba(39, 39, 39, 0.329);
+      }
+
+    &__fields{
+      height: 150px;
+      display: block;
+      background-color: #f5f5f5;
+      word-wrap: break-normal;
+      position: relative;
+      .fa-camera{
+        position: absolute;
+        top: 30%;
+        left: 50%;
+      }
+    }
+
+    
+  }
+
+  .item-form-box {
+    padding: 40px;
+    width: 100%;
+    height: 420px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  
+    &__upper {
+      width: 100%;
+      input {
+        margin-top: 10px;
+        height: 45px;
+        border-radius: 5px;
+        width: 100%;
+        padding: 0 16px;
+      }
+    }
+      &__name {
+        font-size: 14px;
+        display: flex;
+        font-weight: bold;
+        align-items: center;
+      }
+      &__name-require {
+        background-color: red;
+        color: white;
+        margin: 0 0 0 8px;
+        font-size: 10px;
+        padding: 2px 4px;
+        border-radius: 2px;
+        vertical-align: top;
+      }
+    &__under {
+      margin-top: 40px;
+      textarea {
+        margin-top: 10px;
+        height: 140px;
+        border-radius: 5px;
+        width: 100%;
+        word-break: break-word;
+        padding: 0 16px;
+        resize: vertical;
+      }
+    }
+  }
+  
+}
+
+@mixin titleFont {
+  font-size: 16px;
+  font-weight: bold;
+  color: #999;
+}
+
+@mixin inputItem {
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+@mixin required {
+  background-color: red;
+  color: white;
+  margin: 0 0 0 8px;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  vertical-align: top;
+}
+
+@mixin selectStyle {
+  padding: 1em 1em;
+  font-size: 1em;
+  border: 1px solid #ccc ;
+  border-radius: 5px;
+  background:#fff;
+}
+
+@mixin submitBtnStyle {
+  width: 100%;
+  line-height: 3em;
+  text-align: center;
+}
+
+.selectbox-block{
+  border-bottom: 1px solid #eee;
+  &__description{
+    padding: 50px 40px;
+    @include titleFont;
+  }
+  .selectwrapper{
+    padding: 0 40px;
+    margin-bottom: 20px;
+    width: 100%;
+    &__name{
+      @include inputItem;
+      &__require{
+        @include required;
+      }
+    }
+    .selectbox{
+      font-size: 13px;
+      margin-top: 10px;
+      position: relative;
+      &__select{
+        -webkit-appearance: none;
+        width: 100%;
+        @include selectStyle;
+      }
+      &__select.not-selected{
+        border: 1px solid red;
+      }
+    }
+    .selectbox::after{
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: 5%;
+      top: 35%;
+      border-bottom: 2px #333 solid;
+      border-right:  2px #333 solid;
+      transform: rotate(45deg)translateY(-30%);
+    }
+    .errorbox{
+      height: 23px;
+      margin: 5px;
+      &__errormessage{
+        display: none;
+        color: red;
+        font-size: 13px;
+        &__true{
+          display: block;
+        }
+      }
+    }
+  }
+}
+.selectbox-block-money{
+  &__box{
+    width: 620px;
+    margin: 0 auto;
+    border-bottom: 1px solid #eee;
+    &__upper{
+      padding: 50px 0 20px;
+      @include titleFont;
+    }
+    &__middle{
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &__left{
+        @include inputItem;
+        &__required{
+          @include required;
+        }
+      }
+      &__right{
+        width: 50%;
+        font-size: 16px;
+        input{
+          width: calc(100% - 20px);
+          @include selectStyle;
+          padding: 0.7em 1em;
+        }
+      }
+    }
+    &__bellow{
+      padding: 40px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #555;
+    }
+  }
+  &__profit{
+    width: 620px;
+    padding: 40px 0 70px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #555;
+  }
+}
+.item-submit{
+  width: 100%;
+  padding: 0 180px;
+  &__submit-btn{
+    background-color: red;
+    margin-bottom: 20px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    @include submitBtnStyle;
+  }
+  &__back-btn{
+    font-size: 16px;
+    @include submitBtnStyle;
+  }
+  &__back-btn:hover{
+    opacity: 0.5;
+  }
+}
+.item-submit-attention{
+  padding: 40px 40px 80px;
+  font-size: 12px;
+  color: #555;
+}
+
+.regulation-footer{
+  background-color: #eee;
+  width: 700px;
+  padding-bottom: 40px;
+  &__list{
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li{
+      margin-right: 20px;
+      .regulation-footer__list__link{
+        font-size: 12px;
+        color: #555;
+        text-decoration: none;
+      }
+      .regulation-footer__list__link:hover{
+        opacity: 0.5;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__logo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__box{
+      &__company{
+        font-size: 12px;
+        color: #555;
+        text-align: center;
+      }
+    }
+  }
+}
