@@ -9,90 +9,67 @@
           %li.header__h-container__single-header__progress__active{ id: "first" }
             会員情報
             .header__h-container__single-header__progress__round--red
-          %li.header__h-container__single-header__progress__text
+          %li.header__h-container__single-header__progress__active{ id: "first" }
             住所登録
-            .header__h-container__single-header__progress__round
-            .header__h-container__single-header__progress__line{ id: "long" }    
+            .header__h-container__single-header__progress__round{ id: "red-round"}
+            .header__h-container__single-header__progress__line{ id: "red" }
           %li.header__h-container__single-header__progress__text{ id: "end" }
             完了
             .header__h-container__single-header__progress__round
 .main
-  .main__title 住所入力
-= form_for @address do |f|
-  = render "devise/shared/error_messages", resource: @address
+  .main__title 発送元・お届け先住所登録
+  = form_for @address do |f|
+    = render "devise/shared/error_messages", resource: @address
     .main__container
-      .main__container__field
-        = f.label :ニックネーム, class: "main__container__field__label"
-        %p.main__container__field__label-red 必須
-        %br/
-        = f.text_field :nickname, autofocus: true, placeholder: "例）フリマ太郎", class: "main__container__field__form"
-      .main__container__field
-        = f.label :メールアドレス, class: "main__container__field__label"
-        %p.main__container__field__label-red 必須
-        %br/
-        = f.email_field :email, placeholder: "PC・携帯携帯どちらでも可", class: "main__container__field__form"
-      .main__container__field
-        = f.label :パスワード, class: "main__container__field__label"
-        %p.main__container__field__label-red 必須
-        %br/
-        = f.password_field :password, placeholder: "７文字以上の半角英数字", class: "main__container__field__form"
-        %p.main__container__field__password ※英字と数字の両方を含めて設定してください
-        %p.main__container__field__checkbox パスワードを表示する
-      %p.main__container__field__title 本人確認
-      %p.main__container__field__info 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
       .main__container__field--parallel
         .main__container__field--parallel-each
           = f.label :お名前（全角）, class: "main__container__field__label", id: "name__label"
           %p.main__container__field__label-red 必須
           %br/
-          = f.text_field :last_name, placeholder: "例）山田", class: "main__container__field__form-each"
+          = f.text_field :ship_last_name, autofocus: true, placeholder: "例）山田", class: "main__container__field__form-each"
         .main__container__field--parallel-each
           %br/
-          = f.text_field :first_name, placeholder: "例）彩", class: "main__container__field__form-each"
+          = f.text_field :ship_first_name, placeholder: "例）彩", class: "main__container__field__form-each"
       .main__container__field--parallel
         .main__container__field--parallel-each
           = f.label :お名前かな（全角）, class: "main__container__field__label", id: "name__label"
           %p.main__container__field__label-red 必須
           %br/
-          = f.text_field :last_name_kana, placeholder: "例）やまだ", class: "main__container__field__form-each"
+          = f.text_field :ship_last_name_kana, placeholder: "例）やまだ", class: "main__container__field__form-each"
         .main__container__field--parallel-each
           %br/
-          = f.text_field :first_name_kana, placeholder: "例）あや", class: "main__container__field__form-each"
+          = f.text_field :ship_first_name_kana, placeholder: "例）あや", class: "main__container__field__form-each"
       .main__container__field
-        = f.label :生年月日, class: "main__container__field__label"
-        %p.main__container__field__label-red#birth__label　必須
+        = f.label :郵便番号, class: "main__container__field__label"
+        %p.main__container__field__label-red 必須
         %br/
-        .main__container__field__form-birth
-          != sprintf(f.date_select(:date_of_birth, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+        = f.text_field :postcode, placeholder: "例）1234567", class: "main__container__field__form"
       .main__container__field
-        = f.label :自己紹介, class: "main__container__field__label"
+        = f.label :都道府県, class: "main__container__field__label"
+        %p.main__container__field__label-red 必須
+        %br/
+        = f.select :prefecture, Address.prefectures.keys, {}, {class: "main__container__field__form", id: "prefectures-form"}
+      .main__container__field
+        = f.label :市区町村, class: "main__container__field__label"
+        %p.main__container__field__label-red 必須
+        %br/
+        = f.text_field :city, placeholder: "例）横浜市緑区", class: "main__container__field__form"
+      .main__container__field
+        = f.label :番地, class: "main__container__field__label"
+        %p.main__container__field__label-red 必須
+        %br/
+        = f.text_field :block, placeholder: "例）青山1-1-1", class: "main__container__field__form"
+      .main__container__field
+        = f.label :建物名, class: "main__container__field__label"
         %p.main__container__field__label ※任意
         %br/
-        = f.text_area :biography, class: "main__container__field__form-area"
+        = f.text_field :building, placeholder: "例）柳ビル103", class: "main__container__field__form"
       .main__container__field
-        = f.label :プロフィール画像, class: "main__container__field__label"
+        = f.label :電話番号, class: "main__container__field__label"
         %p.main__container__field__label ※任意
         %br/
-        = f.file_field :avatar_image, class: "main__container__field__form-file"
-      %p.main__container__field__caution ※本人の情報は正しく入力してください。会員登録後、修正するにはお時間をいただくことがあります。
-      %a.main__container__field__confirm 「次へ進む」のボタンを押すことにより、
-      %a.main__container__field__confirm-reguration 利用規約に
-      %p.main__container__field__confirm-bottom 同意したものとみなします。
+        = f.text_field :ship_phone_number, placeholder: "例）09012345678", class: "main__container__field__form"
       .actions
-        = f.submit "次へ進む", class: "main__container__field__btn"
-      %p.main__container__field__registration 本人情報の登録について＞
-      .main__container__field__announcement
-        %p.main__container__field__announcement-text This site is protected by reCAPTURE and the Google Privacy Policy and Terms of Service apply.
+        = f.submit "登録", class: "main__container__field__btn"
     -# = render "devise/shared/links"
-.footer
-  %ul.footer__list
-    %li.footer__list-left
-      プライバシーポリシー
-    %li.footer__list-center
-      フリマ利用規約
-    %li.footer__list-right
-      特定取引に関する表記
-  = image_tag "/material/logo/logo.png", class: "footer__img", alt: "FURIMA"
-  %br/
-  %small.footer__copyright
-    &copy;FURIMA
+= render "footer"

@@ -12,7 +12,7 @@
           %li.header__h-container__single-header__progress__text
             住所登録
             .header__h-container__single-header__progress__round
-            .header__h-container__single-header__progress__line{ id: "long" }    
+            .header__h-container__single-header__progress__line{ id: "long" }
           %li.header__h-container__single-header__progress__text{ id: "end" }
             完了
             .header__h-container__single-header__progress__round
@@ -37,7 +37,11 @@
         %br/
         = f.password_field :password, placeholder: "７文字以上の半角英数字", class: "main__container__field__form"
         %p.main__container__field__password ※英字と数字の両方を含めて設定してください
-        %p.main__container__field__checkbox パスワードを表示する
+      .main__container__field
+        = f.label :パスワード（確認用）, class: "main__container__field__label"
+        %p.main__container__field__label-red 必須
+        %br/
+        = f.password_field :password_confirmation, placeholder: "７文字以上の半角英数字", class: "main__container__field__form"
       %p.main__container__field__title 本人確認
       %p.main__container__field__info 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
       .main__container__field--parallel
@@ -60,7 +64,7 @@
           = f.text_field :first_name_kana, placeholder: "例）あや", class: "main__container__field__form-each"
       .main__container__field
         = f.label :生年月日, class: "main__container__field__label"
-        %p.main__container__field__label-red#birth__label　必須
+        %p.main__container__field__label-red 必須
         %br/
         .main__container__field__form-birth
           != sprintf(f.date_select(:date_of_birth, prefix:'birthday', with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
@@ -76,7 +80,7 @@
         = f.file_field :avatar_image, class: "main__container__field__form-file"
       %p.main__container__field__caution ※本人の情報は正しく入力してください。会員登録後、修正するにはお時間をいただくことがあります。
       %a.main__container__field__confirm 「次へ進む」のボタンを押すことにより、
-      %a.main__container__field__confirm-reguration 利用規約に
+      %a.main__container__field__confirm-regulation 利用規約に
       %p.main__container__field__confirm-bottom 同意したものとみなします。
       .actions
         = f.submit "次へ進む", class: "main__container__field__btn"
@@ -84,15 +88,4 @@
       .main__container__field__announcement
         %p.main__container__field__announcement-text This site is protected by reCAPTURE and the Google Privacy Policy and Terms of Service apply.
     -# = render "devise/shared/links"
-.footer
-  %ul.footer__list
-    %li.footer__list-left
-      プライバシーポリシー
-    %li.footer__list-center
-      フリマ利用規約
-    %li.footer__list-right
-      特定取引に関する表記
-  = image_tag "/material/logo/logo.png", class: "footer__img", alt: "FURIMA"
-  %br/
-  %small.footer__copyright
-    &copy;FURIMA
+= render "footer"
