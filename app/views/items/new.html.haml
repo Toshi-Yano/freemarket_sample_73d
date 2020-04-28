@@ -195,10 +195,16 @@
               %li
                 =link_to '#', class: "regulation-footer__list__link" do
                   特定商取引に関する表記
+            .regulation-footer__logo
+              .regulation-footer__logo__box
+                = link_to '#' do
+                  = image_tag "/material/logo/logo-white.png", width: "185", height: "53"
+                %p.regulation-footer__logo__box__company
+                  © FURIMA, Inc.
 
 
 
--# 入力されていないものはエラーが出る(増山)
+-# 入力されていないものはエラーが出る
 :javascript
   (()=>{
     const selectNodes = document.querySelectorAll('select');
@@ -216,5 +222,5 @@
           error_array[index].classList.remove('errorbox__errormessage__true');
         }
       });
-    })
+    });
   })();
