@@ -1,0 +1,29 @@
+.main_header
+  .main_header_inner
+    .main_header_inner_box
+      .main_header_inner_box_left
+        =link_to '#' do
+          =image_tag "/material/logo/logo.png"
+      .main_header_inner_box_right
+        <input class="box_right_input" id="searchInput" name="key" placeholder="キーワードから探す">
+        =image_tag '/material/icon/icon-search 1.png'
+      .main_header_inner_box_list
+    .main_header_inner_low
+      .main_header_inner_low_leftLists
+        .main_header_inner_low_leftLists_left
+          =link_to '#' do
+            カテゴリー
+        .main_header_inner_low_leftLists_right
+          =link_to '#' do
+            ブランド
+      .main_header_inner_low_rightLists
+        - if user_signed_in?
+          .main_header_inner_low_rightLists_left
+            = link_to "マイページ", user_show_path(current_user)
+          .main_header_inner_low_rightLists_right
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+        - else
+          .main_header_inner_low_rightLists_left
+            = link_to "ログイン", new_user_session_path
+          .main_header_inner_low_rightLists_right
+            = link_to "新規会員登録", new_user_registration_path
