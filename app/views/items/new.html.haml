@@ -1,6 +1,6 @@
 %main
   .main-container
-    .main-conteiner__box
+    .main-container__box
       .main-container__box-header
         %h1
           = link_to (image_tag "/assets/logo.png", width: "185", height: "53"), root_path
@@ -21,7 +21,7 @@
                   = f.fields_for :images do |i|
                     .image-box__fields__pictures__select
                       .image-box__fields__pictures__select__btn
-                        = i.file_field :name, value:"", style: "display:none", class: "select-btn"
+                        = i.file_field :image, style: "display:none", class: "select-btn", multiple: true
                         .image-box__fields__pictures__text
                           </br> クリックしてファイルをダウンロード
 
