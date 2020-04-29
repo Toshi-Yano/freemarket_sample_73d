@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :category
-  belongs_to :user
+  # belongs_to :user
   has_many :images
-  belongs_to :order
+  # belongs_to :order
   
-  accepts_nested_attributes_for :images, allow_destroy: true
+  accepts_nested_attributes_for :images, allow_destroy: true, limit: 10
 end
