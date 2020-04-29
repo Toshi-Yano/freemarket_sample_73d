@@ -14,16 +14,22 @@
                 必須
             .image-box__comment
               最大10枚までアップロードできます
-            %label
-              .image-box__fields
-                %i.fa.fa-camera.fa-lg
-                .image-box__fields__pictures
-                  = f.fields_for :images do |i|
-                    .image-box__fields__pictures__select
-                      .image-box__fields__pictures__select__btn
-                        = i.file_field :name, value:"", style: "display:none", class: "select-btn"
-                        .image-box__fields__pictures__text
-                          </br> クリックしてファイルをダウンロード
+            -# %label
+            .image-box__fields
+              %i.fa.fa-camera.fa-lg
+              .image-box__fields__pictures
+                = f.fields_for :images do |i|
+                  #image-box
+                    .js-file_group{data: {index: i.index.to_s}}
+                      = i.file_field :image, class: 'js-file'
+                      .js-remove 削除
+                  = i.submit
+
+                  -# .image-box__fields__pictures__select
+                  -#   .image-box__fields__pictures__select__btn
+                  -#     = i.file_field :image, style: "display:none", class: "select-btn", multiple: true
+                  -#     .image-box__fields__pictures__text
+                  -#       </br> クリックしてファイルをアップロード
 
           .item-form-box
             .item-form-box__upper
@@ -68,19 +74,10 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :condition_id, Condition.all, :id, :condition
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
-
           .selectbox-block
             %p.selectbox-block__description
               配送について
