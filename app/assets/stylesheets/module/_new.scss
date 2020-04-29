@@ -195,6 +195,12 @@
         width: 100%;
         @include selectStyle;
       }
+      select{
+        -webkit-appearance: none;
+        width: 100%;
+        @include selectStyle;
+        cursor: pointer;
+      }
       &__select.not-selected{
         border: 1px solid red;
       }

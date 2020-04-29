@@ -1,6 +1,6 @@
 %main
   .main-container
-    .main-conteiner__box
+    .main-container__box
       .main-container__box-header
         %h1
           = link_to (image_tag "/assets/logo.png", width: "185", height: "53"), root_path
@@ -90,15 +90,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :delivery_charge, DeliveryCharge.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -108,15 +100,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :prefecture, Prefecture.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -126,15 +110,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :delivery_date, DeliveryDate.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
