@@ -194,8 +194,9 @@
                   .p
                     (税込)
   = render "items/main_footer"
-  =link_to new_item_path do
-    .main_btn
-      .main_btn_text
-        出品する
-        =image_tag '/material/icon/icon_camera.png'
+  - if user_signed_in?
+    =link_to new_item_path do
+      .main_btn
+        .main_btn_text
+          出品する
+          =image_tag '/material/icon/icon_camera.png'
