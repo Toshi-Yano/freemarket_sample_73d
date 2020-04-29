@@ -14,16 +14,21 @@
                 必須
             .image-box__comment
               最大10枚までアップロードできます
-            %label
-              .image-box__fields
-                %i.fa.fa-camera.fa-lg
-                .image-box__fields__pictures
+            -# %label
+            .image-box__fields
+              %i.fa.fa-camera.fa-lg
+              .image-box__fields__pictures
+                #image-box
                   = f.fields_for :images do |i|
-                    .image-box__fields__pictures__select
-                      .image-box__fields__pictures__select__btn
-                        = i.file_field :image, style: "display:none", class: "select-btn", multiple: true
-                        .image-box__fields__pictures__text
-                          </br> クリックしてファイルをアップロード
+                    .js-file_group{data: {index: i.index.to_s}}
+                      = i.file_field :image, class: 'js-file'
+                      .js-remove 削除
+
+                  -# .image-box__fields__pictures__select
+                  -#   .image-box__fields__pictures__select__btn
+                  -#     = i.file_field :image, style: "display:none", class: "select-btn", multiple: true
+                  -#     .image-box__fields__pictures__text
+                  -#       </br> クリックしてファイルをアップロード
 
           .item-form-box
             .item-form-box__upper
@@ -39,7 +44,7 @@
                 .item-form-box__name-require
                   必須
               .item-form__textarea
-                =f.text_area :text, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
+                =f.text_area :description, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
 
           .selectbox-block
             %p.selectbox-block__description
@@ -50,15 +55,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"}
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -68,19 +65,10 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :condition_id, Condition.all, :id, :condition
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
-
           .selectbox-block
             %p.selectbox-block__description
               配送について
@@ -90,15 +78,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :delivery_charge_id, DeliveryCharge.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -108,15 +88,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -126,15 +98,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -156,6 +120,7 @@
                   販売手数料（3%）
                 %p.selectbox-block-money__box__bellow__right
                   ー
+                  = f.number_field :price, style: "display: none"
             .selectbox-block-money__profit
               %p.selectbox-block-money__profit__left
                 販売利益
@@ -163,8 +128,10 @@
                 ー
           
           .item-submit
-            %p.item-submit__submit-btn
-              出品する
+            %label
+              = f.submit style: "display:none"
+              %p.item-submit__submit-btn
+                出品する
             = link_to '#', class: "link-item-submit" do
               .item-submit__back-btn
                 もどる
