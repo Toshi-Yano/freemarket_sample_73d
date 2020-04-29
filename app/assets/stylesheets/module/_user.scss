@@ -1,0 +1,320 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  background: #f5f5f5;
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.header {
+  text-align: center;
+  &__h-container {
+    height: 128px;
+    &__single-header {
+      width: 768px;
+      margin: 0 auto; 
+      &__logo {
+        margin: 40px 0 0;
+        line-height: 35px;
+        display: inline-block;
+        margin-left: 140px;
+        img.furima-logo {
+          width: 145px; 
+          height: 45px;
+        }
+      }
+      &__progress {
+        padding: 40px 100px 0 45px;
+        float: right;
+        ol {
+          li {
+            margin: 0 40px 0 0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            min-width: 40px;
+            font-size: 12px;
+            color: #888;
+            }
+          }
+        &__round {
+          width: 12px;
+          height: 12px;
+          margin: 8px auto 0;
+          background: #ccc;
+          border-radius: 50%;
+          &--red {
+            background: #ea352d;
+            width: 12px;
+            height: 12px;
+            margin: 8px auto 0;
+            border-radius: 50%;
+            margin-left: 30px;
+          }
+        }
+        &__round::before {
+          right: 63%;
+          position: absolute;
+          bottom: 5px;
+          z-index: -1;
+          display: block;
+          content: '';
+          width: 90%;
+          height: 2px;
+          background: #ccc;
+        }
+        &__round::after,--red::after {
+          left: 50%;
+          position: absolute;
+          bottom: 5px;
+          z-index: -1;
+          display: block;
+          content: '';
+          width: 100%;
+          height: 2px;
+          background: #ccc;
+        } 
+        #first {
+          color: #ea352d;
+          font-weight: 600;
+        }
+        #long {
+          right: 120%;
+          position: absolute;
+          bottom: 5px;
+          z-index: -1;
+          display: block;
+          content: '';
+          width: 85%;
+          height: 2px;
+          background: #ccc;
+        }
+        #red {
+          right: 60%;
+          position: absolute;
+          bottom: 5px;
+          z-index: -1;
+          display: block;
+          content: '';
+          width: 150%;
+          height: 2px;
+          background: #ea352d;
+        }
+        #red-round {
+          background: #ea352d;
+        }
+        #end ::after {
+          left: 100%;
+          position: absolute;
+          bottom: 5px;
+          z-index: -1;
+          display: block;
+          content: '';
+          width: 100%;
+          height: 2px;
+          background: #f5f5f5;
+        }
+      }
+    }
+  }
+}
+
+.main {
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: white;
+  &__title {
+    height: 100px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 100px;
+    border-bottom: 1px solid #F5F5F5;
+  }
+  &__container {
+    height: 100%;
+    width: 50%;
+    padding: 25px 0;
+    margin: 0 auto;
+    &__field {
+      margin-bottom: 20px;
+      &__form {
+        width: 95%;
+        height: 30px;
+        padding: 10px;
+        font-size: 15px;
+        margin-top: 10px;
+        &-each {
+          width: 145px;
+          height: 30px;
+          padding: 10px;
+          font-size: 18px;
+          margin: 10px 5px 20px;
+        }
+        &-area {
+          margin-top: 10px;
+          width: 100%;
+          height: 100px;
+        }
+        &-birth {
+          margin-top: 10px;
+        }
+      }
+      &__label {
+        display: inline-block;
+        font-weight: bold;
+        text-align: left;
+        font-size: 15px;
+        &-red {
+          display: inline;
+          padding: 5px;
+          background-color: red;
+          color: white;
+          border-radius: 3px;
+        }
+      }
+      &--parallel {
+        display: flex;
+        justify-content: center;
+      }
+      &__password {
+        color: #999999;
+        margin-top: 5px;
+      }
+      &__checkbox {
+        margin: 10px 0;
+      }
+      &__title {
+        margin: 20px 0 10px;
+        font-size: 17px;
+        font-weight: bold;
+      }
+      &__info {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 20px;
+      }
+      &__caution {
+        color: #999999;
+        font-size: 14px;
+        line-height: 18px;
+        margin: 30px 0;
+      }
+      &__confirm {
+        text-align: center;
+        font-size: 15px;
+        &-regulation {
+          color: #44A9ED;
+        }
+        &-bottom {
+          text-align: center;
+        }
+      }
+      &__btn {
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        background-color: #EA352D;
+        color: white;
+        margin: 30px 0;
+      }
+      &__registration {
+        text-align: right;
+        color: #44A9ED;
+      }
+      &__announcement {
+        width: 100%;
+        height: 50px;
+        line-height: 15px;
+        margin: 30px 0;
+        background-color: #F5F5F5;
+        position: relative;
+        padding: 10px;
+        &-text {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #878787;
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+#prefectures-form {
+  background-color: white;
+  width: 100%;
+  height: 50px;
+}
+
+.year, .month, .day {
+  width: 28%;
+  height: 50px;
+  background-color: white;
+  font-size: 16px;
+}
+
+.footer {
+  width: 100%;
+  height: 150px;
+  margin-top: 30px;
+  text-align: center;
+  &__list {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+  &__img {
+    width: 100px;
+    margin-top: 20px;
+  }
+  &__copyright {
+    text-align: center;
+  }
+}
+
+.completion__notice {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  &--logo {
+    width: 25%;
+    height: 100px;
+    margin: 30px 0 20px;
+  }
+  &--main {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  &--link {
+    font-size: 20px;
+  }
+}
+
+.login-header {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  &__main {
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    background-color: white;
+    padding-bottom: 20px;
+  }
+}
