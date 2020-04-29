@@ -14,16 +14,22 @@
                 必須
             .image-box__comment
               最大10枚までアップロードできます
-            %label
-              .image-box__fields
-                %i.fa.fa-camera.fa-lg
-                .image-box__fields__pictures
-                  = f.fields_for :images do |i|
-                    .image-box__fields__pictures__select
-                      .image-box__fields__pictures__select__btn
-                        = i.file_field :image, style: "display:none", class: "select-btn", multiple: true
-                        .image-box__fields__pictures__text
-                          </br> クリックしてファイルをアップロード
+            -# %label
+            .image-box__fields
+              %i.fa.fa-camera.fa-lg
+              .image-box__fields__pictures
+                = f.fields_for :images do |i|
+                  #image-box
+                    .js-file_group{data: {index: i.index.to_s}}
+                      = i.file_field :image, class: 'js-file'
+                      .js-remove 削除
+                  = i.submit
+
+                  -# .image-box__fields__pictures__select
+                  -#   .image-box__fields__pictures__select__btn
+                  -#     = i.file_field :image, style: "display:none", class: "select-btn", multiple: true
+                  -#     .image-box__fields__pictures__text
+                  -#       </br> クリックしてファイルをアップロード
 
           .item-form-box
             .item-form-box__upper
