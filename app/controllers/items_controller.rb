@@ -11,10 +11,10 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
+    if @item.save!
       redirect_to root_path
     else
-      render :new
+      render :new, alert: "入力されていない項目があります"
     end
   end
 
@@ -43,4 +43,5 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 end

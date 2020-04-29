@@ -18,12 +18,11 @@
             .image-box__fields
               %i.fa.fa-camera.fa-lg
               .image-box__fields__pictures
-                = f.fields_for :images do |i|
-                  #image-box
+                #image-box
+                  = f.fields_for :images do |i|
                     .js-file_group{data: {index: i.index.to_s}}
                       = i.file_field :image, class: 'js-file'
                       .js-remove 削除
-                  = i.submit
 
                   -# .image-box__fields__pictures__select
                   -#   .image-box__fields__pictures__select__btn
@@ -45,7 +44,7 @@
                 .item-form-box__name-require
                   必須
               .item-form__textarea
-                =f.text_area :text, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
+                =f.text_area :description, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
 
           .selectbox-block
             %p.selectbox-block__description
@@ -169,8 +168,10 @@
                 ー
           
           .item-submit
-            %p.item-submit__submit-btn
-              出品する
+            %label
+              = f.submit style: "display:none"
+              %p.item-submit__submit-btn
+                出品する
             = link_to '#', class: "link-item-submit" do
               .item-submit__back-btn
                 もどる
