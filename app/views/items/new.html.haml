@@ -87,7 +87,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                = f.collection_select :delivery_charge, DeliveryCharge.all, :id, :name ,include_blank: '選択してください'
+                = f.collection_select :delivery_charge_id, DeliveryCharge.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -97,7 +97,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                = f.collection_select :prefecture, Prefecture.all, :id, :name ,include_blank: '選択してください'
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -107,7 +107,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                = f.collection_select :delivery_date, DeliveryDate.all, :id, :name ,include_blank: '選択してください'
+                = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -129,6 +129,7 @@
                   販売手数料（3%）
                 %p.selectbox-block-money__box__bellow__right
                   ー
+                  = f.number_field :price, style: "display: none"
             .selectbox-block-money__profit
               %p.selectbox-block-money__profit__left
                 販売利益
