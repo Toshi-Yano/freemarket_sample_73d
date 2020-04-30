@@ -8,9 +8,9 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.images.new
-    @category_parent_array = ["---"]
+    @category_parent_array = [""]
       Category.where(ancestry: nil).each do |parent|
-         @category_parent_array << parent.name
+        @category_parent_array << parent.name
       end
   end
 
