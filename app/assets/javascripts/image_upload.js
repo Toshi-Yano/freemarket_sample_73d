@@ -10,7 +10,7 @@ $(function(){
                       <input class="js-file" type="file"
                       name="product[images_attributes][${index}][src]"
                       id="product_images_attributes_${index}_src"><br>
-                      <div class="js-remove" style="display:none">削除</div>
+                      <div class="js-remove">削除↑</div>
                     </div>`;
       return html;
     }
@@ -19,19 +19,27 @@ $(function(){
     let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
     $('#image-box').on('change', '.js-file', function(e) {
+      $(this).next().next().addClass('js-remove-true');
       // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').append(buildFileField(fileIndex[0]));
-      fileIndex.shift();
-      // 末尾の数に1足した数を追加する
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-      console.log($(this).next());
-      $(this).next().css('display', 'block');
+      if ($('.js-file').length < 10) {
+        $('#image-box').append(buildFileField(fileIndex[0]));
+        fileIndex.shift();
+        // 末尾の数に1足した数を追加する
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      }
     });
   
     $('#image-box').on('click', '.js-remove', function() {
       $(this).parent().remove();
+      // 9と10の境を繋ぐ
+      console.log($('.js-remove-true').length == 9);
+      if ($('.js-remove-true').length == 9) {
+        $('#image-box').append(buildFileField(fileIndex[0]));
+        fileIndex.shift();
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      }
       // 画像入力欄が0個にならないようにしておく
-      if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+      // if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
     });
   });
 })
