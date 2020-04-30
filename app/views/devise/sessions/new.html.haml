@@ -3,20 +3,20 @@
     = image_tag "/material/logo/logo.png", class: "completion__notice--logo", alt: "FURIMA"
   .login-header__main
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .main__container
-        .main__container__field
-          = f.label :メールアドレス, class: "main__container__field__label"
+      .main__new__container
+        .main__new__container__field
+          = f.label :メールアドレス, class: "main__new__container__field__label"
           %br/
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: "main__container__field__form"
-        .main__container__field
-          = f.label :パスワード, class: "main__container__field__label"
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "main__new__container__field__form"
+        .main__new__container__field
+          = f.label :パスワード, class: "main__new__container__field__label"
           %br/
-          = f.password_field :password, autocomplete: "current-password", class: "main__container__field__form"
+          = f.password_field :password, autocomplete: "current-password", class: "main__new__container__field__form"
         - if devise_mapping.rememberable?
           .field
             = f.check_box :remember_me
             = f.label :ログイン情報を記録する
         .actions
-          = f.submit "ログイン", class: "main__container__field__btn"
+          = f.submit "ログイン", class: "main__new__container__field__btn"
     = render "devise/shared/links"
 = render "footer"
