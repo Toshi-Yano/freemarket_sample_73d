@@ -19,7 +19,7 @@ RSpec.describe Item do
         expect(item.errors[:price]).to include("can't be blank")
       end
   
-      it "textが空だと登録できない" do
+      it "descriptionが空だと登録できない" do
         item = build(:item, description: "")
         item.valid?
         expect(item.errors[:description]).to include("can't be blank")
