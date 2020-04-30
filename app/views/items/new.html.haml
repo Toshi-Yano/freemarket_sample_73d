@@ -24,27 +24,27 @@
                       = i.file_field :image, class: 'js-file'
                       .js-remove 削除
 
-                  -# .image-box__fields__pictures__select
-                  -#   .image-box__fields__pictures__select__btn
-                  -#     = i.file_field :image, style: "display:none", class: "select-btn", multiple: true
-                  -#     .image-box__fields__pictures__text
-                  -#       </br> クリックしてファイルをアップロード
-
           .item-form-box
             .item-form-box__upper
-              .item-form-box__name
+              .item-form-box__upper__name
                 商品名
-                .item-form-box__name-require
+                .item-form-box__upper__name__require
                   必須
               .item-form__title
                 =f.text_field :name, placeholder: "40文字まで" 
+              .errorbox-fortext
+                %p.errorbox-fortext__errormessage
+                  入力してください
             .item-form-box__under
-              .item-form-box__name
+              .item-form-box__under__name
                 商品の説明
-                .item-form-box__name-require
+                .item-form-box__under__name__require
                   必須
-              .item-form__textarea
+              .item-form-box__under__textarea
                 =f.text_area :description, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
+              .errorbox-fortextarea
+                %p.errorbox-fortextarea__errormessage
+                  入力してください
 
           .selectbox-block
             %p.selectbox-block__description
@@ -98,7 +98,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                = f.collection_select :delivery_date_id, DeliveryDate.all, :id, :name ,include_blank: '選択してください'
+                = f.collection_select :delivery_dates_id, DeliveryDate.all, :id, :name, include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -114,17 +114,17 @@
                     必須
                 .selectbox-block-money__box__middle__right
                   ¥
-                  %input.price_calc{type: "number"}
+                  = f.number_field :price, class: "price_calc", type: "number"
               .selectbox-block-money__box__bellow
                 %p.selectbox-block-money__box__bellow__left
                   販売手数料（3%）
                 %p.selectbox-block-money__box__bellow__right
-                  = f.number_field :price, style: "display: none"
+                  %input{type: "number", style: "display: none"}
             .selectbox-block-money__profit
               %p.selectbox-block-money__profit__left
                 販売利益
               %p.selectbox-block-money__profit__right
-                = f.number_field :price, style: "display: none"
+                %input{type: "number", style: "display: none"}
           
           .item-submit
             %label

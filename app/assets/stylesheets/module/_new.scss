@@ -81,52 +81,103 @@
         left: 50%;
       }
     }
+  }
 
-    
+  @mixin inputTextStyle {
+    padding: 1em 1em;
+    font-size: 1em;
+    border: 1px solid #ccc ;
+    border-radius: 5px;
+    background:#fff;
   }
 
   .item-form-box {
     padding: 40px;
     width: 100%;
-    height: 420px;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-  
     &__upper {
       width: 100%;
       input {
-        margin-top: 10px;
         height: 45px;
-        border-radius: 5px;
         width: 100%;
-        padding: 0 16px;
+        margin-top: 10px;
+        @include inputTextStyle;
       }
-    }
+      input.not-selected{
+        border: 1px solid red;
+      }
       &__name {
         font-size: 14px;
         display: flex;
         font-weight: bold;
         align-items: center;
+        &__require {
+          background-color: red;
+          color: white;
+          margin: 0 0 0 8px;
+          font-size: 10px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          vertical-align: top;
+        }
       }
-      &__name-require {
-        background-color: red;
-        color: white;
-        margin: 0 0 0 8px;
-        font-size: 10px;
-        padding: 2px 4px;
-        border-radius: 2px;
-        vertical-align: top;
+      .errorbox-fortext{
+        height: 23px;
+        margin: 5px;
+        padding-top: 6px;
+        &__errormessage{
+          display: none;
+          color: red;
+          font-size: 13px;
+          &__true{
+            display: block;
+          }
+        }
       }
+    }
     &__under {
       margin-top: 40px;
       textarea {
-        margin-top: 10px;
         height: 140px;
-        border-radius: 5px;
         width: 100%;
+        margin-top: 10px;
+        padding: 16px 16px;
+        border: 1px solid #ccc ;
+        border-radius: 5px;
         word-break: break-word;
-        padding: 0 16px;
         resize: vertical;
+      }
+      textarea.not-selected{
+        border: 1px solid red;
+      }
+      &__name{
+        font-size: 14px;
+        display: flex;
+        font-weight: bold;
+        align-items: center;
+        &__require{
+          background-color: red;
+          color: white;
+          margin: 0 0 0 8px;
+          font-size: 10px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          vertical-align: top;
+        }
+      }
+      .errorbox-fortextarea{
+        height: 23px;
+        margin: 5px;
+        padding-top: 6px;
+        &__errormessage{
+          display: none;
+          color: red;
+          font-size: 13px;
+          &__true{
+            display: block;
+          }
+        }
       }
     }
   }
@@ -195,12 +246,6 @@
         width: 100%;
         @include selectStyle;
       }
-      select{
-        -webkit-appearance: none;
-        width: 100%;
-        @include selectStyle;
-        cursor: pointer;
-      }
       &__select.not-selected{
         border: 1px solid red;
       }
@@ -220,6 +265,7 @@
     .errorbox{
       height: 23px;
       margin: 5px;
+      padding-top: 6px;
       &__errormessage{
         display: none;
         color: red;
