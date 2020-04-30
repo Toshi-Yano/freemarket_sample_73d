@@ -9,8 +9,8 @@ $(function(){
     $('.selectbox-block-money__profit__right').prepend('¥')
     $('#price').val(profit)
     if(data < 300 || data > 9999999) {
-    $('.selectbox-block-money__box__bellow__right').html('ー');
-    $('.selectbox-block-money__profit__right').html('ー');
+      $('.selectbox-block-money__box__bellow__right').html('ー');
+      $('.selectbox-block-money__profit__right').html('ー');
     }
   })
 })
