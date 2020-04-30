@@ -22,7 +22,7 @@
                   = f.fields_for :images do |i|
                     .js-file_group{data: {index: i.index.to_s}}
                       = i.file_field :image, class: 'js-file'
-                      .js-remove 削除
+                      .js-remove{style: "display:none"} 削除
 
           .item-form-box
             .item-form-box__upper
