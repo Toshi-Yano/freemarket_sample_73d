@@ -9,4 +9,10 @@ class Item < ApplicationRecord
   has_one :order
   has_many :images
   accepts_nested_attributes_for :images, allow_destroy: true
+
+  # validates :condition_id, presence: true
+  # validates :delivery_charge_id, presence: true
+  # validates :prefecture_id, presence: true
+  # validates :delivery_dates_id, presence: true
+  # validates :price, presence: true
 end
