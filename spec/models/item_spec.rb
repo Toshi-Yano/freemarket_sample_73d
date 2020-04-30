@@ -1,25 +1,71 @@
 require 'rails_helper'
 RSpec.describe Item do
   describe "#create" do
-    describe "バリデーション確認(presence true)" do
 
-      it "全項目が入力されていれば登録できること" do
-        item = build(:item)
+      it "全て入力すると登録できる" do
+        item = create(:item)
         expect(item).to be_valid
       end
-
-      xit "画像複数枚でも登録できること" do
-        item = build(:item)
-        expect(item).to be_valid
+  
+      it "nameが空だと登録できない" do
+        item = build(:item, name: "")
+        item.valid?
+        expect(item.errors[:name]).to include("can't be blank")
       end
-
-      it "商品名が空の場合は登録できないこと" do
-        item = build(:item, name: nil)
-        # item.valid?
-        # expect(item.errors[:name]).to include("can't be bank")
-        expect(item.valid?).to eq(false)
+  
+      it "priceが空だと登録できない" do
+        item = build(:item, price: "")
+        item.valid?
+        expect(item.errors[:price]).to include("can't be blank")
       end
-
-    end
+  
+      it "textが空だと登録できない" do
+        item = build(:item, description: "")
+        item.valid?
+        expect(item.errors[:description]).to include("can't be blank")
+      end
+  
+      it "conditionが空だと登録できない" do
+        item = build(:item, condition_id: "")
+        item.valid?
+        expect(item.errors[:condition_id]).to include("can't be blank")
+      end
+  
+      it "prefectureが空だと登録できない" do
+        item = build(:item, prefecture_id: "")
+        item.valid?
+        expect(item.errors[:prefecture_id]).to include("can't be blank")
+      end
+  
+      it "delivery_chargeが空だと登録できない" do
+        item = build(:item, delivery_charge_id: "")
+        item.valid?
+        expect(item.errors[:delivery_charge_id]).to include("can't be blank")
+      end
+  
+      it "delivery_datesが空だと登録できない" do
+        item = build(:item, delivery_dates_id: "")
+        item.valid?
+        expect(item.errors[:delivery_dates_id]).to include("can't be blank")
+      end
+  
+      it "statusが空だと登録できない" do
+        item = build(:item, status: "")
+        item.valid?
+        expect(item.errors[:status]).to include("can't be blank")
+      end
+  
+      it "user_idが空だと登録できない" do
+        item = build(:item, user_id: "")
+        item.valid?
+        expect(item.errors[:user_id]).to include("can't be blank")
+      end
+  
+      it "category_idが空だと登録できない" do
+        item = build(:item, category_id: "")
+        item.valid?
+        expect(item.errors[:category_id]).to include("can't be blank")
+      end
+  
   end
 end
