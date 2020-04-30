@@ -55,7 +55,9 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                = f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"}
+                .listing-select-wrapper
+                  .listing-select-wrapper__box
+                  = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
