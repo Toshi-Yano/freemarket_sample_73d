@@ -115,6 +115,9 @@
                 .selectbox-block-money__box__middle__right
                   ¥
                   = f.number_field :price, class: "price_calc", type: "number"
+                .errorbox-forprice
+                  %p.errorbox-forprice__errormessage
+                    選択されていません
               .selectbox-block-money__box__bellow
                 %p.selectbox-block-money__box__bellow__left
                   販売手数料（3%）
