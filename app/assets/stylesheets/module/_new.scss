@@ -300,10 +300,30 @@
       &__right{
         width: 50%;
         font-size: 16px;
+        position: relative;
         input{
           width: calc(100% - 20px);
           @include selectStyle;
           padding: 0.7em 1em;
+        }
+        input.not-selected{
+          border: 1px solid red;
+        }
+        .errorbox-forprice{
+          height: 23px;
+          margin: 5px;
+          padding-top: 6px;
+          position: absolute;
+          right: 20%;
+          bottom: -90%;
+          &__errormessage{
+            display: none;
+            color: red;
+            font-size: 13px;
+            &__true{
+              display: block;
+            }
+          }
         }
       }
     }
