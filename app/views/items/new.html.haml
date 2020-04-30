@@ -114,18 +114,17 @@
                     必須
                 .selectbox-block-money__box__middle__right
                   ¥
-                  %input{type: "number"}
+                  %input.price_calc{type: "number"}
               .selectbox-block-money__box__bellow
                 %p.selectbox-block-money__box__bellow__left
                   販売手数料（3%）
                 %p.selectbox-block-money__box__bellow__right
-                  ー
                   = f.number_field :price, style: "display: none"
             .selectbox-block-money__profit
               %p.selectbox-block-money__profit__left
                 販売利益
               %p.selectbox-block-money__profit__right
-                ー
+                = f.number_field :price, style: "display: none"
           
           .item-submit
             %label
