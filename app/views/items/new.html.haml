@@ -65,7 +65,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                = f.collection_select :condition_id, Condition.all, :id, :condition
+                = f.collection_select :condition_id, Condition.all, :id, :condition ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -114,7 +114,7 @@
                     必須
                 .selectbox-block-money__box__middle__right
                   ¥
-                  %input{type: "number"}
+                  %input{type: "number", name: "item[price]"}
               .selectbox-block-money__box__bellow
                 %p.selectbox-block-money__box__bellow__left
                   販売手数料（3%）
