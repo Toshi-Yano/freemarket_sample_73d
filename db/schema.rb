@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_073003) do
+ActiveRecord::Schema.define(version: 2020_04_30_122106) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ship_last_name", null: false
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_073003) do
     t.string "ship_last_name_kana", null: false
     t.string "ship_first_name_kana", null: false
     t.integer "postcode", null: false
-    t.string "prefecture", null: false
+    t.integer "prefecture", null: false
     t.string "city", null: false
     t.string "block", null: false
     t.string "building"
@@ -46,18 +46,20 @@ ActiveRecord::Schema.define(version: 2020_04_28_073003) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.text "description", null: false
     t.bigint "category_id", null: false
-    t.string "condition", null: false
-    t.string "delivery_charge", null: false
-    t.string "delivery_prefecture", null: false
-    t.string "delivery_dates", null: false
+    t.integer "condition_id", null: false
+    t.integer "delivery_charge_id", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "delivery_dates_id", null: false
     t.integer "price", null: false
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -83,4 +85,5 @@ ActiveRecord::Schema.define(version: 2020_04_28_073003) do
   add_foreign_key "addresses", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "users"
 end
