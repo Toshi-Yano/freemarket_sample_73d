@@ -67,8 +67,13 @@
       align-items: center;
       justify-content: center;
       border: 2px dotted rgba(39, 39, 39, 0.329);
+      #image-box {
+        padding-top: 40px;
+        .js-remove {
+          padding: 10px 130px;
+        }
       }
-
+    }
     &__fields{
       height: 150px;
       display: block;
@@ -78,7 +83,7 @@
       .fa-camera{
         position: absolute;
         top: 30%;
-        left: 50%;
+        left: 49%;
       }
     }
   }
