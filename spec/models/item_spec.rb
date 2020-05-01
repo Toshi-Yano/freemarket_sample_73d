@@ -58,14 +58,14 @@ RSpec.describe Item do
       it "user_idが空だと登録できない" do
         item = build(:item, user_id: "")
         item.valid?
-        expect(item.errors[:user_id]).to include("can't be blank")
+        expect(item.errors[:user]).to include("must exist")
       end
   
       it "category_idが空だと登録できない" do
         item = build(:item, category_id: "")
         item.valid?
-        expect(item.errors[:category_id]).to include("can't be blank")
+        expect(item.errors[:category]).to include("must exist")
       end
-  
+
   end
 end
