@@ -59,7 +59,7 @@
               .selectbox
                 .listing-select-wrapper
                   .listing-select-wrapper__box
-                  = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+                  = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
