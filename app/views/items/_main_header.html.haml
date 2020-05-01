@@ -2,7 +2,7 @@
   .main_header_inner
     .main_header_inner_box
       .main_header_inner_box_left
-        =link_to '#' do
+        =link_to root_path do
           =image_tag "/material/logo/logo.png"
       .main_header_inner_box_right
         <input class="box_right_input" id="searchInput" name="key" placeholder="キーワードから探す">
@@ -21,7 +21,7 @@
           .main_header_inner_low_rightLists_left
             = link_to "マイページ", user_show_path(current_user)
           .main_header_inner_low_rightLists_right
-            = link_to "ログアウト", destroy_user_session_path, method: :delete
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか？"}
         - else
           .main_header_inner_low_rightLists_left
             = link_to "ログイン", new_user_session_path
