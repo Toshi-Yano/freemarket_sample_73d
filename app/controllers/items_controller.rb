@@ -8,10 +8,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.images.new
-    # @category_parent_array = ["---"]
-    #   Category.where(ancestry: nil).each do |parent|
-    #     @category_parent_array << parent.name
-    #   end
   end
 
 
@@ -42,11 +38,9 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-
-  
-
   
   private
+
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :delivery_charge_id, :prefecture_id, :delivery_dates_id, :price, :status, :condition_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
@@ -65,6 +59,5 @@ class ItemsController < ApplicationController
   #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
-
   
 end
