@@ -57,9 +57,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                .listing-select-wrapper
-                  .listing-select-wrapper__box
-                  = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+                = f.collection_select :category_id, Category.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません

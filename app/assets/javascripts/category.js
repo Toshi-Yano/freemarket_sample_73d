@@ -11,8 +11,7 @@ $(function(){
                           <select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
                             <option value="---" data-category="---">---</option>
                             ${insertHTML}
-                          <select>
-                          <i class='fas fa-chevron-down listing-select-wrapper__box--arrow-down'></i>
+                          </select>
                         </div>
                       </div>`;
     $('.listing-product-detail__category').append(childSelectHtml);
@@ -25,8 +24,7 @@ $(function(){
                                 <select class="listing-select-wrapper__box--select" id="grandchild_category" name="category_id">
                                   <option value="---" data-category="---">---</option>
                                   ${insertHTML}
-                                <select>
-                                <i class='fas fa-chevron-down listing-select-wrapper__box--arrow-down'></i>
+                                </select>
                               </div>
                             </div>`;
     $('.listing-product-detail__category').append(grandchildSelectHtml);
@@ -34,7 +32,7 @@ $(function(){
   // 親カテゴリー選択後
   $('#parent_category').on('change', function(){
     var parentCategory = document.getElementById('parent_category').value; 
-    if (parentCategory != ""){ 
+    if (parentCategory != "---"){ 
       $.ajax({
         url: 'get_category_children',
         type: 'GET',

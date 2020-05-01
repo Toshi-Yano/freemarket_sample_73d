@@ -8,11 +8,12 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.images.new
-    @category_parent_array = [""]
+    @category_parent_array = ["---"]
       Category.where(ancestry: nil).each do |parent|
         @category_parent_array << parent.name
       end
   end
+
 
   def create
     @item = Item.new(item_params)
@@ -39,6 +40,18 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  
+
+  
+  private
+  def item_params
+    params.require(:item).permit(:name, :description, :category_id, :delivery_charge_id, :prefecture_id, :delivery_dates_id, :price, :status, :condition_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
     @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
@@ -50,15 +63,5 @@ class ItemsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
-
-  
-  private
-  def item_params
-    params.require(:item).permit(:name, :description, :category_id, :delivery_charge_id, :prefecture_id, :delivery_dates_id, :price, :status, :condition_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
-  end
-
-  def set_item
-    @item = Item.find(params[:id])
-  end
   
 end
