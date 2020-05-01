@@ -1,8 +1,4 @@
 $(function(){
-  (()=>{
-
-  })();
-
   $(document).on('turbolinks:load', ()=> {
     const buildFileField = (index)=> {
       const html = `<div data-index="${index}" class="js-file_group">
@@ -19,13 +15,11 @@ $(function(){
 
     $('#image-box').on('change', '.js-file', function(e) {
       $(this).next().next().addClass('js-remove-true');
-      // const imgHTML = `<img src="${src}" size="70x100">`
       // 仮置き
       const imgName = $(this).val();
       const imgNameHTML = `<p>${imgName}</p>`;
       $($(this).prev()).append(imgNameHTML);
       $(this).css('display', 'none');
-      // $('.js-image-zone').append(imgHTML);
       if ($('.js-file').length < 10) {
         $('#image-box').append(buildFileField(fileIndex[0]));
         fileIndex.shift();
