@@ -1,6 +1,6 @@
 %main
   .main-container
-    .main-conteiner__box
+    .main-container__box
       .main-container__box-header
         %h1
           = link_to (image_tag "/assets/logo.png", width: "185", height: "53"), root_path
@@ -14,32 +14,39 @@
                 必須
             .image-box__comment
               最大10枚までアップロードできます
-            %label
-              .image-box__fields
-                %i.fa.fa-camera.fa-lg
-                .image-box__fields__pictures
+            -# %label
+            .image-box__fields
+              %i.fa.fa-camera.fa-lg
+              .image-box__fields__pictures
+                #image-box
                   = f.fields_for :images do |i|
-                    .image-box__fields__pictures__select
-                      .image-box__fields__pictures__select__btn
-                        = i.file_field :name, value:"", style: "display:none", class: "select-btn"
-                        .image-box__fields__pictures__text
-                          </br> クリックしてファイルをダウンロード
+                    .js-file_group{data: {index: i.index.to_s}}
+                      .js-image-zone
+                      = i.file_field :image, class: 'js-file'
+                      </br>
+                      .js-remove 削除↑
 
           .item-form-box
             .item-form-box__upper
-              .item-form-box__name
+              .item-form-box__upper__name
                 商品名
-                .item-form-box__name-require
+                .item-form-box__upper__name__require
                   必須
               .item-form__title
                 =f.text_field :name, placeholder: "40文字まで" 
+              .errorbox-fortext
+                %p.errorbox-fortext__errormessage
+                  入力してください
             .item-form-box__under
-              .item-form-box__name
+              .item-form-box__under__name
                 商品の説明
-                .item-form-box__name-require
+                .item-form-box__under__name__require
                   必須
-              .item-form__textarea
-                =f.text_area :text, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
+              .item-form-box__under__textarea
+                =f.text_area :description, placeholder: '商品の説明（必須1,000文字以内)&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10; &#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'.html_safe
+              .errorbox-fortextarea
+                %p.errorbox-fortextarea__errormessage
+                  入力してください
 
           .selectbox-block
             %p.selectbox-block__description
@@ -50,15 +57,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :category_id, Category.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -68,19 +67,10 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :condition_id, Condition.all, :id, :condition ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
-
           .selectbox-block
             %p.selectbox-block__description
               配送について
@@ -90,15 +80,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :delivery_charge_id, DeliveryCharge.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -108,15 +90,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name ,include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -126,15 +100,7 @@
                 .selectwrapper__name__require
                   必須
               .selectbox
-                %select{name: "category_id", class: "selectbox__select"}
-                  %option{value: ""}
-                    選択してください
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    レディース
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    メンズ
-                  %option{value: 'その項目のカテゴリーIDが入る'}
-                    ベビー・キッズ
+                = f.collection_select :delivery_dates_id, DeliveryDate.all, :id, :name, include_blank: '選択してください'
               .errorbox
                 %p.errorbox__errormessage
                   選択されていません
@@ -150,21 +116,26 @@
                     必須
                 .selectbox-block-money__box__middle__right
                   ¥
-                  %input{type: "number"}
+                  = f.number_field :price, class: "price_calc", type: "number"
+                  .errorbox-forprice
+                    %p.errorbox-forprice__errormessage
+                      ¥300〜9,999,999に設定してください
               .selectbox-block-money__box__bellow
                 %p.selectbox-block-money__box__bellow__left
                   販売手数料（3%）
                 %p.selectbox-block-money__box__bellow__right
-                  ー
+                  %input{type: "number", style: "display: none"}
             .selectbox-block-money__profit
               %p.selectbox-block-money__profit__left
                 販売利益
               %p.selectbox-block-money__profit__right
-                ー
+                %input{type: "number", style: "display: none"}
           
           .item-submit
-            %p.item-submit__submit-btn
-              出品する
+            %label
+              = f.submit style: "display:none"
+              %p.item-submit__submit-btn
+                出品する
             = link_to '#', class: "link-item-submit" do
               .item-submit__back-btn
                 もどる
@@ -199,3 +170,6 @@
                   = image_tag "/material/logo/logo-white.png", width: "185", height: "53"
                 %p.regulation-footer__logo__box__company
                   © FURIMA, Inc.
+
+= javascript_include_tag 'errorbox'
+= javascript_include_tag 'fee'

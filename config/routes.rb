@@ -8,6 +8,18 @@ Rails.application.routes.draw do
     get "user_show", to: "users/registrations#show"
   end
   root 'items#index'
-  resources :items, only: [:index, :new, :show, :create]
+  resources :items, only: [:index, :new, :create, :show]
+  resources :items, only: [:index, :new, :create, :update, :show, :destroy] do
+    resources :images, only: [:new, :create]
+  end
+
+  resources :items, only: [:index, :show, :new, :edit, :destroy] do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
+    
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
