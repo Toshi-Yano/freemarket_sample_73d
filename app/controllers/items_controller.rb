@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
 
   
   def index
+    @items = Item.where(status: 1).order('id DESC').limit(3)
+    @images = Image.find(1)
   end
 
   def new
@@ -35,7 +37,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def
+  def destroy
     if @item.destroy
       redirect_to root_path
     else
