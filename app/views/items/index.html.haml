@@ -18,7 +18,7 @@
     .main_page_reason
       .main_page_reason_title
         FURIMAが選ばれる3つの理由
-        
+
       .main_page_reason_lists
         .main_page_reason_lists_list
           .main_page_reason_lists_list_picture
@@ -95,52 +95,21 @@
           =link_to '#' do
             新規投稿商品
         .main_page_pickup_box_lists
-          .main_page_pickup_box_lists_list
-            -@items.each do |item|
-              =link_to 'item_path(item)' do
+          - @items.each do |item|
+            .main_page_pickup_box_lists_list
+              =link_to '#' do
                 .main_page_pickup_box_lists_list_picture
-                  =image_tag itme.images[0].name.
                 .main_page_pickup_box_lists_list_text
                   .main_page_pickup_box_lists_list_text_name
-                    
+                    = item.name
                   .main_page_pickup_box_lists_list_text_data
                     %ul 
-                      %li 30000円
+                      %li= item.price
                       %li
                         %i.fa.fa-star
                           0
                     .p
                       (税込)
-          .main_page_pickup_box_lists_list
-            =link_to '#' do
-              .main_page_pickup_box_lists_list_picture
-                = image_tag "/material/pict/pict-reason-02.jpg"
-              .main_page_pickup_box_lists_list_text
-                .main_page_pickup_box_lists_list_text_name
-                  prodact2
-                .main_page_pickup_box_lists_list_text_data
-                  %ul 
-                    %li 20000円
-                    %li
-                      %i.fa.fa-star
-                        0
-                  .p
-                    (税込)
-          .main_page_pickup_box_lists_list
-            =link_to '#' do
-              .main_page_pickup_box_lists_list_picture
-                = image_tag "/material/pict/pict-reason-03.jpg"
-              .main_page_pickup_box_lists_list_text
-                .main_page_pickup_box_lists_list_text_name
-                  prodact1
-                .main_page_pickup_box_lists_list_text_data
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star
-                        0
-                  .p
-                    (税込)
     .main_page_pickup
       .main_page_pickup_head
         ピックアップブランド
