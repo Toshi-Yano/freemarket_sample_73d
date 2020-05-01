@@ -58,4 +58,11 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Precompile JS files
+  config.assets.precompile += ['cable.js']
+  config.assets.precompile += ['category.js']
+  config.assets.precompile += ['errorbox.js']
+  config.assets.precompile += ['fee.js']
+  config.assets.precompile += ['image_upload.js']
 end

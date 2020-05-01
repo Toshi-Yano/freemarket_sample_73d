@@ -22,22 +22,18 @@
     = render "devise/shared/error_messages", resource: @address
     .main__new__container
       .main__new__container__field--parallel
+        = f.label :お名前（全角）, class: "main__new__container__field__label", id: "name__label"
+        %p.main__new__container__field__label-red 必須
         .main__new__container__field--parallel-each
-          = f.label :お名前（全角）, class: "main__new__container__field__label", id: "name__label"
-          %p.main__new__container__field__label-red 必須
-          %br/
+          .main__new__container__field--parallel-each_box
           = f.text_field :ship_last_name, autofocus: true, placeholder: "例）山田", class: "main__new__container__field__form-each"
-        .main__new__container__field--parallel-each
-          %br/
           = f.text_field :ship_first_name, placeholder: "例）彩", class: "main__new__container__field__form-each"
       .main__new__container__field--parallel
         .main__new__container__field--parallel-each
           = f.label :お名前かな（全角）, class: "main__new__container__field__label", id: "name__label"
           %p.main__new__container__field__label-red 必須
-          %br/
+          .main__new__container__field--parallel-each_box
           = f.text_field :ship_last_name_kana, placeholder: "例）やまだ", class: "main__new__container__field__form-each"
-        .main__new__container__field--parallel-each
-          %br/
           = f.text_field :ship_first_name_kana, placeholder: "例）あや", class: "main__new__container__field__form-each"
       .main__new__container__field
         = f.label :郵便番号, class: "main__container__field__label"
