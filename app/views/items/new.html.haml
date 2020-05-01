@@ -21,8 +21,10 @@
                 #image-box
                   = f.fields_for :images do |i|
                     .js-file_group{data: {index: i.index.to_s}}
+                      .js-image-zone
                       = i.file_field :image, class: 'js-file'
-                      .js-remove{style: "display:none"} 削除
+                      </br>
+                      .js-remove 削除↑
 
           .item-form-box
             .item-form-box__upper

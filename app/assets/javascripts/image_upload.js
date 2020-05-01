@@ -4,34 +4,44 @@ $(function(){
   })();
 
   $(document).on('turbolinks:load', ()=> {
-    // 画像用のinputを生成する関数
     const buildFileField = (index)=> {
       const html = `<div data-index="${index}" class="js-file_group">
+                      <div class="js-image-zone"></div>
                       <input class="js-file" type="file"
                       name="product[images_attributes][${index}][src]"
                       id="product_images_attributes_${index}_src"><br>
-                      <div class="js-remove" style="display:none">削除</div>
+                      <div class="js-remove">削除↑</div>
                     </div>`;
       return html;
     }
   
-    // file_fieldのnameに動的なindexをつける為の配列
     let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
     $('#image-box').on('change', '.js-file', function(e) {
-      // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').append(buildFileField(fileIndex[0]));
-      fileIndex.shift();
-      // 末尾の数に1足した数を追加する
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-      console.log($(this).next());
-      $(this).next().css('display', 'block');
+      $(this).next().next().addClass('js-remove-true');
+      // const imgHTML = `<img src="${src}" size="70x100">`
+      // 仮置き
+      const imgName = $(this).val();
+      const imgNameHTML = `<p>${imgName}</p>`;
+      $($(this).prev()).append(imgNameHTML);
+      $(this).css('display', 'none');
+      // $('.js-image-zone').append(imgHTML);
+      if ($('.js-file').length < 10) {
+        $('#image-box').append(buildFileField(fileIndex[0]));
+        fileIndex.shift();
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      }
     });
   
     $('#image-box').on('click', '.js-remove', function() {
       $(this).parent().remove();
-      // 画像入力欄が0個にならないようにしておく
-      if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+      // 9と10の境を繋ぐ
+      console.log($('.js-remove-true').length == 9);
+      if ($('.js-remove-true').length == 9) {
+        $('#image-box').append(buildFileField(fileIndex[0]));
+        fileIndex.shift();
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      }
     });
   });
 })

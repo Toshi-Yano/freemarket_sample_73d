@@ -67,6 +67,23 @@
       align-items: center;
       justify-content: center;
       border: 2px dotted rgba(39, 39, 39, 0.329);
+      #image-box{
+        .js-file_group{
+          .js-image-zone{
+            color: #0095ee;
+          }
+          .js-file{
+            border: 1px solid #999;
+          }
+          .js-remove{
+            display: none;
+            color: red;
+          }
+          .js-remove-true{
+            display: block;
+          }
+        }
+      }
       }
 
     &__fields{
