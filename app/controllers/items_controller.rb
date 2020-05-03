@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:new,:index, :create]
+  before_action :set_item, except: [:new, :index, :create]
 
   
   def index
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def
+  def destroy
     if @item.destroy
       redirect_to root_path
     else
