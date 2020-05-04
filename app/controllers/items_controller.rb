@@ -3,8 +3,7 @@ class ItemsController < ApplicationController
 
   
   def index
-    @items = Item.where(status: 1).order('id DESC').limit(3)
-    @images = Image.find(1)
+    @items = Item.includes(:images).where(status: 1).order('id DESC').limit(3)
   end
 
   def new
