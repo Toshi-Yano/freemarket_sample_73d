@@ -99,8 +99,8 @@
             .main_page_pickup_box_lists_list
               =link_to '#' do
                 .main_page_pickup_box_lists_list_picture
-                  - @item.images.each do |item_image|
-                    = image_tag "#{ item_image.image_url}", class:".main_page_pickup_box_lists_list_picture__box"
+                  - @items.images.each do |image|
+                    = image_tag "#{image.image_url}", class:".main_page_pickup_box_lists_list_picture--new"
                 .main_page_pickup_box_lists_list_text
                   .main_page_pickup_box_lists_list_text_name
                     = item.name
