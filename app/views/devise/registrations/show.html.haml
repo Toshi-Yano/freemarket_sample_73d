@@ -1,3 +1,46 @@
-= @address.postcode
-= @address.prefecture
-= @address.city
+= render "/items/main_header"
+.iamMain
+  = render "show_side"
+  .iamMain__wrapper
+    .iamFrame
+      .iamTitle
+        .iamTitle__text
+          = "#{@user.nickname}さんのマイページ"
+      .iamNickname__guide
+        %p#iamtext ニックネーム
+      .iamNickname__iam
+        = @user.nickname
+      .iamNickname__guide
+        %P#iamtext お名前
+      .iamName__iam
+        = @user.last_name
+        = @user.first_name
+      .iamKana__guide
+        %P#iamtext ふりがな
+      .iamKana__iam
+        = @user.last_name_kana
+        = @user.first_name_kana
+      .iamBirth__guide
+        %P#iamtext 生年月日
+      .iamBirth__iam
+        = @user.date_of_birth.to_s.gsub("-", "/")
+      .iamTel__guide
+        %P#iamtext 郵便番号
+      .iamTel__iam
+        = @address.postcode
+      .iamCity__guide
+        %P#iamtext 住所
+      .iamCity__iam
+        = @address.prefecture
+        = @address.city
+      .iamCity__iamRoom
+        = @address.block
+        = @address.building
+      .iamProfile__guide
+        %p#iamtext プロフィール
+      .iamProfile__iam
+        - if @user.biography
+          = simple_format(@user.biography)
+        - else
+          プロフィールが登録されていません
+= render "footer"

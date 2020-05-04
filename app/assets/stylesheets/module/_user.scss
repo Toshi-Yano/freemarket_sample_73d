@@ -317,3 +317,182 @@ body {
     padding: 30px 0 20px;
   }
 }
+
+
+
+@mixin btnsize {
+  height: 70px;
+  width: 200px;
+}
+@mixin btn {
+  height: 70px;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid #EEEEEE;
+  line-height: 70px;
+  background-color: white;
+}
+@mixin btnwrite {
+  text-decoration: none;
+  color: #454545;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.user__side {
+  &__list {
+    height: 214px;
+    width: 200px;
+    &__sellitem {
+      @include btnsize;
+      &--btn {
+        @include btn;
+        position: relative;
+        .sellitembtn {
+          @include btnwrite;
+        }
+      }
+    }
+    &__buyitem {
+      @include btnsize;
+      &--btn {
+        @include btn;
+        position: relative;
+        .buyitembtn {
+          @include btnwrite;
+        }
+      }
+    }
+    &__pro {
+      &--btn {
+        @include btn;
+        position: relative;
+        .probtn {
+          @include btnwrite;
+        }
+      }
+    }
+    &__adedit {
+      &--btn {
+        @include btn;
+        position: relative;
+        .adeditbtn {
+          @include btnwrite;
+        }
+      }
+    }
+    &__newcard {
+      &--btn {
+        @include btn;
+        position: relative;
+        .newcardbtn {
+          @include btnwrite;
+        }
+      }
+    }
+    &__confirmcard {
+      &--btn {
+        @include btn;
+        position: relative;
+        .confirmcardbtn {
+          @include btnwrite;
+        }
+      }
+    }
+  }
+}
+
+@mixin centerin {
+  display: flex;
+  margin: auto;
+}
+@mixin iamguide {
+  margin: 30px auto 0;
+}
+@mixin iam {
+  margin: 10px auto 0;
+  font-size: 16px;
+}
+@mixin wrapper {
+  border-bottom: 2px solid #f5f5f5;
+  padding: 25px;
+}
+
+#iamtext {
+  font-weight: 600;
+  font-size: 20px;
+}
+.iamMain {
+  background-color: #f5f5f5;
+  display: flex;
+  padding: 50px 200px;
+  &__wrapper {
+    @include wrapper();
+    background-color: white;
+    width: 100%;
+    margin-left: 30px;
+    .iamFrame {
+      margin: 0 auto;
+      width: 70%;
+      .iamTitle {
+        width: 100%;
+        border-bottom: 1px solid #8f8c8c;
+        &__text {
+          font-size: 28px;
+          margin: 0 auto;
+          text-align: center;
+          font-weight: 600;
+          padding-bottom: 5px;
+        }
+      }
+      .iamNickname__guide {
+        @include iamguide;
+      }
+      .iamNickname__iam {
+        @include iam;
+      }
+      .iamName__guide {
+        @include iamguide;
+      }
+      .iamName__iam {
+        @include iam;
+      }
+      .iamKana__guide {
+        @include iamguide;
+      }
+      .iamKana__iam {
+        @include iam;
+      }
+      .iamBirth__guide {
+        @include iamguide;
+      }
+      .iamBirth__iam {
+        @include iam;
+      }
+      .iamTel__guide {
+        @include iamguide;
+      }
+      .iamTel__iam {
+        @include iam;
+      }
+      .iamCity__guide {
+        @include iamguide;
+      }
+      .iamCity__iam {
+        @include iam;
+      }
+      .iamCity__iamRoom {
+        @include iam;
+      }
+      .iamProfile__guide {
+        @include iamguide;
+      }
+      .iamProfile__iam {
+        @include iam;
+      }
+    }
+  }
+}
