@@ -14,83 +14,79 @@
 .item
   .item__item-box
     %h1.item__item-box__name
-      商品名
+      = @item.name
     -# 大イメージ
     .item__item-box__image0
-      = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '560x346'
+      -# = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '560x346'
+      -# = image_tag @top_image.image.url, size: "560x346", class: 'chat-main__list__image'
+      = image_tag "#{@top_image.image}", size: "560x346", class: 'chat-main__list__image'
     -# 小イメージ
     %ul#image_list.item__item-box__images
-      %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-01.jpg', alt: 'pict01', size: '140x87'
-      %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-02.jpg', alt: 'pict02', size: '140x87'
-      %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
-      %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
-      %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
-      %li.item__item-box__images__image
-        = image_tag '/material/pict/pict-reason-03.jpg', alt: 'pict03', size: '140x87'
+      - @images.each do |image|
+        %li.item__item-box__images__image
+          = image_tag image.image.url, size: "140x87", class: 'chat-main__list__image'
     
     %p.item__item-box__price
-      ¥5550
+      = "¥#{@item.price}"
     %p.item__item-box__price-description
-      %span (税込)
-      %span 送料込み
+      %span 
+        = @item.delivery_charge.name
 
     %p.item__item-box__description
-      この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。この商品は本当にいいやつ。
+      = @item.description
 
     %table.item__item-box__details
       %tr
         %th
           出品者
         %td
-          hoge
+          = @item.user.nickname
       %tr
         %th
           カテゴリー
         %td
           %p
             = link_to '#' do
-              ベビー・キッズ
+              = @item.category.name
           %p
             = link_to '#' do
-              ベビー服(男女兼用) ~95cm
+              = @item.category.name
           %p
             = link_to '#' do
-              アウター
+              = @item.category.name
       %tr
         %th
           ブランド
         %td
-          アルマーニ
+          - if @item.brand.present?
+            = @item.brand
       %tr
         %th
           商品のサイズ
         %td
+          - if @item.brand.present?
+            = @item.brand
       %tr
         %th
           商品の状態
         %td
-          未使用に近い
+          = @item.condition.condition
       %tr
         %th
           配送料の負担
         %td
-          送料込み
+          = @item.delivery_charge.name
       %tr
         %th
           発送元の地域
         %td
           = link_to '#' do
-            静岡県
+            = @item.prefecture.name
       %tr
         %th
           発送日の目安
         %td
-          4-7日で発送
+          = @item.delivery_dates.name
 
     .item__item-box__btn-box
       .item__item-box__btn-box__favorite-btn
@@ -101,6 +97,15 @@
         .item__item-box__btn-box__report-btn
           = icon('fas', 'flag')
           不適切な商品の通報
+    - if user_signed_in? && current_user.id != @item.user.id
+      .item__item-box__submit
+        = link_to "購入画面へ進む", class: "item__item-box__submit-btn" 
+    - if user_signed_in? && current_user.id == @item.user.id
+      .item__item-box__show
+        .item__item-box__show-edit
+          = link_to "編集", class: "item__item-box__show-edit"
+        .item__item-box__show-delete
+          = link_to "削除", class: "item__item-box__show-delete"
 
   .item__comment-box
     %textarea.item__comment-box__textarea

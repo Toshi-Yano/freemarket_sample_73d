@@ -13,6 +13,17 @@ $furima_font: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGoth
   justify-content: space-between;
 }
 
+@mixin show-btn {
+  margin-top: 10px;
+  width: 60px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 16px;
+  background-color: $furima_blue;
+  border-radius: 2px;
+}
+
 * {
   box-sizing: border-box;
   font-family: $furima_font;
@@ -123,6 +134,34 @@ a{
         border-radius: 5px;
         font-size: 14px;
         color: #333;
+      }
+    }
+    &__submit {
+      width: 50%;
+      height: 50px;
+      margin: 0 auto;
+      background-color: #FF0100;
+      text-align: center;
+      line-height: 50px;
+      a {
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+    &__show {
+      display: flex;
+      justify-content: flex-end;
+      &-edit {
+        @include show-btn;
+        margin-right: 5px;
+      }
+      &-delete {
+        @include show-btn;
+      }
+      a {
+        color: white;
+        font-weight: bold;
       }
     }
   }
