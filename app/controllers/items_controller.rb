@@ -22,8 +22,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @top_image = Image.find_by(item_id: params[:id])
-    @images = Image.where(item_id: params[:id])
+    @images = @item.images
+    @top_image = @images.first
   end
 
   def update
