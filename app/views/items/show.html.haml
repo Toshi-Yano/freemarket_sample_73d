@@ -101,7 +101,7 @@
     - if user_signed_in? && current_user.id == @item.user.id
       .item__item-box__show
         .item__item-box__show-edit
-          = link_to "編集", class: "item__item-box__show-edit"
+          = link_to "編集", edit_item_path(params[:id]), class: "item__item-box__show-edit"
         .item__item-box__show-delete
           = link_to "削除", class: "item__item-box__show-delete"
 

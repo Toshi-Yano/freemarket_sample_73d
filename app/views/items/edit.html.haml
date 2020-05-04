@@ -6,7 +6,7 @@
 
       #form
         = form_with model: @item, class: "mainContainer__form", local: true do |f|
-          = render "layouts/error_items", resources: @item
+          = render "layouts/error_items", resouces: @item
           .image-box
             .image-box__name
               出品画像
@@ -136,7 +136,7 @@
               = f.submit style: "display:none"
               %p.item-submit__submit-btn
                 出品する
-            = link_to '#', class: "link-item-submit" do
+            = link_to item_path(@item.id), class: "link-item-submit" do
               .item-submit__back-btn
                 もどる
 

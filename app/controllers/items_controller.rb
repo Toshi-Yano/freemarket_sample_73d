@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:new, :index, :create]
-
+  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index_unless_owner, only: [:edit, :update, :destroy]
   
   def index
   end
@@ -21,15 +22,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @images = @item.images
     @top_image = @images.first
   end
 
+  def edit
+  end
+
   def update
-    if @item.update(item_params)
-      redirect_to root_path
+    if @item.update(update_params)
+      # redirect_to item_path(@item.id)
     else
+      # flash.now[:alert] = @item.errors.full_messages
       render :edit
     end
   end
@@ -48,6 +52,10 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :category_id, :delivery_charge_id, :prefecture_id, :delivery_dates_id, :price, :status, :condition_id, images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
+  def update_params
+    params.require(:item).permit(:name, :user_id, :description, :category_id, :delivery_charge_id, :prefecture_id, :delivery_dates_id, :price, :status, :condition_id, images_attributes: [:image, :_destroy, :id])
+  end
+
   def set_item
     @item = Item.find(params[:id])
   end
@@ -61,6 +69,14 @@ class ItemsController < ApplicationController
   def get_category_grandchildren
   #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
+
+  def move_to_index_unless_owner
+    redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id
   end
   
 end
