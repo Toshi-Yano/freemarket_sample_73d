@@ -2,8 +2,7 @@
   .main-container
     .main-container__box
       .main-container__box-header
-        %h1
-          = link_to (image_tag "/assets/logo.png", width: "185", height: "53"), root_path
+        = link_to (image_tag "/material/logo/logo.png", width: "185", height: "53"), root_path
 
       #form
         = form_with model: @item, class: "mainContainer__form", local: true do |f|
