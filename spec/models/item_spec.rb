@@ -66,6 +66,12 @@ RSpec.describe Item do
         item.valid?
         expect(item.errors[:category]).to include("must exist")
       end
+      
+      it "imageが空だと登録できない" do
+        item = build(:item.images, image: "")
+        item.valid?
+        expect(item.errors[:item.images]).to include("can't be blank")
+      end
 
   end
 end

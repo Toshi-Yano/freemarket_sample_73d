@@ -12,6 +12,8 @@ FactoryBot.define do
     status              {1}
     after(:build) do |item|                          
       item.images << build(:image, item: item)
+    # after(:build) do |item|                          
+    #   item.images << FactoryBot.build(:image, image: "sample2.jpg")
     end
   end
 end

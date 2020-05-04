@@ -31,9 +31,8 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(update_params)
-      # redirect_to item_path(@item.id)
+      redirect_to item_path(@item.id)
     else
-      # flash.now[:alert] = @item.errors.full_messages
       render :edit
     end
   end
