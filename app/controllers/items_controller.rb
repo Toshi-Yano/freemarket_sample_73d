@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:new,:index, :create]
-
   
   def index
     @items = Item.includes(:images).where(status: 1).order('id DESC').limit(3)
