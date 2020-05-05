@@ -13,17 +13,35 @@
                 必須
             .image-box__comment
               最大10枚までアップロードできます
-            -# %label
             .image-box__fields
-              %i.fa.fa-camera.fa-lg
-              .image-box__fields__pictures
-                #image-box
-                  = f.fields_for :images do |i|
-                    .js-file_group{data: {index: i.index.to_s}}
+              #image-box
+                = f.fields_for :images do |i|
+                  .js-file_group{data: {index: i.index.to_s}}
+                    .preview-none
                       .js-image-zone
-                      = i.file_field :image, class: 'js-file'
-                      </br>
-                      .js-remove 削除↑
+                      .js-remove 削除
+                    %label.input
+                      = i.file_field :image, class: 'js-file', style: 'display:none'
+                      .input__box
+                        .input__box__cam-icon
+                          %i.fa.fa-camera.fa-lg
+                        %p.input__box__p
+                          ここをクリックしてアップロード
+                  - if @item.persisted?
+                    = i.check_box :_destroy, data:{ index: i.index }, style: "display:none", class: "hidden-destroy"
+                - if @item.persisted?
+                  .js-file_group{data: {index: @item.images.count}}
+                    .preview-none
+                      .js-image-zone
+                      .js-remove 削除
+                    %label.input
+                      = i.file_field :image, class: 'js-file', style: 'display:none'
+                      .input__box
+                        .input__box__cam-icon
+                          %i.fa.fa-camera.fa-lg
+                        %p.input__box__p
+                          ここをクリックしてアップロード
+              #how-many-image
 
           .item-form-box
             .item-form-box__upper
