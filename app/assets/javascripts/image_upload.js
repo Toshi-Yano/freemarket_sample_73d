@@ -18,17 +18,49 @@ $(function(){
                     </div>`;
       return html;
     }
+
+    const buildImg = (index, url)=> {
+      const html = `<img data-index="${index}" src="${url}" width="138px" height="82px">`;
+      return html;
+    };
+    // すでに登録されていたものは削除可能にする
+    $('.preview-none').each(function(index, preview){
+      if (index != $('.preview-none').length - 1) {
+        $(preview).addClass('preview');
+      } else {
+        ;
+      }
+    });
+
+    $('.input').each(function(index, input){
+      if (index != $('.input').length - 1) {
+        $(input).css('display', 'none');
+      } else {
+        ;
+      }
+    });
   
     let fileIndex = [1,2,3,4,5,6,7,8,9,10];
     // 既に使われているindexを除外
     lastIndex = $('.js-file_group:last').data('index');
     fileIndex.splice(0, lastIndex);
 
-    const firstNum = $('.visible-js-remove').length;
+    const firstNum = $('.preview').length;
     const firstLeft = 10 - firstNum;
     $('#how-many-image').append(`<p style="color:#0095ee">あと${firstLeft}枚アップロードできます</p>`)
 
-    $('#image-box').on('change', '.js-file', function() {
+    $('#image-box').on('change', '.js-file', function(e) {
+      const targetIndex = $(this).parent().parent().data('index');
+      const file = e.target.files[0];
+      const blobUrl = window.URL.createObjectURL(file);
+      if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+        img.setAttribute('src', blobUrl);
+      } else {
+        const $imageZone = $('.js-image-zone').eq(targetIndex);
+        console.log($('.js-image-zone').eq(targetIndex));
+        $imageZone.append(buildImg(targetIndex, blobUrl));
+      }
+
       $(this).parent().prev().addClass('preview');
       $(this).parent().css('display', 'none');
       $('.js-remove').addClass('visible-js-remove')
@@ -47,15 +79,16 @@ $(function(){
     });
   
     $('#image-box').on('click', '.js-remove', function() {
-      const targetIndex = $(this).parent().data('index')
+      const targetIndex = $(this).parent().parent().data('index');
       // 該当indexを振られているチェックボックスを取得する
       const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
       // もしチェックボックスが存在すればチェックを入れる
       if (hiddenCheck) hiddenCheck.prop('checked', true);
-      
+
       $(this).parent().remove();
-      if ($('.visible-js-remove').length < 10) {
-        const num = $('.visible-js-remove').length;
+      $(`img[data-index="${targetIndex}"]`).remove();
+      if ($('.preview').length < 10) {
+        const num = $('.preview').length;
         const left = 10 - num;
         $('#how-many-image').children().remove();
         $('#how-many-image').append(`<p style="color:#0095ee">あと${left}枚アップロードできます</p>`);
