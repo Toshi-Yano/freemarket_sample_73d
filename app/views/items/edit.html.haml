@@ -6,7 +6,7 @@
 
       #form
         = form_with model: @item, class: "mainContainer__form", local: true do |f|
-          = render "layouts/error_items", resources: @item
+          = render "layouts/error_items", resouces: @item
           .image-box
             .image-box__name
               出品画像
@@ -14,35 +14,17 @@
                 必須
             .image-box__comment
               最大10枚までアップロードできます
+            -# %label
             .image-box__fields
-              #image-box
-                = f.fields_for :images do |i|
-                  .js-file_group{data: {index: i.index.to_s}}
-                    .preview-none
+              %i.fa.fa-camera.fa-lg
+              .image-box__fields__pictures
+                #image-box
+                  = f.fields_for :images do |i|
+                    .js-file_group{data: {index: i.index.to_s}}
                       .js-image-zone
-                      .js-remove 削除
-                    %label.input
-                      = i.file_field :image, class: 'js-file', style: 'display:none'
-                      .input__box
-                        .input__box__cam-icon
-                          %i.fa.fa-camera.fa-lg
-                        %p.input__box__p
-                          ここをクリックしてアップロード
-                  - if @item.persisted?
-                    = i.check_box :_destroy, data:{ index: i.index }, style: "display:none", class: "hidden-destroy"
-                - if @item.persisted?
-                  .js-file_group{data: {index: @item.images.count}}
-                    .preview-none
-                      .js-image-zone
-                      .js-remove 削除
-                    %label.input
-                      = i.file_field :image, class: 'js-file', style: 'display:none'
-                      .input__box
-                        .input__box__cam-icon
-                          %i.fa.fa-camera.fa-lg
-                        %p.input__box__p
-                          ここをクリックしてアップロード
-              #how-many-image
+                      = i.file_field :image, class: 'js-file'
+                      </br>
+                      .js-remove 削除↑
 
           .item-form-box
             .item-form-box__upper
@@ -154,7 +136,7 @@
               = f.submit style: "display:none"
               %p.item-submit__submit-btn
                 出品する
-            = link_to '#', class: "link-item-submit" do
+            = link_to item_path(@item.id), class: "link-item-submit" do
               .item-submit__back-btn
                 もどる
 
