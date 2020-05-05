@@ -252,6 +252,19 @@
         @include required;
       }
     }
+    .selectbox-category{
+      font-size: 13px;
+      margin-top: 10px;
+      position: relative;
+      &__added{
+        -webkit-appearance: none;
+        width: 100%;
+        @include selectStyle;
+      }
+      &__select.not-selected{
+        border: 1px solid red;
+      }
+    }
     .selectbox{
       font-size: 13px;
       margin-top: 10px;

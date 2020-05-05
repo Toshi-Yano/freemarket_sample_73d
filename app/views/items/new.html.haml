@@ -55,11 +55,10 @@
                 カテゴリー
                 .selectwrapper__name__require
                   必須
-              .selectbox
-                = f.collection_select :category_id, Category.all, :id, :name ,include_blank: '選択してください'
-              .errorbox
-                %p.errorbox__errormessage
-                  選択されていません
+              .selectbox-category
+                = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '---'}, {id: 'parent_category'}
+              %p.errorbox__errormessage
+                選択されていません
             .selectwrapper
               .selectwrapper__name
                 商品の状態

@@ -15,13 +15,14 @@ Rails.application.routes.draw do
     resources :images, only: [:new, :create]
   end
 
-  resources :items, only: [:index, :show, :new, :edit, :destroy] do
+  resources :items do 
+    #Ajaxで動くアクションのルート
     collection do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'category/get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
+      get 'category/get_category_grandchildren', to: 'items#get_category_grandchildren', defaults: { format: 'json' }
     end
   end
-    
+
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
