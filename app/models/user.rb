@@ -8,7 +8,7 @@ class User < ApplicationRecord
   belongs_to_active_hash :prefecture
   
   has_one  :address, dependent: :destroy
-  has_one  :credit_card
+  has_one  :creditcard
   has_many :orders
   has_many :items
   
