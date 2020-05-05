@@ -252,11 +252,12 @@
         @include required;
       }
     }
+    
     .selectbox-category{
       font-size: 13px;
       margin-top: 10px;
       position: relative;
-      &__added{
+      select{
         -webkit-appearance: none;
         width: 100%;
         @include selectStyle;
