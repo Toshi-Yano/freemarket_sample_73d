@@ -10,10 +10,12 @@ FactoryBot.define do
     condition_id        {1}
     price               {5000}
     status              {1}
-    after(:build) do |item|                          
-      item.images << build(:image, item: item)
-    # after(:build) do |item|                          
-    #   item.images << FactoryBot.build(:image, image: "sample2.jpg")
+
+    trait :with_image do
+      after(:build) do |item|                          
+        item.images << build(:image, item: item)
+      end
     end
+
   end
 end
