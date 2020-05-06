@@ -15,7 +15,7 @@
               .js-image-zone
                 - if item.persisted?
                   = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
-              .js-edit 変更
+              .js-edit 編集
               .js-remove 削除
             %label.input
               .input__box
@@ -30,7 +30,7 @@
           .js-file_group{data: {index: item.images.count}}
             .preview-none
               .js-image-zone
-              .js-edit 変更
+              .js-edit 編集
               .js-remove 削除
             %label.input
               = file_field_tag :image, name: "item[images_attributes][#{item.images.count}][image]", class: 'js-file', style: "display:none"
