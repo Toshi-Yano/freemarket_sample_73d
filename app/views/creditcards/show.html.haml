@@ -1,15 +1,20 @@
-.show-users-wrapper__center__right-content
-  .card-wrapper
-    .card-wrapper__title
-      クレジットカード情報照会
-    .card-wrapper__content-title
+.credit-card
+  .credit-card_title
+    クレジットカード情報
+  .credit-card_info
+    .credit-card_info_number
       カード番号
-    %input{type: "text", class: "card-wrapper__input-text disabled", disabled: true, value: "**** **** **** " + "#{@default_card_information.last4}"}
-      .card-wrapper__content-title
-        有効期限
-      %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_month}
-      %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_year}
-.user__side__list__confirmcard
-  .user__side__list__confirmcard--btn
-    = link_to creditcard_path(current_user.id), method: :delete , class: "confirmcardbtn" do
-      カード情報削除
+      %br
+      %p= "**** **** **** " + @default_card_information.last4
+    .credit-card_info_term
+      カード有効期限
+      %br
+      - exp_month = @default_card_information.exp_month.to_s
+      - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+      %p= exp_month + " / " + exp_year
+    .credit-card_info_btn
+      = form_tag(creditcard_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm") do
+        %input{ type: "hidden", name: "card_id", value: "" }
+        %button.delete-btn 削除する
+    .credit-card_info_text
+      ＊編集される場合は一度削除してから再登録をお願いします。
