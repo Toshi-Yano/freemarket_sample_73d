@@ -20,4 +20,7 @@ class Item < ApplicationRecord
   validates :delivery_dates_id, presence: true
   validates :price, presence: true, numericality: {greater_than: 300, less_than: 9999999}
   validates :status, presence: true
+  validates_associated :images
+  validates :images, presence: true
+
 end
