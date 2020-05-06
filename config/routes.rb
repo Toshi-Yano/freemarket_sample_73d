@@ -11,11 +11,9 @@ Rails.application.routes.draw do
     get "user_destroy", to: "users/sessions#index"
   end
   root 'items#index'
-  resources :items do
-    resources :images, only: [:new, :create]
-  end
 
   resources :items do 
+    resources :images, only: [:new, :create]
     collection do
       get 'category/get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
       get 'category/get_category_grandchildren', to: 'items#get_category_grandchildren', defaults: { format: 'json' }
