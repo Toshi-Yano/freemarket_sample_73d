@@ -1,18 +1,19 @@
 class CreditcardsController < ApplicationController
-  require 'payjp'
+  require "payjp"
   before_action :set_card
-  
+
   def new # カードの登録画面。送信ボタンを押すとcreateアクションへ。
     card = Creditcard.where(user_id: current_user.id).first
-    redirect_to action: "index" if card.present?
+    redirect_to root_path if card.present?
   end
 
-  # indexアクションはここでは省略
+ # indexアクションはここでは省略
 
   def create #PayjpとCardのデータベースを作成
-    Payjp.api_key = '秘密鍵'
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
 
     if params['payjp-token'].blank?
+      binding.pry
       redirect_to action: "new"
     else
       # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録します。
@@ -24,7 +25,7 @@ class CreditcardsController < ApplicationController
       )
       @card = Creditcard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
-        redirect_to action: "index"
+        redirect_to root_path
       else
         redirect_to action: "create"
       end

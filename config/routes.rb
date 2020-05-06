@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   end
     
   resources :creditcards, only: [:new, :create, :show, :destroy] do
-    collection do
-      post 'show', to: 'card#show'
-    end
+    # collection do
+    #   post 'show', to: 'card#show'
+    # end
   end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
