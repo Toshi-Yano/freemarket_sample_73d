@@ -51,13 +51,17 @@ $(function(){
 
     $('#image-box').on('change', '.js-file', function(e) {
       const targetIndex = $(this).parent().parent().data('index');
+      console.log(targetIndex);
       const file = e.target.files[0];
       const blobUrl = window.URL.createObjectURL(file);
       if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+        console.log(img);
+        console.log("あわわ");
         img.setAttribute('src', blobUrl);
       } else {
         const $imageZone = $('.js-image-zone').eq(targetIndex);
-        console.log($('.js-image-zone').eq(targetIndex));
+        console.log($imageZone.eq());
+        console.log("ぱんつ");
         $imageZone.append(buildImg(targetIndex, blobUrl));
       }
 
@@ -80,13 +84,14 @@ $(function(){
   
     $('#image-box').on('click', '.js-remove', function() {
       const targetIndex = $(this).parent().parent().data('index');
+      console.log(`ターゲット${targetIndex}`);
       // 該当indexを振られているチェックボックスを取得する
       const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
       // もしチェックボックスが存在すればチェックを入れる
       if (hiddenCheck) hiddenCheck.prop('checked', true);
 
-      $(this).parent().remove();
-      $(`img[data-index="${targetIndex}"]`).remove();
+      $(this).parent().parent().remove();
+      // $(`img[data-index="${targetIndex}"]`).remove();
       if ($('.preview').length < 10) {
         const num = $('.preview').length;
         const left = 10 - num;
