@@ -1,12 +1,11 @@
-= @default_card_information.exp_month
--# .show-users-wrapper__center__right-content
--#   .card-wrapper
--#     .card-wrapper__title
--#       クレジットカード情報照会
--#     .card-wrapper__content-title
--#       カード番号
--#     %input{type: "text", class: "card-wrapper__input-text disabled", disabled: true, value: "**** **** **** " + "#{@default_card_information.last4}"}
--#       .card-wrapper__content-title
--#         有効期限
--#       %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_month}
--#       %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_year}
+.show-users-wrapper__center__right-content
+  .card-wrapper
+    .card-wrapper__title
+      クレジットカード情報照会
+    .card-wrapper__content-title
+      カード番号
+    %input{type: "text", class: "card-wrapper__input-text disabled", disabled: true, value: "**** **** **** " + "#{@default_card_information.last4}"}
+      .card-wrapper__content-title
+        有効期限
+      %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_month}
+      %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_year}
