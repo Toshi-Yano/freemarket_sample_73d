@@ -43,15 +43,17 @@
         %th
           カテゴリー
         %td
-          %p
-            = link_to '#' do
-              = @item.category.name
-          %p
-            = link_to '#' do
-              = @item.category.name
-          %p
-            = link_to '#' do
-              = @item.category.name
+          - @parents.each do |parent|
+            - if @item.category_id == parent.id
+              %p
+                = link_to '#' do
+                  = parent.parent.parent.name
+              %p
+                = link_to '#' do
+                  = parent.parent.name
+              %p
+                = link_to '#' do
+                  = parent.name
       %tr
         %th
           ブランド
