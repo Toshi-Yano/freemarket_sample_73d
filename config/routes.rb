@@ -19,7 +19,14 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
-      get 'done_purchase'
+      # get 'purchase/:id' => 'items#purchase', as: 'purchase'
+      # post 'pay/:id'=> 'items#pay', as: 'pay'
+      # post 'pay', to: 'items#pay', as: 'pay'
+      # get 'done_purchase'
+    end
+    member do
+      get 'purchase'
+      get 'pay'
     end
   end
     

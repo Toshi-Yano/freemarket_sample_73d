@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:new, :index, :create]
+  before_action :set_item, only: [:show, :update, :destroy, :purchase]
 
-  
+  require "payjp"
+
   def index
   end
 
@@ -16,12 +17,11 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render :new, alert: "入力されていない項目があります"
+      render :new
     end
   end
 
   def show
-    @item = Item.find(params[:id])
     @images = @item.images
     @top_image = @images.first
   end
@@ -40,6 +40,22 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def purchase
+    card = Creditcard.find_by(user_id: current_user.id)
+    if card.present? && @item.status === 1
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.data[0]
+    else
+      redirect_to root_path
+      # 後でエラーハンドリング
+    end
+  end
+
+  def pay
+    
   end
   
   private
