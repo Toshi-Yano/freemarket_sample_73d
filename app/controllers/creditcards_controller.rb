@@ -27,7 +27,7 @@ class CreditcardsController < ApplicationController
       card = Creditcard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       card.save!
       if card.save!
-        redirect_to user_show_path(current_user)
+        redirect_to done_create_creditcards_path
       else
         redirect_to new_card_path
       end
@@ -37,22 +37,25 @@ class CreditcardsController < ApplicationController
   def show
     card = Creditcard.find_by(user_id: current_user.id)
     if card.blank?
-      redirect_to action:new
+      redirect_to action: "new"
     else
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.data[0]
-      binding.pry
     end
   end
 
   def destroy
     card = Creditcard.find_by(user_id: current_user.id)
-    if card.blank?
-      redirect_to action: "new"
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    customer.delete
+    card.delete
+    if card.destroy
+      # redirect_to user_show_path(current_user.id)
+      redirect_to done_destroy_creditcards_path
     else
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-      
+      redirect_to creditcard_path(current_user.id)
     end
   end
 

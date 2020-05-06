@@ -9,3 +9,7 @@
         有効期限
       %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_month}
       %input{type: "text", class: "card-wrapper__input-text input-half disabled", disabled: true, value: @default_card_information.exp_year}
+.user__side__list__confirmcard
+  .user__side__list__confirmcard--btn
+    = link_to creditcard_path(current_user.id), method: :delete , class: "confirmcardbtn" do
+      カード情報削除

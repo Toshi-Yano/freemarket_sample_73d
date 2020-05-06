@@ -19,13 +19,15 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'done_purchase'
     end
   end
     
-  resources :creditcards, only: [:new, :create, :show, :destroy]
-    # collection do
-    #   post 'show', to: 'card#show'
-    # end
-  
+  resources :creditcards, only: [:new, :create, :show, :destroy] do
+    collection do
+      get 'done_create'
+      get 'done_destroy'
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
