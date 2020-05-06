@@ -15,6 +15,7 @@
               .js-image-zone
                 - if item.persisted?
                   = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
+              .js-edit 編集
               .js-remove 削除
             %label.input
               .input__box
@@ -25,17 +26,19 @@
               = i.file_field :image, class: 'js-file', style: 'display:none'
           - if item.persisted?
             = i.check_box :_destroy, data:{ index: i.index }, style: "display:none", class: "hidden-destroy"
-        .js-file_group{data: {index: item.images.count}}
-          .preview-none
-            .js-image-zone
-            .js-remove 削除
-          %label.input
-            = file_field_tag :image, name: "item[images_attributes][#{item.images.count}][image]", class: 'js-file', style: "display:none"
-            .input__box
-              .input__box__cam-icon
-                %i.fa.fa-camera.fa-lg
-              %p.input__box__p
-                ここをクリックしてアップロード
+        - if item.persisted?
+          .js-file_group{data: {index: item.images.count}}
+            .preview-none
+              .js-image-zone
+              .js-edit 編集
+              .js-remove 削除
+            %label.input
+              = file_field_tag :image, name: "item[images_attributes][#{item.images.count}][image]", class: 'js-file', style: "display:none"
+              .input__box
+                .input__box__cam-icon
+                  %i.fa.fa-camera.fa-lg
+                %p.input__box__p
+                  ここをクリックしてアップロード
       #how-many-image
 
   .item-form-box

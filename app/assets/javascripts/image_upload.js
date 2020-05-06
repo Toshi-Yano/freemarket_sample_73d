@@ -4,6 +4,7 @@ $(function(){
       const html = `<div class="js-file_group" data-index="${index}">
                       <div class="preview-none">
                         <div class="js-image-zone"></div>
+                        <div class="js-edit">編集</div>
                         <div class="js-remove">削除</div>
                       </div>
                       <label class="input">
@@ -60,7 +61,6 @@ $(function(){
         img.setAttribute('src', blobUrl);
       } else {
         const $imageZone = $('.js-image-zone').eq(targetIndex);
-        console.log($imageZone.eq());
         console.log("ぱんつ");
         $imageZone.append(buildImg(targetIndex, blobUrl));
       }
@@ -80,6 +80,10 @@ $(function(){
         $('#how-many-image').children().remove();
         $('#how-many-image').append(`<p style="color:red">これ以上アップロードできません</p>`);
       }
+    });
+
+    $('#image-box').on('click', '.js-edit', function() {
+      $(this).parent().next().click();
     });
   
     $('#image-box').on('click', '.js-remove', function() {
