@@ -22,5 +22,5 @@
           カード情報登録
     .user__side__list__confirmcard
       .user__side__list__confirmcard--btn
-        = link_to "#" , class: "confirmcardbtn" do
+        = link_to creditcard_path(current_user.id) , class: "confirmcardbtn" do
           カード情報確認

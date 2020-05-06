@@ -3,7 +3,7 @@
     %h2 クレジットカード情報入力
   .credit-card_box
     .credit-card_box_inner
-      = form_with url: creditcards_path, method: :post do |f|
+      = form_with model: @card, url: creditcards_path, local: true do |f|
         .credit-card_box_inner_number
           = f.label :カード番号, class: 'label'
           %span 必須
