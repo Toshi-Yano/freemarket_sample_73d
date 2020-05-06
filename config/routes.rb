@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get "user_destroy", to: "users/sessions#index"
   end
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :show]
+  resources :items
   resources :items, only: [:index, :new, :create, :update, :show, :destroy] do
     resources :images, only: [:new, :create]
   end

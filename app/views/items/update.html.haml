@@ -1,0 +1,5 @@
+.completion__notice
+  = link_to "#" do
+    = image_tag "/material/logo/logo.png", class: "completion__notice--logo", alt: "FURIMA"
+  .completion__notice--main 商品情報を修正しました
+  = link_to "商品ページへ戻る", item_path(@item.id), class: "completion__notice--link"
