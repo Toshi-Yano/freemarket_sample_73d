@@ -2,18 +2,19 @@
   .main-container
     .main-container__box
       .main-container__box-header
-        = link_to root_path do
-          = image_tag "/material/logo/logo.png", size: "185x53"
+        = link_to (image_tag "/material/logo/logo.png", width: "185", height: "53"), root_path
+
       #form
-        = render layout: 'form', locals: { item: @item } do
+        = render layout: "form", locals: { item: @item } do
           .item-submit
             %label
               = f.submit style: "display:none"
               %p.item-submit__submit-btn
                 出品する
-            = link_to root_path class: "link-item-submit" do
+            = link_to item_path(@item.id), class: "link-item-submit" do
               .item-submit__back-btn
                 もどる
+
           %p.item-submit-attention
             禁止されている
             %a.link-item-submit 行為
@@ -26,7 +27,7 @@
             などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
             %a.link-item-submit 加盟店規約
             に同意したことになります。
-
+          
           .regulation-footer
             %ul.regulation-footer__list
               %li
@@ -40,8 +41,8 @@
                   特定商取引に関する表記
             .regulation-footer__logo
               .regulation-footer__logo__box
-                = link_to root_path do
-                  = image_tag "/material/logo/logo-white.png", size: "185x53"
+                = link_to '#' do
+                  = image_tag "/material/logo/logo-white.png", width: "185", height: "53"
                 %p.regulation-footer__logo__box__company
                   © FURIMA, Inc.
 

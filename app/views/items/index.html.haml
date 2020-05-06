@@ -97,7 +97,7 @@
         .main_page_pickup_box_lists
           - @items.each do |item|
             .main_page_pickup_box_lists_list
-              =link_to '#' do
+              =link_to item_path(item.id) do
                 .main_page_pickup_box_lists_list_picture
                   = image_tag "#{item.images[0].image_url}", class:".main_page_pickup_box_lists_list_picture__box"
                 .main_page_pickup_box_lists_list_text

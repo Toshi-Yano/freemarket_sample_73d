@@ -103,7 +103,7 @@
     - if user_signed_in? && current_user.id == @item.user.id
       .item__item-box__show
         .item__item-box__show-edit
-          = link_to "編集", class: "item__item-box__show-edit"
+          = link_to "編集", edit_item_path(params[:id]), class: "item__item-box__show-edit"
         .item__item-box__show-delete
           = link_to "削除", class: "item__item-box__show-delete"
 
@@ -139,7 +139,7 @@
   (()=>{
     const images = document.getElementsByClassName('item__item-box__images__image');
     const images_array = Array.from(images);
-    if (images_array.length > 5) {
+    if (images_array.length > 4) {
       document.getElementById('image_list').classList.add('overflown');
     }
   })();
