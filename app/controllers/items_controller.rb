@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index_unless_owner, only: [:edit, :update, :destroy]
   
   def index
+    @items = Item.includes(:images).where(status: 1).order('id DESC').limit(3)
   end
 
   def new
@@ -57,11 +58,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def get_category_children
-    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
   end
 
   # 子カテゴリーが選択された後に動くアクション

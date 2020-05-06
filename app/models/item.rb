@@ -22,4 +22,5 @@ class Item < ApplicationRecord
   validates :status, presence: true
   validates_associated :images
   validates :images, presence: true
+
 end
