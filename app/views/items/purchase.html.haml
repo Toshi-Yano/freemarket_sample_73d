@@ -1,4 +1,30 @@
-購入
-= link_to "買う", pay_item_path(@item)
-= @item.name
-= @default_card_information.exp_month
+%main
+  .purchase-container
+    .purchase-container__box
+      .purchase-container__box__header
+        = link_to (image_tag "/material/logo/logo.png", width: "185", height: "53"), root_path
+
+      .purchase-container__mainbox
+        .purchase-container__mainbox__top
+          .purchase-container__mainbox__top__text
+            購入内容の確認
+          %hr
+
+        .purchase-container__detail
+          .purchase-container__detail__img
+            =@image
+
+          .purchase-container__detail__text
+            %span.title
+              = @item.name
+            %span.price
+              = "¥#{@item.price}"
+
+            
+          
+
+
+-# 購入
+-# = link_to "買う", pay_item_path(@item)
+-# = @item.name
+-# = @default_card_information.exp_month
