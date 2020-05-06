@@ -50,6 +50,9 @@ $(function(){
     const firstLeft = 10 - firstNum;
     $('#how-many-image').append(`<p style="color:#0095ee">あと${firstLeft}枚アップロードできます</p>`)
 
+    // 削除回数
+    let removalCount = 0;
+
     $('#image-box').on('change', '.js-file', function(e) {
       const targetIndex = $(this).parent().parent().data('index');
       const file = e.target.files[0];
@@ -57,13 +60,10 @@ $(function(){
       if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
         img.setAttribute('src', blobUrl);
       } else {
-        const $imageZone = $('.js-image-zone').eq(targetIndex);
+        const targetIndexPlusRemoval = targetIndex - removalCount;
+        const $imageZone = $('.js-image-zone').eq(targetIndexPlusRemoval);
         $imageZone.append(buildImg(targetIndex, blobUrl));
       }
-
-      console.log(fileIndex);
-      console.log(targetIndex + 1);
-      console.log($.inArray(targetIndex + 1, fileIndex));
 
       if ( $.inArray(targetIndex + 1, fileIndex) == 0) {
         $(this).parent().prev().addClass('preview');
@@ -91,8 +91,10 @@ $(function(){
     });
   
     $('#image-box').on('click', '.js-remove', function() {
+      // 削除回数
+      removalCount++;
+
       const targetIndex = $(this).parent().parent().data('index');
-      console.log(`ターゲット${targetIndex}`);
       // 該当indexを振られているチェックボックスを取得する
       const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
       // もしチェックボックスが存在すればチェックを入れる
