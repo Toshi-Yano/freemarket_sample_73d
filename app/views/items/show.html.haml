@@ -105,7 +105,7 @@
         .item__item-box__show-edit
           = link_to "編集", edit_item_path(params[:id]), class: "item__item-box__show-edit"
         .item__item-box__show-delete
-          = link_to "削除", class: "item__item-box__show-delete"
+          = link_to "削除", item_path(@item), method: :delete, class: "item__item-box__show-delete"
 
   .item__comment-box
     %textarea.item__comment-box__textarea
