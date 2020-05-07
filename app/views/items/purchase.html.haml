@@ -13,9 +13,7 @@
         .purchase-mainbox__item
           .purchase-mainbox__item__box
             .purchase-mainbox__item__box__img
-              -# = image_tag(@item.images[0].image_url,class: "item__img")
-              = image_tag @item.images[0].image.url, size: "560x346"
-              -# = image_tag "sample.jpeg", width: "90", height: "90"
+              = image_tag @item.images[0].image.url, size: "90x90"
             .purchase-mainbox__item__box__text
               %p.title
                 = @item.name
@@ -27,13 +25,13 @@
             .purchase-mainbox__detail__box__price
               %p.price-text
                 支払い金額
-                %p.buy-price
-                  = "¥  #{@item.price}"
+              %p.buy-price
+                = "¥  #{@item.price}"
             .purchase-mainbox__detail__box__payment
               .purchase-mainbox__detail__box__payment__type
                 %p.title
                   支払い方法
-                %p
+                %p.card-info
                   - if @default_card_information.blank?
                     =link_to "クレジットカードを登録する",new_creditcard_path
                   - else
@@ -79,10 +77,10 @@
 
             
         
-購入
-= link_to "買う", pay_item_path(@item)
-= image_tag @item.images[0].image.url, size: "560x346"
-= @item.name
-= "#{@item.price}円"
-= @item.prefecture.name
-= "**** **** **** #{@default_card_information.last4}"
+-# 購入
+-# = link_to "買う", pay_item_path(@item)
+-# = image_tag @item.images[0].image.url, size: "560x346"
+-# = @item.name
+-# = "#{@item.price}円"
+-# = @item.prefecture.name
+-# = "**** **** **** #{@default_card_information.last4}"

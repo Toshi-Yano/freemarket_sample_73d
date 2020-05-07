@@ -59,8 +59,8 @@ class ItemsController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.data[0]
     else
-      redirect_to root_path
-      flash[:alert] = "購入処理が失敗しました"
+      # redirect_to root_path
+      # flash[:alert] = "購入処理が失敗しました"
     end
   end
 

@@ -62,18 +62,26 @@
     }
 
     &__box__price{
-      display: table;
-      font-size: 18px;
       font-weight: bold;
-    }
+      display: flex;
+      justify-content: space-between;
+      vertical-align: bottom;
+    
       .price-text{
-        text-align: left;
-        display: table-cell;
+       font-size: 20px;
+       margin-top: 20px;
       }
-
       .buy-price{
-        text-align: right;
-        display: table-cell;
-      }
+        font-size: 30px;
+        }
+    }
+    
+    &__box__payment{
+      padding: 32px 0;
+    }
+
+    .red-btn {
+      
+    }
   }
 }
