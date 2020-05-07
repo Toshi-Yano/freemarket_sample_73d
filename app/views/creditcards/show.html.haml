@@ -13,7 +13,7 @@
       - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
       %p= exp_month + " / " + exp_year
     .credit-card_info_btn
-      = form_tag(creditcard_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm") do
+      = form_tag(creditcard_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm", data: {confirm: "カード情報を削除しますか？"}) do
         %input{ type: "hidden", name: "card_id", value: "" }
         %button.delete-btn 削除する
     .credit-card_info_text

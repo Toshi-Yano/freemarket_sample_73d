@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
       @default_card_information = customer.cards.data[0]
     else
       redirect_to root_path
-      # 後でエラーハンドリング
+      flash[:alert] = "購入処理が失敗しました"
     end
   end
 
@@ -67,7 +67,7 @@ class ItemsController < ApplicationController
       )
     else
       redirect_to item_path(@item)
-      # 後でエラーハンドリング
+      flash[:alert] = "支払い処理が失敗しました"
     end
   end
   
