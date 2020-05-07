@@ -1,24 +1,80 @@
 %main
   .purchase-container
-    .purchase-container__box
-      .purchase-container__box__header
+    .purchase-container__allbox
+      .purchase-container__allbox__header
         = link_to (image_tag "/material/logo/logo.png", width: "185", height: "53"), root_path
 
-      .purchase-container__mainbox
-        .purchase-container__mainbox__top
-          .purchase-container__mainbox__top__text
+      .purchase-mainbox
+        .purchase-mainbox__top
+          .purchase-mainbox__top__text
             購入内容の確認
           %hr
 
-        .purchase-container__detail
-          .purchase-container__detail__img
-            =@image
+        .purchase-mainbox__item
+          .purchase-mainbox__item__box
+            .purchase-mainbox__item__box__img
+              -# = image_tag(@item.images[0].image_url,class: "item__img")
+              = image_tag "sample.jpeg", width: "90", height: "90"
+            .purchase-mainbox__item__box__text
+              %p.title
+                = @item.name
+              %p.price
+                = "¥ #{@item.price} (税込）"
 
-          .purchase-container__detail__text
-            %span.title
-              = @item.name
-            %span.price
-              = "¥#{@item.price}"
+        .purchase-mainbox__detail
+          .purchase-mainbox__detail__box
+            .purchase-mainbox__detail__box__price
+              %p.price-text
+                支払い金額
+                %p.buy-price
+                  = "¥  #{@item.price}"
+            .purchase-mainbox__detail__box__payment
+              .purchase-mainbox__detail__box__payment__type
+                %p.title
+                  支払い方法
+                %p
+                  - if @default_card_information.blank?
+                    =link_to "クレジットカードを登録する",new_creditcard_path
+                  - else
+                    .card_number
+                      カードナンバー
+                      %br/
+                      = "**** **** **** " + @default_card_information.last4
+                    .card_icon
+                      カード会社
+                      %br/
+                      - if @default_card_information.brand == "Visa"
+                        = image_tag "credit_card_logo/Visa.svg", class: "visa card"
+                      - elsif @default_card_information.brand == "MasterCard"
+                        = image_tag "credit_card_logo/Mastercard.svg", class: "mastercard card"
+                      - elsif @default_card_information.brand == "JCB"
+                        = image_tag "credit_card_logo/JCB.svg", class: "jcb card"
+                      - elsif @default_card_information.brand == "American Express"
+                        = image_tag "credit_card_logo/American_Express.svg", class:"american-express card"
+                      - elsif @default_card_information.brand == "Diners Club"
+                        = image_tag "credit_card_logo/diners-club.svg", class: "diners-club card"
+                      - elsif @default_card_information.brand == "Discover"
+                        = image_tag "credit_card_logo/Discover.svg", class: "discover card"
+                    .card_expire
+                      有効期限
+                      %br/
+                      - exp_month = @default_card_information.exp_month.to_s
+                      - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                      = exp_month + " / " + exp_year
+
+            .purchase-mainbox__detail__place
+              .purchase-mainbox__detail__place__address
+                %p.title
+                  配達先
+                %p.detail
+                  ="〒#{current_user.address.postcode}"
+                  %br/
+                  =current_user.address.prefecture
+                  =current_user.address.city
+                  =current_user.address.block                
+                = link_to pay_item_path, method: :POST do
+                  %button{ onclick: "#", type:  "“button”",class:"red-btn"}購入する
+          
 
             
           
@@ -26,5 +82,4 @@
 
 -# 購入
 -# = link_to "買う", pay_item_path(@item)
--# = @item.name
 -# = @default_card_information.exp_month

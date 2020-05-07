@@ -64,7 +64,7 @@ class ItemsController < ApplicationController
   end
 
   def pay
-    
+  end
 
   def get_category_children
     @category_children = Category.find(params[:parent_id]).children
