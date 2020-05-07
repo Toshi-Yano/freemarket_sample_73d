@@ -8,9 +8,9 @@ class User < ApplicationRecord
   belongs_to_active_hash :prefecture
   
   has_one  :address, dependent: :destroy
-  has_one  :credit_card
-  has_many :orders
-  has_many :items
+  has_one  :creditcard, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :items, dependent: :destroy
   
   validates :nickname,        presence: true, uniqueness: true
   validates :email,           presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9.!#$%&'*+\/=?\A_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/ }

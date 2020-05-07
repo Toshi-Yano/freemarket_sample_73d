@@ -1,0 +1,102 @@
+.input-number {
+  height: 20px;
+  width: 70%;
+  border-radius: 2px;
+  padding: 15px 10px;
+  margin-top: 5px;
+}
+
+.red {
+  background-color: red;
+  color: white;
+  margin: 5px 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  vertical-align: top;
+}
+
+label {
+  font-size: larger;
+}
+
+.input-expire {
+  width: 20%;
+  margin-top: 5px;
+}
+
+#token_submit {
+  width: 40%;
+  background-color: red;
+  color: white;
+  padding: 10px;
+}
+
+.delete-btn {
+  width: 20%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 12px;
+}
+
+@mixin mainbox {
+  text-align: center;
+  height: 500px;
+  padding: 20px;
+  font-size: x-large;
+}
+
+
+.credit-card {
+  height: 80vh;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 0 200px;
+  margin: 30px auto;
+  &_title {
+    font-size: xx-large;
+    padding: 50px 80px;
+    text-align: center;
+    border-bottom: 1px solid black;
+  }
+  &_box {
+    @include mainbox;
+    &_inner {
+      &_number {
+        padding: 40px 0;
+      }
+      &_deadline {
+        padding: 40px 0;
+        &_data {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+        }
+      }
+      &_bottom {
+        padding: 40px 0;
+      }
+    }
+  }
+
+  &_info {
+    @include mainbox;
+    &_number {
+      padding: 60px 0;
+    }
+    &_term {
+      padding: 50px 0;
+    }
+    &_btn {
+      padding: 60px 0 30px;
+    }
+    &_text {
+      color: red;
+      font-size: small;
+    }
+  }
+}

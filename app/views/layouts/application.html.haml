@@ -3,6 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Freemarket_sample_73d
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
@@ -10,4 +11,5 @@
     = javascript_include_tag 'category'
     = javascript_include_tag 'image_upload'
   %body
+    = render 'layouts/notifications'
     = yield

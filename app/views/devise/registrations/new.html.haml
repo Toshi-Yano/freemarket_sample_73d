@@ -19,7 +19,6 @@
 .main__new
   .main__new__title 会員情報入力
   = form_for(@user, url: user_registration_path) do |f|
-    = render "devise/shared/error_messages", resource: @user
     .main__new__container
       .main__new__container__field
         = f.label :ニックネーム, class: "main__new__container__field__label"

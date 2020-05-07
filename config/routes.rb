@@ -18,6 +18,17 @@ Rails.application.routes.draw do
       get 'category/get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
       get 'category/get_category_grandchildren', to: 'items#get_category_grandchildren', defaults: { format: 'json' }
     end
+    member do
+      get 'purchase'
+      get 'pay'
+    end
   end
-
+    
+  resources :creditcards, only: [:new, :create, :show, :destroy] do
+    collection do
+      get 'done_create'
+      get 'done_destroy'
+    end
+  end
+  
 end

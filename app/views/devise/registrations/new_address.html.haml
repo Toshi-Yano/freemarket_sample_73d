@@ -19,7 +19,6 @@
 .main__new
   .main__new__title 発送元・お届け先住所登録
   = form_for @address do |f|
-    = render "devise/shared/error_messages", resource: @address
     .main__new__container
       .main__new__container__field--parallel
         = f.label :お名前（全角）, class: "main__new__container__field__label", id: "name__label"
