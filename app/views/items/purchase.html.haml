@@ -14,7 +14,8 @@
           .purchase-mainbox__item__box
             .purchase-mainbox__item__box__img
               -# = image_tag(@item.images[0].image_url,class: "item__img")
-              = image_tag "sample.jpeg", width: "90", height: "90"
+              = image_tag @item.images[0].image.url, size: "560x346"
+              -# = image_tag "sample.jpeg", width: "90", height: "90"
             .purchase-mainbox__item__box__text
               %p.title
                 = @item.name
