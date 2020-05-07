@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render :new, alert: "入力されていない項目があります"
+      render :new
     end
   end
 
