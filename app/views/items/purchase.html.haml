@@ -1,4 +1,7 @@
 購入
 = link_to "買う", pay_item_path(@item)
+= image_tag @item.images[0].image.url, size: "560x346"
 = @item.name
-= @default_card_information.exp_month
+= "#{@item.price}円"
+= @item.prefecture.name
+= "**** **** **** #{@default_card_information.last4}"
