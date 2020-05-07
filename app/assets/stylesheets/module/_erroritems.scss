@@ -1,0 +1,21 @@
+.error_explanation{
+  background-color: #fff;
+  width: 660px;
+  height: 100%;
+  margin: 20px;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 13px;
+  &__list{
+    margin-left: 20px;
+    font-size: 16px;
+    color: red;
+    li{
+      margin-bottom: 7px;
+      i {
+        margin-right: 20px;
+      }
+    }
+  }
+}
