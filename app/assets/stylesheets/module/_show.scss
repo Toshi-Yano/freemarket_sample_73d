@@ -66,13 +66,24 @@ a{
       margin-bottom: 20px;
       @include flex_bothCenter;
       &__image{
-        margin-left: 10px;
+        margin-right: 10px;
       }
     }
     // 小イメージが５枚以上の時
     .overflown{
-      overflow: scroll;
+      overflow-x: scroll;
       justify-content: flex-start;
+    }
+    .overflown::-webkit-scrollbar{
+      height:5px;
+    }
+    .overflown::-webkit-scrollbar-track{
+      background:#ddd;
+      border-radius: 2.5px;
+    }
+    .overflown::-webkit-scrollbar-thumb{
+      background: $furima_blue;
+      border-radius: 2.5px;
     }
     &__price{
       font-size: 46px;

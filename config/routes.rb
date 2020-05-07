@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
   }
@@ -10,19 +11,12 @@ Rails.application.routes.draw do
     get "user_destroy", to: "users/sessions#index"
   end
   root 'items#index'
-  resources :items, only: [:index, :new, :create, :show]
-  resources :items, only: [:index, :new, :create, :update, :show, :destroy] do
-    resources :images, only: [:new, :create]
-  end
 
-  resources :items, only: [:index, :show, :new, :edit, :destroy] do
+  resources :items do 
+    resources :images, only: [:new, :create]
     collection do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
-      # get 'purchase/:id' => 'items#purchase', as: 'purchase'
-      # post 'pay/:id'=> 'items#pay', as: 'pay'
-      # post 'pay', to: 'items#pay', as: 'pay'
-      # get 'done_purchase'
+      get 'category/get_category_children', to: 'items#get_category_children', defaults: { format: 'json' }
+      get 'category/get_category_grandchildren', to: 'items#get_category_grandchildren', defaults: { format: 'json' }
     end
     member do
       get 'purchase'
@@ -36,5 +30,5 @@ Rails.application.routes.draw do
       get 'done_destroy'
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
 end

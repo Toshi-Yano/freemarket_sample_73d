@@ -3,7 +3,7 @@ RSpec.describe Item do
   describe "#create" do
 
       it "全て入力すると登録できる" do
-        item = create(:item)
+        item = create(:item, :with_image)
         expect(item).to be_valid
       end
   
@@ -66,6 +66,12 @@ RSpec.describe Item do
         item.valid?
         expect(item.errors[:category]).to include("must exist")
       end
-
+      
+      it "imageが空だと登録できない" do
+        item = build(:item)
+        item.valid?
+        expect(item.errors[:images]).to include("can't be blank")
+      end
+      
   end
 end
