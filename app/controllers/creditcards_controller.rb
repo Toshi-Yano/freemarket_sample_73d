@@ -1,4 +1,8 @@
 class CreditcardsController < ApplicationController
+  before_action :set_secret_key, except:[:new]
+  before_action :set_user_card, only:[:show, :destroy]
+  before_action :set_customer, only:[:show, :destroy]
+  
   require "payjp"
 
   def new
@@ -11,7 +15,6 @@ class CreditcardsController < ApplicationController
   end
 
   def create
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     if params[:creditcard][:number].blank? || params[:creditcard][:cvc].blank?
       redirect_to action: "new"
       flash[:alert] = "全ての項目を正しく入力して下さい"
@@ -43,30 +46,38 @@ class CreditcardsController < ApplicationController
   end
 
   def show
-    card = Creditcard.find_by(user_id: current_user.id)
-    if card.blank?
+    if @card.blank?
       redirect_to action: "new"
       flash[:notice] = "カード情報が未登録です"
     else
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.data[0]
+      @default_card_information = @customer.cards.data[0]
     end
   end
 
   def destroy
-    card = Creditcard.find_by(user_id: current_user.id)
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    customer.delete
-    card.delete
-    if card.destroy
+    @customer.delete
+    @card.delete
+    if @card.destroy
       # redirect_to user_show_path(current_user.id)
       redirect_to done_destroy_creditcards_path
     else
       redirect_to creditcard_path(current_user.id)
       flash[:alert] = "カード情報削除に失敗しました"
     end
+  end
+
+  private
+
+  def set_secret_key
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+  end
+
+  def set_user_card
+    @card = Creditcard.find_by(user_id: current_user.id)
+  end
+
+  def set_customer
+    @customer = Payjp::Customer.retrieve(@card.customer_id)
   end
 
 end

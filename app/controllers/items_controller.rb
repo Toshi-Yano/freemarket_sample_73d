@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:new, :index, :create]
   before_action :move_to_index, except: [:index, :show]
   before_action :move_to_index_unless_owner, only: [:edit, :update, :destroy]
+  before_action :set_card_and_key, only: [:purchase, :pay]
 
   require "payjp"
   
@@ -53,10 +54,8 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    card = Creditcard.find_by(user_id: current_user.id)
-    if card.present? && @item.status === 1 # status[1] = 購入可能
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-      customer = Payjp::Customer.retrieve(card.customer_id)
+    if user_can_purchase_item?
+      customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.data[0]
     else
       redirect_to root_path
@@ -65,14 +64,12 @@ class ItemsController < ApplicationController
   end
 
   def pay
-    card = Creditcard.find_by(user_id: current_user.id)
-    if card.present? && @item.status === 1 # status[1] = 購入可能
+    if user_can_purchase_item?
       @item.status = 2 # 購入済に変更
       @item.save!
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       @charge = Payjp::Charge.create(
         amount: @item.price,
-        customer: card.customer_id,
+        customer: @card.customer_id,
         currency: "jpy"
       )
     else
@@ -109,6 +106,15 @@ class ItemsController < ApplicationController
 
   def move_to_index_unless_owner
     redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id
+  end
+
+  def set_card_and_key
+    @card = Creditcard.find_by(user_id: current_user.id)
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+  end
+
+  def user_can_purchase_item?
+    @card.present? && @item.status === 1 # status[1] = 購入可能
   end
   
 end
