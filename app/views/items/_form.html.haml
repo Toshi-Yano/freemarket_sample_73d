@@ -9,7 +9,7 @@
       最大10枚までアップロードできます
     .image-box__fields
       #image-box
-        = f.fields_for :images do |i|
+        = f.fields_for :images, :item do |i|
           .js-file_group{data: {index: i.index.to_s}}
             .preview-none
               .js-image-zone
