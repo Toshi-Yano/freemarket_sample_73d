@@ -30,5 +30,7 @@ Rails.application.routes.draw do
       get 'done_destroy'
     end
   end
+
+  post "items/:id/pay", to: 'items#pay'
   
 end
