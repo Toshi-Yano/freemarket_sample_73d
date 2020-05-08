@@ -1,5 +1,6 @@
+= render 'layouts/notifications'
 .login-header
-  = link_to "#" do
+  = link_to root_path do
     = image_tag "/material/logo/logo.png", class: "completion__notice--logo", alt: "FURIMA"
   .login-header__main
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

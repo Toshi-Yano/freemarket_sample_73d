@@ -19,13 +19,9 @@
   }
 
   .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+    border: 1px solid rgb(45, 201, 201);
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
     background-color: white;
     padding: 7px 12% 0;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
@@ -33,7 +29,6 @@
 
   .rails-default-error-page h1 {
     font-size: 100%;
-    color: #730E15;
     line-height: 1.5em;
   }
 
@@ -51,16 +46,29 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  .header {
+    width: 100%;
+    height: 250px;
+    text-align: center;
+  }
+
+  .main-logo {
+    width: 25%;
+    height: 100px;
+    margin: 30px 0 20px;
+  }
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/500.html -->
+  <div class="header"><img src="material/logo/logo.png" alt="ロゴ" class="main-logo"></div>
   <div class="dialog">
     <div>
-      <h1>We're sorry, but something went wrong.</h1>
+      <h1>システムエラーが発生しました</h1>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>ブラウザバックでお戻り下さい</p>
   </div>
 </body>
 </html>

@@ -1,0 +1,7 @@
+- if user.errors.any?
+  .error_explanation
+    %ul.error_explanation__list
+      - user.errors.full_messages.each do |message|
+        %li 
+          = icon('fas', 'exclamation-triangle')
+          = message
