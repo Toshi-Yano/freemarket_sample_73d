@@ -1,3 +1,4 @@
+= render 'layouts/notifications'
 .header
   .header__h-container
     .header__h-container__single-header
@@ -19,6 +20,7 @@
 .main__new
   .main__new__title 会員情報入力
   = form_for(@user, url: user_registration_path) do |f|
+    = render partial: "erroruser", locals: { user: @user }
     .main__new__container
       .main__new__container__field
         = f.label :ニックネーム, class: "main__new__container__field__label"
