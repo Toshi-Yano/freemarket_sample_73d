@@ -283,6 +283,7 @@
       select{
         -webkit-appearance: none;
         width: 100%;
+        margin-top: 10px;
         @include selectStyle;
       }
       &__select.not-selected{
