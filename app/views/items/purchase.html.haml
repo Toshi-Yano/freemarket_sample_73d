@@ -1,7 +1,96 @@
-購入
-= link_to "買う", pay_item_path(@item)
-= image_tag @item.images[0].image.url, size: "560x346"
-= @item.name
-= "#{@item.price}円"
-= @item.prefecture.name
-= "**** **** **** #{@default_card_information.last4}"
+%main
+  .purchase-container
+    .purchase-container__allbox
+      .purchase-container__allbox__header
+        = link_to (image_tag "/material/logo/logo.png", width: "185", height: "53"), root_path
+
+      .purchase-mainbox
+        .purchase-mainbox__top
+          .purchase-mainbox__top__text
+            購入内容の確認
+          %hr
+
+        .purchase-mainbox__item
+          .purchase-mainbox__item__box
+            .purchase-mainbox__item__box__img
+              = image_tag @item.images[0].image.url, size: "90x90"
+            .purchase-mainbox__item__box__text
+              %p.title
+                = @item.name
+              %p.price
+                = "¥ #{@item.price} (税込）"
+
+        .purchase-mainbox__detail
+          .purchase-mainbox__detail__box
+            .purchase-mainbox__detail__box__price
+              %p.price-text
+                支払い金額
+              %p.buy-price
+                = "¥  #{@item.price}"
+            .purchase-mainbox__detail__box__payment
+              .purchase-mainbox__detail__box__payment__type
+                %p.title
+                  支払い方法
+                .purchase-mainbox__detail__box__payment__type__card-info
+                  - if @default_card_information.blank?
+                    =link_to "クレジットカードを登録する",new_creditcard_path
+                  - else
+                    .card_number
+                      クレジットカード
+                      %br/
+                      = "**** **** **** " + @default_card_information.last4
+                      .card_number__change
+                        =link_to "変更する",new_creditcard_path
+                    .card_expire
+                      有効期限
+                      %br/
+                      - exp_month = @default_card_information.exp_month.to_s
+                      - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                      = exp_month + " / " + exp_year
+                    .card_icon
+                      %br/
+                      - if @default_card_information.brand == "Visa"
+                        = image_tag "credit_card_logo/Visa.png", class: "visa card"
+                      - elsif @default_card_information.brand == "MasterCard"
+                        = image_tag "credit_card_logo/MasterCard.png", class: "mastercard card"
+                      - elsif @default_card_information.brand == "JCB"
+                        = image_tag "credit_card_logo/JCB.png", class: "jcb card"
+                      - elsif @default_card_information.brand == "American Express"
+                        = image_tag "credit_card_logo/American_Express.png", class:"american-express card"
+                      - elsif @default_card_information.brand == "Diners Club"
+                        = image_tag "credit_card_logo/diners-club.png", class: "diners-club card"
+
+            .purchase-mainbox__detail__box_payment__type__place
+              .purchase-mainbox__detail__place__address
+                %p.title
+                  配達先
+                %p.detail
+                  ="〒#{current_user.address.postcode}"
+                  %br/
+                  =current_user.address.prefecture
+                  =current_user.address.city
+                  =current_user.address.block                
+
+            .purchase-mainbox__detail__box_payment__type__notice
+              郵便局/コンビニ受取をご希望の方は、購入後に取引画面から受取場所を変更をすることが可能です。出品者が発送作業を開始した後は受取場所の変更ができませんので、早めに変更を行ってください。
+            .purchase-mainbox__detail__box_payment__type__submit-btn
+              = link_to pay_item_path, method: :POST do
+                %button{ onclick: "location.href='./pay.html.haml'", type:  "“button”",class:"submit-btn"}購入する
+
+        .regulation-footer
+          %ul.regulation-footer__list
+            %li
+              =link_to '#', class: "regulation-footer__list__link" do
+                プライバシーポリシー
+            %li
+              =link_to '#', class: "regulation-footer__list__link" do
+                フリマ利用規約
+            %li
+              =link_to '#', class: "regulation-footer__list__link" do
+                特定商取引に関する表記
+          .regulation-footer__logo
+            .regulation-footer__logo__box
+              = link_to root_path do
+                = image_tag "/material/logo/logo-white.png", size: "185x53"
+              %p.regulation-footer__logo__box__company
+                © FURIMA, Inc.
