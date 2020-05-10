@@ -82,4 +82,6 @@
       %p.main__new__container__field__registration 本人情報の登録について＞
       .main__new__container__field__announcement
         %p.main__new__container__field__announcement-text This site is protected by reCAPTURE and the Google Privacy Policy and Terms of Service apply.
+      = link_to 'Facebookで登録', user_facebook_omniauth_authorize_path, method: :post
+      = link_to 'Googleで登録', user_google_oauth2_omniauth_authorize_path, method: :post
 = render "footer"

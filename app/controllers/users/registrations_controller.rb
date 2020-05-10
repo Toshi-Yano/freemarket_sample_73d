@@ -9,6 +9,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    if params[:sns_auth] == 'true'
+      pass = Devise.friendly_token
+      params[:user][:password] = pass
+      params[:user][:password_confirmation] = pass
+    end
+
     @user = User.new(sign_up_params)
     unless params[:birthday]["date_of_birth(1i)"].present?
       render :new and return

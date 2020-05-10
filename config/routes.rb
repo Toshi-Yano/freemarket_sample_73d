@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   delete "destroy_user_session", to: "devise/sessions#destroy"
   devise_scope :user do
