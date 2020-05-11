@@ -1,6 +1,7 @@
 class CreditcardsController < ApplicationController
   before_action :set_secret_key, except:[:new]
   before_action :set_user_card, only:[:show, :destroy]
+  before_action :set_customer, only:[:show, :destroy]
   
   require "payjp"
 
@@ -49,13 +50,11 @@ class CreditcardsController < ApplicationController
       redirect_to action: "new"
       flash[:notice] = "カード情報が未登録です"
     else
-      @customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = @customer.cards.data[0]
     end
   end
 
   def destroy
-    @customer = Payjp::Customer.retrieve(@card.customer_id)
     @customer.delete
     @card.delete
     if @card.destroy
@@ -75,6 +74,10 @@ class CreditcardsController < ApplicationController
 
   def set_user_card
     @card = Creditcard.find_by(user_id: current_user.id)
+  end
+
+  def set_customer
+    @customer = Payjp::Customer.retrieve(@card.customer_id)
   end
 
 end
