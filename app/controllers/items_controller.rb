@@ -34,6 +34,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @items = Item.find(params[:id])
+    @category_parent_array = Category.where(ancestry:nil)
   end
 
   def update
