@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only:[:show, :destroy, :edit, :update, :purchase, :pay]
   before_action :move_to_index, except: [:index, :show]
   before_action :move_to_index_unless_owner, only: [:edit, :update, :destroy]
-  before_action :set_card_and_key, only: [:purchase, :pay]
+  before_action :set_card_and_key, only: [:show, :purchase, :pay]
 
   require "payjp"
   

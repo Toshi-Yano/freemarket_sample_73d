@@ -97,7 +97,7 @@
         .item__item-box__btn-box__report-btn
           = icon('fas', 'flag')
           不適切な商品の通報
-    - if user_signed_in? && current_user.id != @item.user.id && @item.status == 1 #  status[1] = 購入可能
+    - if user_signed_in? && @card.present? && current_user.id != @item.user.id && @item.status == 1 #  status[1] = 購入可能
       .item__item-box__submit
         = link_to "購入画面へ進む", purchase_item_path(@item), class: "item__item-box__submit-btn" 
     - if user_signed_in? && current_user.id != @item.user.id && @item.status == 2 #  status[2] = 購入済
