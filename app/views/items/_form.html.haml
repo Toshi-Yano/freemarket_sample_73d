@@ -9,7 +9,7 @@
       最大10枚までアップロードできます
     .image-box__fields
       #image-box
-        = f.fields_for :images, :item do |i|
+        = f.fields_for :images, item do |i|
           .js-file_group{data: {index: i.index.to_s}}
             .preview-none
               .js-image-zone
@@ -72,10 +72,22 @@
         .selectwrapper__name__require
           必須
       .selectbox-category
+
+
+
+
         - if item.persisted?
           = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
-          = select_tag :category_id, options_from_collection_for_select(Category.find(Category.find(item.category_id).parent.parent.id).children, :id, :name, Category.find(item.category_id).parent.id.to_s), id: "child_category"
-          = select_tag :category_id, options_from_collection_for_select(Category.find(Category.find(item.category_id).parent.id).children, :id, :name, item.category_id.to_s), id: "grandchild_category"
+          #children_wrapper.selectbox-category__added
+            .selectbox1
+              = select_tag :category_id, options_for_select(Category.find(Category.find(item.category_id).parent.parent.id).children.map{|i|[i.name, i.id, { 'data-category' => i.id }]}), id: "child_category", class: "selectbox-category--select", name: "item[category_id]"
+          #grandchildren_wrapper.selectbox-category__added
+            .selectbox2
+              = select_tag :category_id, options_for_select(Category.find(Category.find(item.category_id).parent.id).children.map{|i|[i.name, i.id, { 'data-category' => i.id }]}), id: "grandchild_category", class: "selectbox-category--select", name: "item[category_id]"
+
+
+
+
         - else
           = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
       .errorbox
