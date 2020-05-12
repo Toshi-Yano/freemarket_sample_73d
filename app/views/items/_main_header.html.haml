@@ -5,8 +5,10 @@
         =link_to root_path do
           =image_tag "/material/logo/logo.png"
       .main_header_inner_box_right
-        <input class="box_right_input" id="searchInput" name="key" placeholder="キーワードから探す">
-        =image_tag '/material/icon/icon-search 1.png'
+        = search_form_for(@q_header, url: search_items_path) do |f|
+          = f.search_field :name_cont, id: "header-form", placeholder: "キーワードから探す"
+          = button_tag type: "submit" do
+            = image_tag '/material/icon/icon-search 1.png'
       .main_header_inner_box_list
     .main_header_inner_low
       .main_header_inner_low_leftLists
