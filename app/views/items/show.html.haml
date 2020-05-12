@@ -47,13 +47,13 @@
             - if @item.category_id == parent.id
               %p
                 = link_to '#' do
-                  = parent
+                  = parent.parent.parent.name
               %p
                 = link_to '#' do
-                  = parent
+                  = parent.parent.name
               %p
                 = link_to '#' do
-                  = parent
+                  = parent.name
       %tr
         %th
           ブランド
