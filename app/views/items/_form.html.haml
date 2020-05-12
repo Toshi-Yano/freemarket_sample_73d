@@ -9,21 +9,38 @@
       最大10枚までアップロードできます
     .image-box__fields
       #image-box
-        = f.fields_for :images, item do |i|
-          .js-file_group{data: {index: i.index.to_s}}
-            .preview-none
-              .js-image-zone
-                - if item.persisted?
-                  = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
-              .js-edit 変更
-              .js-remove 削除
-            %label.input
-              .input__box
-                .input__box__cam-icon
-                  %i.fa.fa-camera.fa-lg
-                %p.input__box__p
-                  ここをクリックしてアップロード
-              = i.file_field :image, class: 'js-file', style: 'display:none'
+        - if item.persisted?
+          = f.fields_for :images, :item do |i|
+            .js-file_group{data: {index: i.index.to_s}}
+              .preview-none
+                .js-image-zone
+                  - if item.persisted?
+                    = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
+                .js-edit 変更
+                .js-remove 削除
+              %label.input
+                .input__box
+                  .input__box__cam-icon
+                    %i.fa.fa-camera.fa-lg
+                  %p.input__box__p
+                    ここをクリックしてアップロード
+                = i.file_field :image, class: 'js-file', style: 'display:none'
+        - else
+          = f.fields_for :images, item do |i|
+            .js-file_group{data: {index: i.index.to_s}}
+              .preview-none
+                .js-image-zone
+                  - if item.persisted?
+                    = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
+                .js-edit 変更
+                .js-remove 削除
+              %label.input
+                .input__box
+                  .input__box__cam-icon
+                    %i.fa.fa-camera.fa-lg
+                  %p.input__box__p
+                    ここをクリックしてアップロード
+                = i.file_field :image, class: 'js-file', style: 'display:none'
           - if item.persisted?
             = i.check_box :_destroy, data:{ index: i.index }, style: "display:none", class: "hidden-destroy"
         - if item.persisted?
