@@ -72,10 +72,6 @@
         .selectwrapper__name__require
           必須
       .selectbox-category
-
-
-
-
         - if item.persisted?
           = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
           #children_wrapper.selectbox-category__added
@@ -84,10 +80,6 @@
           #grandchildren_wrapper.selectbox-category__added
             .selectbox2
               = select_tag :category_id, options_for_select(Category.find(Category.find(item.category_id).parent.id).children.map{|i|[i.name, i.id, { 'data-category' => i.id }]}), id: "grandchild_category", class: "selectbox-category--select", name: "item[category_id]"
-
-
-
-
         - else
           = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
       .errorbox
