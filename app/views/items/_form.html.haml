@@ -9,21 +9,38 @@
       最大10枚までアップロードできます
     .image-box__fields
       #image-box
-        = f.fields_for :images, :item do |i|
-          .js-file_group{data: {index: i.index.to_s}}
-            .preview-none
-              .js-image-zone
-                - if item.persisted?
-                  = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
-              .js-edit 変更
-              .js-remove 削除
-            %label.input
-              .input__box
-                .input__box__cam-icon
-                  %i.fa.fa-camera.fa-lg
-                %p.input__box__p
-                  ここをクリックしてアップロード
-              = i.file_field :image, class: 'js-file', style: 'display:none'
+        - if item.persisted?
+          = f.fields_for :images, :item do |i|
+            .js-file_group{data: {index: i.index.to_s}}
+              .preview-none
+                .js-image-zone
+                  - if item.persisted?
+                    = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
+                .js-edit 変更
+                .js-remove 削除
+              %label.input
+                .input__box
+                  .input__box__cam-icon
+                    %i.fa.fa-camera.fa-lg
+                  %p.input__box__p
+                    ここをクリックしてアップロード
+                = i.file_field :image, class: 'js-file', style: 'display:none'
+        - else
+          = f.fields_for :images, item do |i|
+            .js-file_group{data: {index: i.index.to_s}}
+              .preview-none
+                .js-image-zone
+                  - if item.persisted?
+                    = image_tag item.images[i.index].image.url, data: { index: i.index }, width: "138px", height: "82px"
+                .js-edit 変更
+                .js-remove 削除
+              %label.input
+                .input__box
+                  .input__box__cam-icon
+                    %i.fa.fa-camera.fa-lg
+                  %p.input__box__p
+                    ここをクリックしてアップロード
+                = i.file_field :image, class: 'js-file', style: 'display:none'
           - if item.persisted?
             = i.check_box :_destroy, data:{ index: i.index }, style: "display:none", class: "hidden-destroy"
         - if item.persisted?
@@ -71,8 +88,17 @@
         カテゴリー
         .selectwrapper__name__require
           必須
-      .selectbox
-        = f.collection_select :category_id, Category.all, :id, :name ,include_blank: '選択してください'
+      .selectbox-category
+        - if item.persisted?
+          = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
+          #children_wrapper.selectbox-category__added
+            .selectbox1
+              = select_tag :category_id, options_for_select(Category.find(Category.find(item.category_id).parent.parent.id).children.map{|i|[i.name, i.id, { 'data-category' => i.id }]}), id: "child_category", class: "selectbox-category--select", name: "item[category_id]"
+          #grandchildren_wrapper.selectbox-category__added
+            .selectbox2
+              = select_tag :category_id, options_for_select(Category.find(Category.find(item.category_id).parent.id).children.map{|i|[i.name, i.id, { 'data-category' => i.id }]}), id: "grandchild_category", class: "selectbox-category--select", name: "item[category_id]"
+        - else
+          = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
       .errorbox
         %p.errorbox__errormessage
           選択されていません
