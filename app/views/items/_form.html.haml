@@ -72,7 +72,12 @@
         .selectwrapper__name__require
           必須
       .selectbox-category
-        = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
+        - if item.persisted?
+          = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
+          = select_tag :category_id, options_from_collection_for_select(Category.find(Category.find(item.category_id).parent.parent.id).children, :id, :name, Category.find(item.category_id).parent.id.to_s), id: "child_category"
+          = select_tag :category_id, options_from_collection_for_select(Category.find(Category.find(item.category_id).parent.id).children, :id, :name, item.category_id.to_s), id: "grandchild_category"
+        - else
+          = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: '選択してください'}, {id: 'parent_category'}
       .errorbox
         %p.errorbox__errormessage
           選択されていません
