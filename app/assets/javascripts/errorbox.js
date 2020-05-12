@@ -34,7 +34,7 @@ $(function(){
     });
   
   
-    const selectNodes = document.querySelectorAll('select');
+    const selectNodes = document.getElementsByClassName('select-class-for-error');
     const errorNodes = document.getElementsByClassName('errorbox__errormessage');
     const select_array = Array.from(selectNodes);
     const error_array = Array.from(errorNodes);
