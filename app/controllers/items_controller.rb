@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only:[:show, :destroy, :edit, :update, :purchase, :pay]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, except: [:new, :index, :create, :search]
+  before_action :move_to_index, except: [:index, :show, :search]
   before_action :move_to_index_unless_owner, only: [:edit, :update, :destroy]
   before_action :set_card_and_key, only: [:purchase, :pay]
 
@@ -83,6 +84,14 @@ class ItemsController < ApplicationController
 
   def get_category_grandchildren
     @category_grandchildren = Category.find(params[:child_id]).children
+  end
+
+  def search
+    @q = Item.ransack(params[:q])
+    @items = @q.result.includes(:images).to_a.uniq
+    if @q_header
+      @items = @q_header.result.includes(:images).to_a.uniq
+    end
   end
   
   private
