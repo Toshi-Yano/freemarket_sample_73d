@@ -1,14 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_query
 
   def after_sign_out_path_for(resource)
     user_destroy_path
-  end
-
-  def set_query
-    @q_header = Item.includes(:images).ransack(params[:q])
   end
 
   protected
