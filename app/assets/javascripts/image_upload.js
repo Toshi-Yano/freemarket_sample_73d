@@ -45,6 +45,7 @@ $(function(){
     // 既に使われているindexを除外
     const lastIndex = $('.js-file_group:last').data('index');
     fileIndex.splice(0, lastIndex);
+    $('.hidden-destroy').hide();
 
     const firstNum = $('.preview').length;
     const firstLeft = 10 - firstNum;
@@ -98,10 +99,11 @@ $(function(){
       // 該当indexを振られているチェックボックスを取得する
       const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
       // もしチェックボックスが存在すればチェックを入れる
+      console.log(hiddenCheck);
       if (hiddenCheck) hiddenCheck.prop('checked', true);
+      console.log(hiddenCheck.prop('checked'));
 
       $(this).parent().parent().remove();
-      // $(`img[data-index="${targetIndex}"]`).remove();
       if ($('.preview').length < 10) {
         const num = $('.preview').length;
         const left = 10 - num;
