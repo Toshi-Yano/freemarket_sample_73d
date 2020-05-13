@@ -3,14 +3,46 @@
 
 .search
   .search__left
+    %p 詳細検索
     = search_form_for(@q, url:search_items_path) do |f|
       .search__left__sort
-        = f.select(:sorts, {"並び替え": "","価格の安い順": "","価格の高い順": "", "出品の新しい順": "created_at desc"}, {selected: params[:q][:sorts]}, class: "search__left__sort--tab")
+        = f.select(:sorts, {"並び替え": "","価格の安い順": "price ASC","価格の高い順": "price DESC", "出品の新しい順": "created_at desc"}, {selected: params[:q][:sorts]}, class: "search__left__sort--tab")
       .search__left__form
         .search__left__form--label
           = f.label :name_cont, "キーワード"
         .search__left__form--field
-          = f.search_field :name_cont, class: "search__left__form--field"
+          = f.search_field :name_cont, placeholder: "例）値下げ", class: "search__left__form--field--keyword"
+      .search__left__form
+        .search__left__form--label
+          = f.label :category_id_in, "カテゴリー"
+        .search__left__form--field
+          = f.collection_select :category_id_in, @categories, :id, :name, :include_blank => '指定なし', class: "search__left__form--field--category"
+      .search__left__form--label
+        = f.label :price_gteq, "価格"
+      .search__left__form.search__left__form--price
+        .search__left__form--field
+          = f.number_field :price_gteq, placeholder: "¥ Min", class: "search__left__form--field--price"
+        .search__left__form--label--price
+          = f.label :price_lteq, "〜"
+        .search__left__form--field
+          = f.number_field :price_lteq, placeholder: "¥ Max", class: "search__left__form--field--price"
+      .search__left__form
+        .search__left__form--label
+          = f.label :condition_id_in, "商品の状態"
+        .search__left__form--field--condition
+          = f.collection_check_boxes :condition_id_in, Condition.all, :id, :condition do |c|
+            .search__left__form--field--condition--each
+              = c.check_box
+              = c.label
+      .search__left__form
+        .search__left__form--label
+          = f.label :delivery_charge_id_in, "配送料の負担"
+        .search__left__form--field--delivery
+          = f.collection_check_boxes :delivery_charge_id_in, DeliveryCharge.all, :id, :name do |d|
+            .search__left__form--field--delivery--each
+              = d.check_box
+              = d.label
+
       .search__left__action
         = f.submit "検索", class: "search__left__action--btn"
 

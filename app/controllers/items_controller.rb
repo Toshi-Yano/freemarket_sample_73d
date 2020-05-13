@@ -89,7 +89,10 @@ class ItemsController < ApplicationController
   def search
     @q = Item.ransack(params[:q])
     @items = @q.result.includes(:images).to_a.uniq
+    @parents = Category.all
+    @categories = Category.all
     if @q_header
+      params[:q] = {sorts: "created_at DESC"}
       @items = @q_header.result.includes(:images).to_a.uniq
     end
   end

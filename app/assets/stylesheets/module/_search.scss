@@ -1,3 +1,9 @@
+@mixin form {
+  width: 80%;
+  height: 40px;
+  background-color: white;
+}
+
 #header-form {
   height: 40px;
   width: 750px;
@@ -7,10 +13,6 @@
   display: flex;
   justify-content: center;
 }
-// #item_search {
-//   display: flex;
-//   justify-content: center;
-// }
 
 .search {
   width: 100%;
@@ -19,13 +21,88 @@
   display: flex;
   background-color: #F5F5F5;
   &__left {
-    width: 30%;
-    height: 500px;
+    width: 20%;
+    height: 650px;
     background-color: white;
     text-align: center;
-    margin-right: 20px;
+    margin: 0 30px;
     display: flex;
     flex-direction: column;
+    > p {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    &__sort {
+      margin-bottom: 20px;
+      &--tab {
+        @include form;
+      }
+    }
+    &__form {
+      margin-bottom: 20px;
+      &--label {
+        margin-bottom: 10px;
+        &--price {
+          width: 20px;
+          line-height: 40px;
+        }
+      }
+      &--field--keyword {
+        @include form;
+        border-radius: 3px;
+        border: 1px solid #A6A6A6;
+        padding: 10px;
+      }
+      #q_category_id_in {
+        @include form;
+      }
+      &--price {
+        display: flex;
+      }
+      &--field--price {
+        width: 70%;
+        height: 40px;
+        background-color: white;
+        line-height: 40px;
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px solid #A6A6A6;
+      }
+      &--field--condition {
+        display: flex;
+        flex-wrap:wrap;
+        justify-content: start;
+        text-align: start;
+        width: 100%;
+        &--each {
+          width: 50%;
+          padding-left: 5px;
+          margin-bottom: 10px;
+          font-size: 10px;
+        }
+      }
+      &--field--delivery {
+        display: flex;
+        flex-wrap:wrap;
+        // justify-content: center;
+        text-align: start;
+        width: 100%;
+        &--each {
+          padding-left: 5px;
+          margin-bottom: 10px;
+          font-size: 12px;
+          padding-left: 20%;
+        }
+      }
+    }
+    &__action--btn {
+      width: 80%;
+      height: 40px;
+      text-align: center;
+      background-color: #EA352D;
+      color: white;
+    }
   }
 
   &__right {
