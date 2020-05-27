@@ -1,5 +1,14 @@
 # README
 
+# フリマアプリ（メルカリコピー）
+プログラミングスクールでのチーム開発課題です。
+- URL:  http://52.192.112.245/
+- ID :  haku
+- Pass: mizuki
+- テストアカウント
+ - メールアドレス: yamadatarou@gmail.com
+ - パスワード:    abcd1234
+
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
